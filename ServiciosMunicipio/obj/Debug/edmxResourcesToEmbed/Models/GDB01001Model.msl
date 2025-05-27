@@ -1,0 +1,47 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="GDB01001ModelStoreContainer" CdmEntityContainer="GDB01001Entities">
+    <EntitySetMapping Name="CAT_LOCALIDAD">
+      <EntityTypeMapping TypeName="GDB01001Model.CAT_LOCALIDAD">
+        <MappingFragment StoreEntitySet="CAT_LOCALIDAD">
+          <ScalarProperty Name="OBJECTID" ColumnName="OBJECTID" />
+          <ScalarProperty Name="CVE_ENTIDAD" ColumnName="CVE_ENTIDAD" />
+          <ScalarProperty Name="NOM_ENTIDAD" ColumnName="NOM_ENTIDAD" />
+          <ScalarProperty Name="CVE_MUNICIPIO" ColumnName="CVE_MUNICIPIO" />
+          <ScalarProperty Name="NOM_MUNICIPIO" ColumnName="NOM_MUNICIPIO" />
+          <ScalarProperty Name="CVE_LOCALIDAD" ColumnName="CVE_LOCALIDAD" />
+          <ScalarProperty Name="NOM_LOCALIDAD" ColumnName="NOM_LOCALIDAD" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SIS_ASENTAMIENTOS">
+      <EntityTypeMapping TypeName="GDB01001Model.SIS_ASENTAMIENTOS">
+        <MappingFragment StoreEntitySet="SIS_ASENTAMIENTOS">
+          <ScalarProperty Name="OBJECTID" ColumnName="OBJECTID" />
+          <ScalarProperty Name="CLAVEUNICA" ColumnName="CLAVEUNICA" />
+          <ScalarProperty Name="STATUSREGISTROTABLA" ColumnName="STATUSREGISTROTABLA" />
+          <ScalarProperty Name="ALTAREGISTROTABLA" ColumnName="ALTAREGISTROTABLA" />
+          <ScalarProperty Name="BAJAREGISTROTABLA" ColumnName="BAJAREGISTROTABLA" />
+          <ScalarProperty Name="HORAALTAREGISTROTABLA" ColumnName="HORAALTAREGISTROTABLA" />
+          <ScalarProperty Name="HORABAJAREGISTROTABLA" ColumnName="HORABAJAREGISTROTABLA" />
+          <ScalarProperty Name="USUARIOALTA" ColumnName="USUARIOALTA" />
+          <ScalarProperty Name="USUARIOBAJA" ColumnName="USUARIOBAJA" />
+          <ScalarProperty Name="TERMINALALTA" ColumnName="TERMINALALTA" />
+          <ScalarProperty Name="TERMINALBAJA" ColumnName="TERMINALBAJA" />
+          <ScalarProperty Name="CVE_ENTIDAD" ColumnName="CVE_ENTIDAD" />
+          <ScalarProperty Name="CVE_REGION_CATASTRAL" ColumnName="CVE_REGION_CATASTRAL" />
+          <ScalarProperty Name="CVE_MUNICIPIO" ColumnName="CVE_MUNICIPIO" />
+          <ScalarProperty Name="CVE_ZONA_CATASTRAL" ColumnName="CVE_ZONA_CATASTRAL" />
+          <ScalarProperty Name="CVE_LOCALIDAD" ColumnName="CVE_LOCALIDAD" />
+          <ScalarProperty Name="CVE_SECTOR_CATASTRAL" ColumnName="CVE_SECTOR_CATASTRAL" />
+          <ScalarProperty Name="CVE_ASENTAMIENTO" ColumnName="CVE_ASENTAMIENTO" />
+          <ScalarProperty Name="TIPO_ASENTAMIENTO" ColumnName="TIPO_ASENTAMIENTO" />
+          <ScalarProperty Name="NOMBRE_ASENTAMIENTO" ColumnName="NOMBRE_ASENTAMIENTO" />
+          <ScalarProperty Name="CP" ColumnName="CP" />
+          <ScalarProperty Name="NOMBRE_COMPLETO_ASENTAMIENTO" ColumnName="NOMBRE_COMPLETO_ASENTAMIENTO" />
+          <ScalarProperty Name="OBSERVACIONES" ColumnName="OBSERVACIONES" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

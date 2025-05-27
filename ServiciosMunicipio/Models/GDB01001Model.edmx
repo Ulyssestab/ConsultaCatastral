@@ -1,0 +1,212 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="GDB01001Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <!--Errores durante la generación:
+advertencia 6002: La tabla o vista 'GDB01001.sde.CAT_LOCALIDAD' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
+        <EntityType Name="CAT_LOCALIDAD">
+          <Key>
+            <PropertyRef Name="OBJECTID" />
+          </Key>
+          <Property Name="OBJECTID" Type="int" Nullable="false" />
+          <Property Name="CVE_ENTIDAD" Type="nvarchar" MaxLength="2" />
+          <Property Name="NOM_ENTIDAD" Type="nvarchar" MaxLength="100" />
+          <Property Name="CVE_MUNICIPIO" Type="nvarchar" MaxLength="3" />
+          <Property Name="NOM_MUNICIPIO" Type="nvarchar" MaxLength="100" />
+          <Property Name="CVE_LOCALIDAD" Type="nvarchar" MaxLength="4" />
+          <Property Name="NOM_LOCALIDAD" Type="nvarchar" MaxLength="100" />
+        </EntityType>
+        <!--Errores durante la generación:
+advertencia 6002: La tabla o vista 'GDB01001.sde.SIS_ASENTAMIENTOS' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
+        <EntityType Name="SIS_ASENTAMIENTOS">
+          <Key>
+            <PropertyRef Name="OBJECTID" />
+          </Key>
+          <Property Name="OBJECTID" Type="int" Nullable="false" />
+          <Property Name="CLAVEUNICA" Type="int" />
+          <Property Name="STATUSREGISTROTABLA" Type="nvarchar" MaxLength="10" />
+          <Property Name="ALTAREGISTROTABLA" Type="datetime2" Precision="7" />
+          <Property Name="BAJAREGISTROTABLA" Type="datetime2" Precision="7" />
+          <Property Name="HORAALTAREGISTROTABLA" Type="nvarchar" MaxLength="20" />
+          <Property Name="HORABAJAREGISTROTABLA" Type="nvarchar" MaxLength="20" />
+          <Property Name="USUARIOALTA" Type="nvarchar" MaxLength="50" />
+          <Property Name="USUARIOBAJA" Type="nvarchar" MaxLength="50" />
+          <Property Name="TERMINALALTA" Type="nvarchar" MaxLength="50" />
+          <Property Name="TERMINALBAJA" Type="nvarchar" MaxLength="50" />
+          <Property Name="CVE_ENTIDAD" Type="nvarchar" MaxLength="255" />
+          <Property Name="CVE_REGION_CATASTRAL" Type="nvarchar" MaxLength="3" />
+          <Property Name="CVE_MUNICIPIO" Type="nvarchar" MaxLength="3" />
+          <Property Name="CVE_ZONA_CATASTRAL" Type="nvarchar" MaxLength="2" />
+          <Property Name="CVE_LOCALIDAD" Type="nvarchar" MaxLength="4" />
+          <Property Name="CVE_SECTOR_CATASTRAL" Type="nvarchar" MaxLength="3" />
+          <Property Name="CVE_ASENTAMIENTO" Type="nvarchar" MaxLength="5" />
+          <Property Name="TIPO_ASENTAMIENTO" Type="nvarchar" MaxLength="50" />
+          <Property Name="NOMBRE_ASENTAMIENTO" Type="nvarchar" MaxLength="255" />
+          <Property Name="CP" Type="nvarchar" MaxLength="5" />
+          <Property Name="NOMBRE_COMPLETO_ASENTAMIENTO" Type="nvarchar" MaxLength="255" />
+          <Property Name="OBSERVACIONES" Type="nvarchar" MaxLength="255" />
+        </EntityType>
+        <EntityContainer Name="GDB01001ModelStoreContainer">
+          <EntitySet Name="CAT_LOCALIDAD" EntityType="Self.CAT_LOCALIDAD" store:Type="Tables" store:Schema="sde">
+            <DefiningQuery>SELECT 
+    [CAT_LOCALIDAD].[OBJECTID] AS [OBJECTID], 
+    [CAT_LOCALIDAD].[CVE_ENTIDAD] AS [CVE_ENTIDAD], 
+    [CAT_LOCALIDAD].[NOM_ENTIDAD] AS [NOM_ENTIDAD], 
+    [CAT_LOCALIDAD].[CVE_MUNICIPIO] AS [CVE_MUNICIPIO], 
+    [CAT_LOCALIDAD].[NOM_MUNICIPIO] AS [NOM_MUNICIPIO], 
+    [CAT_LOCALIDAD].[CVE_LOCALIDAD] AS [CVE_LOCALIDAD], 
+    [CAT_LOCALIDAD].[NOM_LOCALIDAD] AS [NOM_LOCALIDAD]
+    FROM [sde].[CAT_LOCALIDAD] AS [CAT_LOCALIDAD]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="SIS_ASENTAMIENTOS" EntityType="Self.SIS_ASENTAMIENTOS" store:Type="Tables" store:Schema="sde">
+            <DefiningQuery>SELECT 
+    [SIS_ASENTAMIENTOS].[OBJECTID] AS [OBJECTID], 
+    [SIS_ASENTAMIENTOS].[CLAVEUNICA] AS [CLAVEUNICA], 
+    [SIS_ASENTAMIENTOS].[STATUSREGISTROTABLA] AS [STATUSREGISTROTABLA], 
+    [SIS_ASENTAMIENTOS].[ALTAREGISTROTABLA] AS [ALTAREGISTROTABLA], 
+    [SIS_ASENTAMIENTOS].[BAJAREGISTROTABLA] AS [BAJAREGISTROTABLA], 
+    [SIS_ASENTAMIENTOS].[HORAALTAREGISTROTABLA] AS [HORAALTAREGISTROTABLA], 
+    [SIS_ASENTAMIENTOS].[HORABAJAREGISTROTABLA] AS [HORABAJAREGISTROTABLA], 
+    [SIS_ASENTAMIENTOS].[USUARIOALTA] AS [USUARIOALTA], 
+    [SIS_ASENTAMIENTOS].[USUARIOBAJA] AS [USUARIOBAJA], 
+    [SIS_ASENTAMIENTOS].[TERMINALALTA] AS [TERMINALALTA], 
+    [SIS_ASENTAMIENTOS].[TERMINALBAJA] AS [TERMINALBAJA], 
+    [SIS_ASENTAMIENTOS].[CVE_ENTIDAD] AS [CVE_ENTIDAD], 
+    [SIS_ASENTAMIENTOS].[CVE_REGION_CATASTRAL] AS [CVE_REGION_CATASTRAL], 
+    [SIS_ASENTAMIENTOS].[CVE_MUNICIPIO] AS [CVE_MUNICIPIO], 
+    [SIS_ASENTAMIENTOS].[CVE_ZONA_CATASTRAL] AS [CVE_ZONA_CATASTRAL], 
+    [SIS_ASENTAMIENTOS].[CVE_LOCALIDAD] AS [CVE_LOCALIDAD], 
+    [SIS_ASENTAMIENTOS].[CVE_SECTOR_CATASTRAL] AS [CVE_SECTOR_CATASTRAL], 
+    [SIS_ASENTAMIENTOS].[CVE_ASENTAMIENTO] AS [CVE_ASENTAMIENTO], 
+    [SIS_ASENTAMIENTOS].[TIPO_ASENTAMIENTO] AS [TIPO_ASENTAMIENTO], 
+    [SIS_ASENTAMIENTOS].[NOMBRE_ASENTAMIENTO] AS [NOMBRE_ASENTAMIENTO], 
+    [SIS_ASENTAMIENTOS].[CP] AS [CP], 
+    [SIS_ASENTAMIENTOS].[NOMBRE_COMPLETO_ASENTAMIENTO] AS [NOMBRE_COMPLETO_ASENTAMIENTO], 
+    [SIS_ASENTAMIENTOS].[OBSERVACIONES] AS [OBSERVACIONES]
+    FROM [sde].[SIS_ASENTAMIENTOS] AS [SIS_ASENTAMIENTOS]</DefiningQuery>
+          </EntitySet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="GDB01001Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="CAT_LOCALIDAD">
+          <Key>
+            <PropertyRef Name="OBJECTID" />
+          </Key>
+          <Property Name="OBJECTID" Type="Int32" Nullable="false" />
+          <Property Name="CVE_ENTIDAD" Type="String" MaxLength="2" FixedLength="false" Unicode="true" />
+          <Property Name="NOM_ENTIDAD" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="CVE_MUNICIPIO" Type="String" MaxLength="3" FixedLength="false" Unicode="true" />
+          <Property Name="NOM_MUNICIPIO" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="CVE_LOCALIDAD" Type="String" MaxLength="4" FixedLength="false" Unicode="true" />
+          <Property Name="NOM_LOCALIDAD" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="SIS_ASENTAMIENTOS">
+          <Key>
+            <PropertyRef Name="OBJECTID" />
+          </Key>
+          <Property Name="OBJECTID" Type="Int32" Nullable="false" />
+          <Property Name="CLAVEUNICA" Type="Int32" />
+          <Property Name="STATUSREGISTROTABLA" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="ALTAREGISTROTABLA" Type="DateTime" Precision="7" />
+          <Property Name="BAJAREGISTROTABLA" Type="DateTime" Precision="7" />
+          <Property Name="HORAALTAREGISTROTABLA" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="HORABAJAREGISTROTABLA" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="USUARIOALTA" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="USUARIOBAJA" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="TERMINALALTA" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="TERMINALBAJA" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CVE_ENTIDAD" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="CVE_REGION_CATASTRAL" Type="String" MaxLength="3" FixedLength="false" Unicode="true" />
+          <Property Name="CVE_MUNICIPIO" Type="String" MaxLength="3" FixedLength="false" Unicode="true" />
+          <Property Name="CVE_ZONA_CATASTRAL" Type="String" MaxLength="2" FixedLength="false" Unicode="true" />
+          <Property Name="CVE_LOCALIDAD" Type="String" MaxLength="4" FixedLength="false" Unicode="true" />
+          <Property Name="CVE_SECTOR_CATASTRAL" Type="String" MaxLength="3" FixedLength="false" Unicode="true" />
+          <Property Name="CVE_ASENTAMIENTO" Type="String" MaxLength="5" FixedLength="false" Unicode="true" />
+          <Property Name="TIPO_ASENTAMIENTO" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="NOMBRE_ASENTAMIENTO" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="CP" Type="String" MaxLength="5" FixedLength="false" Unicode="true" />
+          <Property Name="NOMBRE_COMPLETO_ASENTAMIENTO" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="OBSERVACIONES" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityContainer Name="GDB01001Entities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="CAT_LOCALIDAD" EntityType="Self.CAT_LOCALIDAD" />
+          <EntitySet Name="SIS_ASENTAMIENTOS" EntityType="Self.SIS_ASENTAMIENTOS" />
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="GDB01001ModelStoreContainer" CdmEntityContainer="GDB01001Entities">
+          <EntitySetMapping Name="CAT_LOCALIDAD">
+            <EntityTypeMapping TypeName="GDB01001Model.CAT_LOCALIDAD">
+              <MappingFragment StoreEntitySet="CAT_LOCALIDAD">
+                <ScalarProperty Name="OBJECTID" ColumnName="OBJECTID" />
+                <ScalarProperty Name="CVE_ENTIDAD" ColumnName="CVE_ENTIDAD" />
+                <ScalarProperty Name="NOM_ENTIDAD" ColumnName="NOM_ENTIDAD" />
+                <ScalarProperty Name="CVE_MUNICIPIO" ColumnName="CVE_MUNICIPIO" />
+                <ScalarProperty Name="NOM_MUNICIPIO" ColumnName="NOM_MUNICIPIO" />
+                <ScalarProperty Name="CVE_LOCALIDAD" ColumnName="CVE_LOCALIDAD" />
+                <ScalarProperty Name="NOM_LOCALIDAD" ColumnName="NOM_LOCALIDAD" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SIS_ASENTAMIENTOS">
+            <EntityTypeMapping TypeName="GDB01001Model.SIS_ASENTAMIENTOS">
+              <MappingFragment StoreEntitySet="SIS_ASENTAMIENTOS">
+                <ScalarProperty Name="OBJECTID" ColumnName="OBJECTID" />
+                <ScalarProperty Name="CLAVEUNICA" ColumnName="CLAVEUNICA" />
+                <ScalarProperty Name="STATUSREGISTROTABLA" ColumnName="STATUSREGISTROTABLA" />
+                <ScalarProperty Name="ALTAREGISTROTABLA" ColumnName="ALTAREGISTROTABLA" />
+                <ScalarProperty Name="BAJAREGISTROTABLA" ColumnName="BAJAREGISTROTABLA" />
+                <ScalarProperty Name="HORAALTAREGISTROTABLA" ColumnName="HORAALTAREGISTROTABLA" />
+                <ScalarProperty Name="HORABAJAREGISTROTABLA" ColumnName="HORABAJAREGISTROTABLA" />
+                <ScalarProperty Name="USUARIOALTA" ColumnName="USUARIOALTA" />
+                <ScalarProperty Name="USUARIOBAJA" ColumnName="USUARIOBAJA" />
+                <ScalarProperty Name="TERMINALALTA" ColumnName="TERMINALALTA" />
+                <ScalarProperty Name="TERMINALBAJA" ColumnName="TERMINALBAJA" />
+                <ScalarProperty Name="CVE_ENTIDAD" ColumnName="CVE_ENTIDAD" />
+                <ScalarProperty Name="CVE_REGION_CATASTRAL" ColumnName="CVE_REGION_CATASTRAL" />
+                <ScalarProperty Name="CVE_MUNICIPIO" ColumnName="CVE_MUNICIPIO" />
+                <ScalarProperty Name="CVE_ZONA_CATASTRAL" ColumnName="CVE_ZONA_CATASTRAL" />
+                <ScalarProperty Name="CVE_LOCALIDAD" ColumnName="CVE_LOCALIDAD" />
+                <ScalarProperty Name="CVE_SECTOR_CATASTRAL" ColumnName="CVE_SECTOR_CATASTRAL" />
+                <ScalarProperty Name="CVE_ASENTAMIENTO" ColumnName="CVE_ASENTAMIENTO" />
+                <ScalarProperty Name="TIPO_ASENTAMIENTO" ColumnName="TIPO_ASENTAMIENTO" />
+                <ScalarProperty Name="NOMBRE_ASENTAMIENTO" ColumnName="NOMBRE_ASENTAMIENTO" />
+                <ScalarProperty Name="CP" ColumnName="CP" />
+                <ScalarProperty Name="NOMBRE_COMPLETO_ASENTAMIENTO" ColumnName="NOMBRE_COMPLETO_ASENTAMIENTO" />
+                <ScalarProperty Name="OBSERVACIONES" ColumnName="OBSERVACIONES" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

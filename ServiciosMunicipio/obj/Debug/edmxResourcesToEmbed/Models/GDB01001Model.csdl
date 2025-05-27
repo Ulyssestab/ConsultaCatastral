@@ -1,0 +1,47 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="GDB01001Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="CAT_LOCALIDAD">
+    <Key>
+      <PropertyRef Name="OBJECTID" />
+    </Key>
+    <Property Name="OBJECTID" Type="Int32" Nullable="false" />
+    <Property Name="CVE_ENTIDAD" Type="String" MaxLength="2" FixedLength="false" Unicode="true" />
+    <Property Name="NOM_ENTIDAD" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="CVE_MUNICIPIO" Type="String" MaxLength="3" FixedLength="false" Unicode="true" />
+    <Property Name="NOM_MUNICIPIO" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="CVE_LOCALIDAD" Type="String" MaxLength="4" FixedLength="false" Unicode="true" />
+    <Property Name="NOM_LOCALIDAD" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="SIS_ASENTAMIENTOS">
+    <Key>
+      <PropertyRef Name="OBJECTID" />
+    </Key>
+    <Property Name="OBJECTID" Type="Int32" Nullable="false" />
+    <Property Name="CLAVEUNICA" Type="Int32" />
+    <Property Name="STATUSREGISTROTABLA" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="ALTAREGISTROTABLA" Type="DateTime" Precision="7" />
+    <Property Name="BAJAREGISTROTABLA" Type="DateTime" Precision="7" />
+    <Property Name="HORAALTAREGISTROTABLA" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="HORABAJAREGISTROTABLA" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="USUARIOALTA" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="USUARIOBAJA" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="TERMINALALTA" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="TERMINALBAJA" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="CVE_ENTIDAD" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="CVE_REGION_CATASTRAL" Type="String" MaxLength="3" FixedLength="false" Unicode="true" />
+    <Property Name="CVE_MUNICIPIO" Type="String" MaxLength="3" FixedLength="false" Unicode="true" />
+    <Property Name="CVE_ZONA_CATASTRAL" Type="String" MaxLength="2" FixedLength="false" Unicode="true" />
+    <Property Name="CVE_LOCALIDAD" Type="String" MaxLength="4" FixedLength="false" Unicode="true" />
+    <Property Name="CVE_SECTOR_CATASTRAL" Type="String" MaxLength="3" FixedLength="false" Unicode="true" />
+    <Property Name="CVE_ASENTAMIENTO" Type="String" MaxLength="5" FixedLength="false" Unicode="true" />
+    <Property Name="TIPO_ASENTAMIENTO" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="NOMBRE_ASENTAMIENTO" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="CP" Type="String" MaxLength="5" FixedLength="false" Unicode="true" />
+    <Property Name="NOMBRE_COMPLETO_ASENTAMIENTO" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="OBSERVACIONES" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityContainer Name="GDB01001Entities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="CAT_LOCALIDAD" EntityType="Self.CAT_LOCALIDAD" />
+    <EntitySet Name="SIS_ASENTAMIENTOS" EntityType="Self.SIS_ASENTAMIENTOS" />
+  </EntityContainer>
+</Schema>

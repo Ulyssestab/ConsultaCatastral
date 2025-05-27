@@ -1,0 +1,87 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="GDB01001Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <!--Errores durante la generación:
+advertencia 6002: La tabla o vista 'GDB01001.sde.CAT_LOCALIDAD' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
+  <EntityType Name="CAT_LOCALIDAD">
+    <Key>
+      <PropertyRef Name="OBJECTID" />
+    </Key>
+    <Property Name="OBJECTID" Type="int" Nullable="false" />
+    <Property Name="CVE_ENTIDAD" Type="nvarchar" MaxLength="2" />
+    <Property Name="NOM_ENTIDAD" Type="nvarchar" MaxLength="100" />
+    <Property Name="CVE_MUNICIPIO" Type="nvarchar" MaxLength="3" />
+    <Property Name="NOM_MUNICIPIO" Type="nvarchar" MaxLength="100" />
+    <Property Name="CVE_LOCALIDAD" Type="nvarchar" MaxLength="4" />
+    <Property Name="NOM_LOCALIDAD" Type="nvarchar" MaxLength="100" />
+  </EntityType>
+  <!--Errores durante la generación:
+advertencia 6002: La tabla o vista 'GDB01001.sde.SIS_ASENTAMIENTOS' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
+  <EntityType Name="SIS_ASENTAMIENTOS">
+    <Key>
+      <PropertyRef Name="OBJECTID" />
+    </Key>
+    <Property Name="OBJECTID" Type="int" Nullable="false" />
+    <Property Name="CLAVEUNICA" Type="int" />
+    <Property Name="STATUSREGISTROTABLA" Type="nvarchar" MaxLength="10" />
+    <Property Name="ALTAREGISTROTABLA" Type="datetime2" Precision="7" />
+    <Property Name="BAJAREGISTROTABLA" Type="datetime2" Precision="7" />
+    <Property Name="HORAALTAREGISTROTABLA" Type="nvarchar" MaxLength="20" />
+    <Property Name="HORABAJAREGISTROTABLA" Type="nvarchar" MaxLength="20" />
+    <Property Name="USUARIOALTA" Type="nvarchar" MaxLength="50" />
+    <Property Name="USUARIOBAJA" Type="nvarchar" MaxLength="50" />
+    <Property Name="TERMINALALTA" Type="nvarchar" MaxLength="50" />
+    <Property Name="TERMINALBAJA" Type="nvarchar" MaxLength="50" />
+    <Property Name="CVE_ENTIDAD" Type="nvarchar" MaxLength="255" />
+    <Property Name="CVE_REGION_CATASTRAL" Type="nvarchar" MaxLength="3" />
+    <Property Name="CVE_MUNICIPIO" Type="nvarchar" MaxLength="3" />
+    <Property Name="CVE_ZONA_CATASTRAL" Type="nvarchar" MaxLength="2" />
+    <Property Name="CVE_LOCALIDAD" Type="nvarchar" MaxLength="4" />
+    <Property Name="CVE_SECTOR_CATASTRAL" Type="nvarchar" MaxLength="3" />
+    <Property Name="CVE_ASENTAMIENTO" Type="nvarchar" MaxLength="5" />
+    <Property Name="TIPO_ASENTAMIENTO" Type="nvarchar" MaxLength="50" />
+    <Property Name="NOMBRE_ASENTAMIENTO" Type="nvarchar" MaxLength="255" />
+    <Property Name="CP" Type="nvarchar" MaxLength="5" />
+    <Property Name="NOMBRE_COMPLETO_ASENTAMIENTO" Type="nvarchar" MaxLength="255" />
+    <Property Name="OBSERVACIONES" Type="nvarchar" MaxLength="255" />
+  </EntityType>
+  <EntityContainer Name="GDB01001ModelStoreContainer">
+    <EntitySet Name="CAT_LOCALIDAD" EntityType="Self.CAT_LOCALIDAD" store:Type="Tables" store:Schema="sde">
+      <DefiningQuery>SELECT 
+    [CAT_LOCALIDAD].[OBJECTID] AS [OBJECTID], 
+    [CAT_LOCALIDAD].[CVE_ENTIDAD] AS [CVE_ENTIDAD], 
+    [CAT_LOCALIDAD].[NOM_ENTIDAD] AS [NOM_ENTIDAD], 
+    [CAT_LOCALIDAD].[CVE_MUNICIPIO] AS [CVE_MUNICIPIO], 
+    [CAT_LOCALIDAD].[NOM_MUNICIPIO] AS [NOM_MUNICIPIO], 
+    [CAT_LOCALIDAD].[CVE_LOCALIDAD] AS [CVE_LOCALIDAD], 
+    [CAT_LOCALIDAD].[NOM_LOCALIDAD] AS [NOM_LOCALIDAD]
+    FROM [sde].[CAT_LOCALIDAD] AS [CAT_LOCALIDAD]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="SIS_ASENTAMIENTOS" EntityType="Self.SIS_ASENTAMIENTOS" store:Type="Tables" store:Schema="sde">
+      <DefiningQuery>SELECT 
+    [SIS_ASENTAMIENTOS].[OBJECTID] AS [OBJECTID], 
+    [SIS_ASENTAMIENTOS].[CLAVEUNICA] AS [CLAVEUNICA], 
+    [SIS_ASENTAMIENTOS].[STATUSREGISTROTABLA] AS [STATUSREGISTROTABLA], 
+    [SIS_ASENTAMIENTOS].[ALTAREGISTROTABLA] AS [ALTAREGISTROTABLA], 
+    [SIS_ASENTAMIENTOS].[BAJAREGISTROTABLA] AS [BAJAREGISTROTABLA], 
+    [SIS_ASENTAMIENTOS].[HORAALTAREGISTROTABLA] AS [HORAALTAREGISTROTABLA], 
+    [SIS_ASENTAMIENTOS].[HORABAJAREGISTROTABLA] AS [HORABAJAREGISTROTABLA], 
+    [SIS_ASENTAMIENTOS].[USUARIOALTA] AS [USUARIOALTA], 
+    [SIS_ASENTAMIENTOS].[USUARIOBAJA] AS [USUARIOBAJA], 
+    [SIS_ASENTAMIENTOS].[TERMINALALTA] AS [TERMINALALTA], 
+    [SIS_ASENTAMIENTOS].[TERMINALBAJA] AS [TERMINALBAJA], 
+    [SIS_ASENTAMIENTOS].[CVE_ENTIDAD] AS [CVE_ENTIDAD], 
+    [SIS_ASENTAMIENTOS].[CVE_REGION_CATASTRAL] AS [CVE_REGION_CATASTRAL], 
+    [SIS_ASENTAMIENTOS].[CVE_MUNICIPIO] AS [CVE_MUNICIPIO], 
+    [SIS_ASENTAMIENTOS].[CVE_ZONA_CATASTRAL] AS [CVE_ZONA_CATASTRAL], 
+    [SIS_ASENTAMIENTOS].[CVE_LOCALIDAD] AS [CVE_LOCALIDAD], 
+    [SIS_ASENTAMIENTOS].[CVE_SECTOR_CATASTRAL] AS [CVE_SECTOR_CATASTRAL], 
+    [SIS_ASENTAMIENTOS].[CVE_ASENTAMIENTO] AS [CVE_ASENTAMIENTO], 
+    [SIS_ASENTAMIENTOS].[TIPO_ASENTAMIENTO] AS [TIPO_ASENTAMIENTO], 
+    [SIS_ASENTAMIENTOS].[NOMBRE_ASENTAMIENTO] AS [NOMBRE_ASENTAMIENTO], 
+    [SIS_ASENTAMIENTOS].[CP] AS [CP], 
+    [SIS_ASENTAMIENTOS].[NOMBRE_COMPLETO_ASENTAMIENTO] AS [NOMBRE_COMPLETO_ASENTAMIENTO], 
+    [SIS_ASENTAMIENTOS].[OBSERVACIONES] AS [OBSERVACIONES]
+    FROM [sde].[SIS_ASENTAMIENTOS] AS [SIS_ASENTAMIENTOS]</DefiningQuery>
+    </EntitySet>
+  </EntityContainer>
+</Schema>
