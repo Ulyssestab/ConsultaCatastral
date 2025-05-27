@@ -1,0 +1,2 @@
+C:\Users\RPP1\Documents\Catastro\Codigo\ServiciosMunicipio\ServiciosMunicipio.Tests\obj\Debug\ServiciosMunicipio.Tests.csproj.AssemblyReference.cache
+C:\Users\RPP1\Documents\Catastro\Codigo\ServiciosMunicipio\ServiciosMunicipio.Tests\obj\Debug\ServiciosMunicipio.Tests.csproj.CoreCompileInputs.cache
