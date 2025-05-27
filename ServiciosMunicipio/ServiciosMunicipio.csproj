@@ -164,8 +164,10 @@
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
     <Compile Include="Controllers\CAT_LOCALIDADController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\RegistrosEncontradosController.cs" />
     <Compile Include="Controllers\SIS_ASENTAMIENTOSController.cs" />
     <Compile Include="Dao\CAT_LOCALIDAD_Dao.cs" />
+    <Compile Include="Dao\RegistrosEncontradosDao.cs" />
     <Compile Include="Dao\SIS_ASENTAMIENTOS_Dao.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -173,6 +175,7 @@
     <Compile Include="Models\CAT_LOCALIDAD.cs">
       <DependentUpon>GDB01001Model.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\Entidades\ClaveCatastral.cs" />
     <Compile Include="Models\GDB01001Model.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -194,6 +197,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Utilerias\AntiInjectionSQL.cs" />
     <Compile Include="Utilerias\Constantes.cs" />
+    <Compile Include="Utilerias\Utilidades.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Areas\HelpPage\HelpPage.css" />
@@ -265,6 +269,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\RegistrosEncontrados\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
