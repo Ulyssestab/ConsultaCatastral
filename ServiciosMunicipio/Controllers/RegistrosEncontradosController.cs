@@ -39,7 +39,7 @@ namespace ServiciosMunicipio.Controllers
                 + util.completarCeros(2, ClaveCatastral.edificioCE)
                 + util.completarCeros(4, ClaveCatastral.unidadCE);
             //Hago la consulta a la base de datos para ver si existen registros asociados a dicha clave
-            totalRegistros = Buscar.numClavesEstandar(claveCatastralEstandar);
+            totalRegistros = Buscar.numClavesEstandar(claveCatastralEstandar, ClaveCatastral.municipioCE);
             
             respuesta = "" + totalRegistros;
             return Json(respuesta);
