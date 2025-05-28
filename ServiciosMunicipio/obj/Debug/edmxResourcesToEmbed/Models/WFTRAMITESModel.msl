@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="WFTRAMITESModelStoreContainer" CdmEntityContainer="WFTRAMITESEntities">
+    <EntitySetMapping Name="Cat_Municipio">
+      <EntityTypeMapping TypeName="WFTRAMITESModel.Cat_Municipio">
+        <MappingFragment StoreEntitySet="Cat_Municipio">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Municipio" ColumnName="Municipio" />
+          <ScalarProperty Name="Clave" ColumnName="Clave" />
+          <ScalarProperty Name="Activo" ColumnName="Activo" />
+          <ScalarProperty Name="FK_Estado" ColumnName="FK_Estado" />
+          <ScalarProperty Name="BD" ColumnName="BD" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

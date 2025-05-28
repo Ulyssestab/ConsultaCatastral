@@ -1,4 +1,5 @@
-﻿using ServiciosMunicipio.Dao;
+﻿using InstitutoCatastralAGS.Models;
+using ServiciosMunicipio.Dao;
 using ServiciosMunicipio.Models.Entidades;
 using ServiciosMunicipio.Utilerias;
 using System;
@@ -22,10 +23,8 @@ namespace ServiciosMunicipio.Controllers
         [System.Web.Http.HttpPost]
         public ActionResult ClaveCatastral([FromBody] ClaveCatastral ClaveCatastral)
         {
-            //Formulario: Menu Tramite, clave catastral estandar            
-            int totalRegistros = 0;
-            String respuesta = "";
-
+            //Formulario: Menu Tramite, clave catastral estandar                                    
+            int offset= 0;
 
             //Uno la clave catastral estandar enviada desde el formulario
             String claveCatastralEstandar = ClaveCatastral.entidadCE
@@ -38,11 +37,9 @@ namespace ServiciosMunicipio.Controllers
                 + util.completarCeros(5, ClaveCatastral.predioCE)
                 + util.completarCeros(2, ClaveCatastral.edificioCE)
                 + util.completarCeros(4, ClaveCatastral.unidadCE);
-            //Hago la consulta a la base de datos para ver si existen registros asociados a dicha clave
-            totalRegistros = Buscar.numClavesEstandar(claveCatastralEstandar, ClaveCatastral.municipioCE);
-            
-            respuesta = "" + totalRegistros;
-            return Json(respuesta);
+            //Hago la consulta a la base de datos para ver si existen registros asociados a dicha clave                        
+            List<Resultados> resultados = Buscar.obtenerClavesEstandar(claveCatastralEstandar,ClaveCatastral.municipioCE, offset);
+            return Json(resultados);
         }
 
         public ActionResult ClavePredial()

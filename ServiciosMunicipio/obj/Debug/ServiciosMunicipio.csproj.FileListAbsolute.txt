@@ -150,3 +150,14 @@ C:\Users\RPP1\Documents\Catastro\Codigo\ConsultaCatastralServicios\ServiciosMuni
 C:\Users\RPP1\Documents\Catastro\Codigo\ConsultaCatastralServicios\ServiciosMunicipio\obj\Debug\ServiciosMunicipio.csproj.CopyComplete
 C:\Users\RPP1\Documents\Catastro\Codigo\ConsultaCatastralServicios\ServiciosMunicipio\obj\Debug\ServiciosMunicipio.dll
 C:\Users\RPP1\Documents\Catastro\Codigo\ConsultaCatastralServicios\ServiciosMunicipio\obj\Debug\ServiciosMunicipio.pdb
+C:\Users\RPP1\Documents\Catastro\Codigo\ConsultaCatastralServicios\ServiciosMunicipio\bin\Newtonsoft.Json.Bson.dll
+C:\Users\RPP1\Documents\Catastro\Codigo\ConsultaCatastralServicios\ServiciosMunicipio\bin\System.Buffers.dll
+C:\Users\RPP1\Documents\Catastro\Codigo\ConsultaCatastralServicios\ServiciosMunicipio\bin\System.Memory.dll
+C:\Users\RPP1\Documents\Catastro\Codigo\ConsultaCatastralServicios\ServiciosMunicipio\bin\System.Runtime.CompilerServices.Unsafe.dll
+C:\Users\RPP1\Documents\Catastro\Codigo\ConsultaCatastralServicios\ServiciosMunicipio\bin\System.Threading.Tasks.Extensions.dll
+C:\Users\RPP1\Documents\Catastro\Codigo\ConsultaCatastralServicios\ServiciosMunicipio\bin\Newtonsoft.Json.Bson.pdb
+C:\Users\RPP1\Documents\Catastro\Codigo\ConsultaCatastralServicios\ServiciosMunicipio\bin\Newtonsoft.Json.Bson.xml
+C:\Users\RPP1\Documents\Catastro\Codigo\ConsultaCatastralServicios\ServiciosMunicipio\bin\System.Buffers.xml
+C:\Users\RPP1\Documents\Catastro\Codigo\ConsultaCatastralServicios\ServiciosMunicipio\bin\System.Memory.xml
+C:\Users\RPP1\Documents\Catastro\Codigo\ConsultaCatastralServicios\ServiciosMunicipio\bin\System.Runtime.CompilerServices.Unsafe.xml
+C:\Users\RPP1\Documents\Catastro\Codigo\ConsultaCatastralServicios\ServiciosMunicipio\bin\System.Threading.Tasks.Extensions.xml
