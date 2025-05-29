@@ -25,7 +25,7 @@ namespace ServiciosMunicipio.Controllers
         {
             //Formulario: Menu Tramite, clave catastral estandar                                    
             int offset= 0;
-
+          
             //Uno la clave catastral estandar enviada desde el formulario
             String claveCatastralEstandar = ClaveCatastral.entidadCE
                 + util.completarCeros(3, ClaveCatastral.regionCE)
