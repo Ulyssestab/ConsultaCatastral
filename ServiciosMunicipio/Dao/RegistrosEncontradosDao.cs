@@ -142,10 +142,12 @@ namespace ServiciosMunicipio.Dao
         public List<Resultados> obtenerResultadoUbicacionPredio(UbicacionPredio ubicacionPredio, int pag)
         {                                    
             Utilidades utilidades = new Utilidades();
-            String sql = utilidades.formarSQL1(ubicacionPredio);
-            int totalRegistros = numDireccion(sql, ubicacionPredio.municipio);
+            String sql = utilidades.formarSQLtotal(ubicacionPredio);
+            //int totalRegistros = numDireccion(sql, ubicacionPredio.municipio);
             String condicion = utilidades.formarSQL(ubicacionPredio);
             String consulta = "";
+            int max = 10;
+            
             if (String.IsNullOrEmpty(condicion) == false)
             {
                 consulta = "select NUM,"
@@ -164,7 +166,7 @@ namespace ServiciosMunicipio.Dao
                           + "	from sde.sis_pc_clave_catastral pp left join sde.SIS_PC_UBICACION pu on pu.CVE_CAT_EST = pp.CVE_CAT_EST left join sde.SIS_PC_PROPIETARIOS p on p.CVE_CAT_EST = pp.CVE_CAT_EST "
                           + "	Where pp.STATUSREGISTROTABLA = 'ACTIVO' AND pu.STATUSREGISTROTABLA = 'ACTIVO' and P.STATUSREGISTROTABLA='ACTIVO' AND " + condicion + " "
                           + ") as a "
-                          + "WHERE NUM BETWEEN " + ((pag * totalRegistros) + 1) + " AND " + (((pag + 1) * totalRegistros)) + "";
+                          + "WHERE NUM BETWEEN " + ((pag * max) + 1) + " AND " + (((pag + 1) * max)) + "";
             }
             return repositorio.ObtenerLista(consulta, ubicacionPredio.municipio);
         }

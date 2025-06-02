@@ -66,7 +66,7 @@ namespace ServiciosMunicipio.Utilerias
                 count_parameter++;
             }
             /*************************************CLAVE LOCALIDAD**************************************************/
-            if (String.IsNullOrEmpty(ubicacionPredio.clave_localidad) == false)
+            if (String.IsNullOrEmpty(ubicacionPredio.cve_asentamiento) == false)
             {
                 String cve_localidad = utilidades.completarCeros(4, ubicacionPredio.clave_localidad);
 
@@ -136,7 +136,7 @@ namespace ServiciosMunicipio.Utilerias
 
         }
 
-        public string formarSQL1(UbicacionPredio ubicacionPredio) 
+        public string formarSQLtotal(UbicacionPredio ubicacionPredio) 
         {
             String sql = "";
             String cond = "";
