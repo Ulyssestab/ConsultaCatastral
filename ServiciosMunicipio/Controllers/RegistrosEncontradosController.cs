@@ -42,14 +42,23 @@ namespace ServiciosMunicipio.Controllers
             return Json(resultados);
         }
 
-        public ActionResult ClavePredial()
+        public ActionResult ClavePredial(String claveCuentaPredial, String numCuentaPredial, String municipioCE, int offset)
         {
-            return View();
+            List<Resultados> resultados = Buscar.obtenerClavesPredial(claveCuentaPredial, numCuentaPredial, municipioCE, offset);
+            return Json(resultados, JsonRequestBehavior.AllowGet);
+        }
+        
+        public ActionResult FolioReal(String folioReal, String municipioCE, int offset)
+        {
+            //Hago la consulta a la base de datos para ver si existen registros asociados a dicha clave                        
+            List<Resultados> resultados = Buscar.obtenerResultadoFolioReal(folioReal,municipioCE, offset);
+            return Json(resultados, JsonRequestBehavior.AllowGet); 
         }
 
-        public ActionResult FolioReal()
-        {
-            return View();
+        [System.Web.Http.HttpPost]
+        public ActionResult UbicacionPredio([FromBody] UbicacionPredio ubicacionPredio, int pag) {
+            List<Resultados> resultados = Buscar.obtenerResultadoUbicacionPredio(ubicacionPredio, pag);
+            return Json(resultados);
         }
     }
 }

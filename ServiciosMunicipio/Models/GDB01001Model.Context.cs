@@ -27,5 +27,8 @@ namespace ServiciosMunicipio.Models
     
         public virtual DbSet<CAT_LOCALIDAD> CAT_LOCALIDAD { get; set; }
         public virtual DbSet<SIS_ASENTAMIENTOS> SIS_ASENTAMIENTOS { get; set; }
+        public virtual DbSet<SIS_PC_CLAVE_CATASTRAL> SIS_PC_CLAVE_CATASTRAL { get; set; }
+        public virtual DbSet<SIS_PC_PROPIETARIOS> SIS_PC_PROPIETARIOS { get; set; }
+        public virtual DbSet<SIS_PC_UBICACION> SIS_PC_UBICACION { get; set; }
     }
 }

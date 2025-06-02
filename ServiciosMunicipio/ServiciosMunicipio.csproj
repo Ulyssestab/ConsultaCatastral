@@ -174,7 +174,6 @@
     <Compile Include="Controllers\CAT_LOCALIDADController.cs" />
     <Compile Include="Controllers\Cat_MunicipioController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\Program.cs" />
     <Compile Include="Controllers\RegistrosEncontradosController.cs" />
     <Compile Include="Controllers\SIS_ASENTAMIENTOSController.cs" />
     <Compile Include="Dao\CAT_LOCALIDAD_Dao.cs" />
@@ -192,6 +191,7 @@
     </Compile>
     <Compile Include="Models\Entidades\ClaveCatastral.cs" />
     <Compile Include="Models\Entidades\Resultados.cs" />
+    <Compile Include="Models\Entidades\UbicacionPredio.cs" />
     <Compile Include="Models\GDB01001Model.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -208,6 +208,15 @@
       <DependentUpon>GDB01001Model.edmx</DependentUpon>
     </Compile>
     <Compile Include="Models\SIS_ASENTAMIENTOS.cs">
+      <DependentUpon>GDB01001Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SIS_PC_CLAVE_CATASTRAL.cs">
+      <DependentUpon>GDB01001Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SIS_PC_PROPIETARIOS.cs">
+      <DependentUpon>GDB01001Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SIS_PC_UBICACION.cs">
       <DependentUpon>GDB01001Model.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\WFTRAMITESModel.Context.cs">
@@ -229,6 +238,7 @@
     <Compile Include="Repositorio\Impl\RepositorioMunicipioImp.cs" />
     <Compile Include="Repositorio\RepositorioMunicipio.cs" />
     <Compile Include="Utilerias\AntiInjectionSQL.cs" />
+    <Compile Include="Utilerias\Catalogos.cs" />
     <Compile Include="Utilerias\Constantes.cs" />
     <Compile Include="Utilerias\JSONparser.cs" />
     <Compile Include="Utilerias\Utilidades.cs" />

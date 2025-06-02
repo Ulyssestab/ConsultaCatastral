@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="GDB01001Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="GDB01001Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <!--Errores durante la generación:
 advertencia 6002: La tabla o vista 'GDB01001.sde.CAT_LOCALIDAD' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
         <EntityType Name="CAT_LOCALIDAD">
@@ -49,6 +49,148 @@ advertencia 6002: La tabla o vista 'GDB01001.sde.SIS_ASENTAMIENTOS' no tiene def
           <Property Name="NOMBRE_COMPLETO_ASENTAMIENTO" Type="nvarchar" MaxLength="255" />
           <Property Name="OBSERVACIONES" Type="nvarchar" MaxLength="255" />
         </EntityType>
+        <!--Errores durante la generación:
+advertencia 6002: La tabla o vista 'GDB01001.sde.SIS_PC_CLAVE_CATASTRAL' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
+        <EntityType Name="SIS_PC_CLAVE_CATASTRAL">
+          <Key>
+            <PropertyRef Name="OBJECTID" />
+          </Key>
+          <Property Name="OBJECTID" Type="int" Nullable="false" />
+          <Property Name="CLAVEUNICA" Type="int" />
+          <Property Name="STATUSREGISTROTABLA" Type="nvarchar" MaxLength="10" />
+          <Property Name="ALTAREGISTROTABLA" Type="datetime2" Precision="7" />
+          <Property Name="BAJAREGISTROTABLA" Type="datetime2" Precision="7" />
+          <Property Name="HORAALTAREGISTROTABLA" Type="nvarchar" MaxLength="20" />
+          <Property Name="HORABAJAREGISTROTABLA" Type="nvarchar" MaxLength="20" />
+          <Property Name="USUARIOALTA" Type="nvarchar" MaxLength="50" />
+          <Property Name="USUARIOBAJA" Type="nvarchar" MaxLength="50" />
+          <Property Name="TERMINALALTA" Type="nvarchar" MaxLength="50" />
+          <Property Name="TERMINALBAJA" Type="nvarchar" MaxLength="50" />
+          <Property Name="CVE_CAT_EST" Type="nvarchar" MaxLength="31" />
+          <Property Name="CVE_CAT_ORI" Type="nvarchar" MaxLength="30" />
+          <Property Name="FECHA_REGISTRO" Type="datetime2" Precision="7" />
+          <Property Name="CVE_CAT_EST_ANT" Type="nvarchar" MaxLength="31" />
+          <Property Name="CVE_CAT_ANT" Type="nvarchar" MaxLength="30" />
+          <Property Name="CVE_PREDIAL" Type="nvarchar" MaxLength="30" />
+          <Property Name="REGIMEN_PREDIAL" Type="nvarchar" MaxLength="200" />
+          <Property Name="FCH_INSCRIP_RPP" Type="datetime2" Precision="7" />
+          <Property Name="FOLIO_REAL" Type="nvarchar" MaxLength="30" />
+          <Property Name="LEVANTAMIENTO" Type="nvarchar" MaxLength="50" />
+          <Property Name="TD" Type="nvarchar" MaxLength="50" />
+          <Property Name="MANIFESTACION" Type="nvarchar" MaxLength="50" />
+          <Property Name="TITULO_RAN" Type="nvarchar" MaxLength="50" />
+          <Property Name="VOLUMEN" Type="nvarchar" MaxLength="50" />
+          <Property Name="ESCRITURA" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <!--Errores durante la generación:
+advertencia 6002: La tabla o vista 'GDB01001.sde.SIS_PC_PROPIETARIOS' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
+        <EntityType Name="SIS_PC_PROPIETARIOS">
+          <Key>
+            <PropertyRef Name="OBJECTID" />
+          </Key>
+          <Property Name="OBJECTID" Type="int" Nullable="false" />
+          <Property Name="CLAVEUNICA" Type="int" />
+          <Property Name="STATUSREGISTROTABLA" Type="nvarchar" MaxLength="10" />
+          <Property Name="ALTAREGISTROTABLA" Type="datetime2" Precision="7" />
+          <Property Name="BAJAREGISTROTABLA" Type="datetime2" Precision="7" />
+          <Property Name="HORAALTAREGISTROTABLA" Type="nvarchar" MaxLength="20" />
+          <Property Name="HORABAJAREGISTROTABLA" Type="nvarchar" MaxLength="20" />
+          <Property Name="USUARIOALTA" Type="nvarchar" MaxLength="50" />
+          <Property Name="USUARIOBAJA" Type="nvarchar" MaxLength="50" />
+          <Property Name="TERMINALALTA" Type="nvarchar" MaxLength="50" />
+          <Property Name="TERMINALBAJA" Type="nvarchar" MaxLength="50" />
+          <Property Name="CVE_CAT_EST" Type="nvarchar" MaxLength="31" />
+          <Property Name="CVE_CAT_ORI" Type="nvarchar" MaxLength="30" />
+          <Property Name="ID_PROPIETARIO" Type="int" />
+          <Property Name="TIPO_PROPIETARIO" Type="nvarchar" MaxLength="30" />
+          <Property Name="TIPO_PERSONA" Type="nvarchar" MaxLength="30" />
+          <Property Name="APELLIDO_PATERNO" Type="nvarchar" MaxLength="100" />
+          <Property Name="APELLIDO_MATERNO" Type="nvarchar" MaxLength="100" />
+          <Property Name="NOMBRE_O_RAZON_SOCIAL" Type="nvarchar" MaxLength="200" />
+          <Property Name="CURP" Type="nvarchar" MaxLength="18" />
+          <Property Name="FECHA_NACIMIENTO" Type="datetime2" Precision="7" />
+          <Property Name="LUGAR_NACIMIENTO" Type="nvarchar" MaxLength="100" />
+          <Property Name="RFC" Type="nvarchar" MaxLength="13" />
+          <Property Name="PORCENTAJE_POSESION" Type="numeric" Precision="38" Scale="8" />
+          <Property Name="TELEFONO" Type="nvarchar" MaxLength="100" />
+          <Property Name="CORREO_ELECTRONICO" Type="nvarchar" MaxLength="100" />
+          <Property Name="TIPO_PERSONA_VULNERABLE" Type="int" />
+          <Property Name="PROPIETARIO_ORIGINAL" Type="nvarchar" MaxLength="200" />
+          <Property Name="APELLIDO_PATERNO_HIG" Type="nvarchar" MaxLength="100" />
+          <Property Name="APELLIDO_MATERNO_HIG" Type="nvarchar" MaxLength="100" />
+          <Property Name="NOMBRE_O_RAZON_SOCIAL_HIG" Type="nvarchar" MaxLength="200" />
+          <Property Name="PROP_OBSERVACIONES" Type="nvarchar" MaxLength="255" />
+          <Property Name="FOLIO_TD" Type="nvarchar" MaxLength="50" />
+          <Property Name="MONTO_OPERACION_TD" Type="numeric" Precision="38" Scale="2" />
+          <Property Name="NUMERO_DIPI" Type="nvarchar" MaxLength="10" />
+          <Property Name="FECHA_DIPI" Type="datetime" />
+        </EntityType>
+        <!--Errores durante la generación:
+advertencia 6002: La tabla o vista 'GDB01001.sde.SIS_PC_UBICACION' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
+        <EntityType Name="SIS_PC_UBICACION">
+          <Key>
+            <PropertyRef Name="OBJECTID" />
+          </Key>
+          <Property Name="OBJECTID" Type="int" Nullable="false" />
+          <Property Name="CLAVEUNICA" Type="int" />
+          <Property Name="STATUSREGISTROTABLA" Type="nvarchar" MaxLength="10" />
+          <Property Name="ALTAREGISTROTABLA" Type="datetime2" Precision="7" />
+          <Property Name="BAJAREGISTROTABLA" Type="datetime2" Precision="7" />
+          <Property Name="HORAALTAREGISTROTABLA" Type="nvarchar" MaxLength="20" />
+          <Property Name="HORABAJAREGISTROTABLA" Type="nvarchar" MaxLength="20" />
+          <Property Name="USUARIOALTA" Type="nvarchar" MaxLength="50" />
+          <Property Name="USUARIOBAJA" Type="nvarchar" MaxLength="50" />
+          <Property Name="TERMINALALTA" Type="nvarchar" MaxLength="50" />
+          <Property Name="TERMINALBAJA" Type="nvarchar" MaxLength="50" />
+          <Property Name="CVE_CAT_EST" Type="nvarchar" MaxLength="31" />
+          <Property Name="CVE_CAT_ORI" Type="nvarchar" MaxLength="30" />
+          <Property Name="CVE_ENTIDAD" Type="nvarchar" MaxLength="255" />
+          <Property Name="NOM_ENTIDAD" Type="nvarchar" MaxLength="255" />
+          <Property Name="CVE_REGION_CATASTRAL" Type="nvarchar" MaxLength="3" />
+          <Property Name="CVE_MUNICIPIO" Type="nvarchar" MaxLength="3" />
+          <Property Name="NOM_MUNICIPIO" Type="nvarchar" MaxLength="255" />
+          <Property Name="CVE_ZONA_CATASTRAL" Type="nvarchar" MaxLength="2" />
+          <Property Name="CVE_LOCALIDAD" Type="nvarchar" MaxLength="4" />
+          <Property Name="NOM_LOCALIDAD" Type="nvarchar" MaxLength="255" />
+          <Property Name="CVE_SECTOR_CATASTRAL" Type="nvarchar" MaxLength="3" />
+          <Property Name="CVE_ASENTAMIENTO" Type="nvarchar" MaxLength="5" />
+          <Property Name="TIPO_ASENTAMIENTO" Type="nvarchar" MaxLength="30" />
+          <Property Name="NOMBRE_ASENTAMIENTO" Type="nvarchar" MaxLength="255" />
+          <Property Name="CP" Type="nvarchar" MaxLength="5" />
+          <Property Name="NOMBRE_COMPLETO_ASENTAMIENTO" Type="nvarchar" MaxLength="255" />
+          <Property Name="CVE_VIALIDAD" Type="nvarchar" MaxLength="5" />
+          <Property Name="TIPO_VIALIDAD" Type="nvarchar" MaxLength="14" />
+          <Property Name="NOMBRE_VIALIDAD" Type="nvarchar" MaxLength="255" />
+          <Property Name="NOMBRE_COMPLETO_VIALIDAD" Type="nvarchar" MaxLength="255" />
+          <Property Name="MANZANA" Type="nvarchar" MaxLength="50" />
+          <Property Name="LOTE" Type="nvarchar" MaxLength="50" />
+          <Property Name="NUMERO_EXTERIOR" Type="nvarchar" MaxLength="100" />
+          <Property Name="NUMERO_INTERIOR" Type="nvarchar" MaxLength="100" />
+          <Property Name="EDIFICIO_NOMBRE" Type="nvarchar" MaxLength="100" />
+          <Property Name="DESCRIPCION_UBICACION" Type="nvarchar" MaxLength="200" />
+          <Property Name="ID_CONDOMINIO" Type="nvarchar" MaxLength="5" />
+          <Property Name="NOMBRE_CONDOMINIO" Type="nvarchar" MaxLength="200" />
+          <Property Name="NIVEL" Type="smallint" />
+          <Property Name="CARTOG_NOM_DIV" Type="nvarchar" MaxLength="12" />
+          <Property Name="CVE_VIACOM" Type="nvarchar" MaxLength="5" />
+          <Property Name="VIACOM_NOM" Type="nvarchar" MaxLength="255" />
+          <Property Name="VIACOM_TERM_GEN" Type="nvarchar" MaxLength="10" />
+          <Property Name="VIACOM_ADMON" Type="nvarchar" MaxLength="10" />
+          <Property Name="VIACOM_DER_TRANS" Type="nvarchar" MaxLength="5" />
+          <Property Name="VIACOM_CODIGO" Type="smallint" />
+          <Property Name="CARRETERA_TRAMO" Type="nvarchar" MaxLength="255" />
+          <Property Name="CAMINO_TRAMO" Type="nvarchar" MaxLength="255" />
+          <Property Name="CARRETERA_CADENA" Type="nvarchar" MaxLength="255" />
+          <Property Name="CAMINO_CADENA" Type="nvarchar" MaxLength="255" />
+          <Property Name="CAMINO_MARGEN" Type="nvarchar" MaxLength="9" />
+          <Property Name="CVE_NA" Type="nvarchar" MaxLength="3" />
+          <Property Name="NOM_NA" Type="nvarchar" MaxLength="255" />
+          <Property Name="NUM_POL" Type="nvarchar" MaxLength="2" />
+          <Property Name="NUM_ZONA_TUC" Type="nvarchar" MaxLength="2" />
+          <Property Name="NUM_PARCELA" Type="nvarchar" MaxLength="5" />
+          <Property Name="IGUALUN" Type="nvarchar" MaxLength="2" />
+          <Property Name="UBI_OBSERVACIONES" Type="nvarchar" MaxLength="255" />
+        </EntityType>
         <EntityContainer Name="GDB01001ModelStoreContainer">
           <EntitySet Name="CAT_LOCALIDAD" EntityType="Self.CAT_LOCALIDAD" store:Type="Tables" store:Schema="sde">
             <DefiningQuery>SELECT 
@@ -88,9 +230,141 @@ advertencia 6002: La tabla o vista 'GDB01001.sde.SIS_ASENTAMIENTOS' no tiene def
     [SIS_ASENTAMIENTOS].[OBSERVACIONES] AS [OBSERVACIONES]
     FROM [sde].[SIS_ASENTAMIENTOS] AS [SIS_ASENTAMIENTOS]</DefiningQuery>
           </EntitySet>
+          <EntitySet Name="SIS_PC_CLAVE_CATASTRAL" EntityType="Self.SIS_PC_CLAVE_CATASTRAL" store:Type="Tables" store:Schema="sde">
+            <DefiningQuery>SELECT 
+    [SIS_PC_CLAVE_CATASTRAL].[OBJECTID] AS [OBJECTID], 
+    [SIS_PC_CLAVE_CATASTRAL].[CLAVEUNICA] AS [CLAVEUNICA], 
+    [SIS_PC_CLAVE_CATASTRAL].[STATUSREGISTROTABLA] AS [STATUSREGISTROTABLA], 
+    [SIS_PC_CLAVE_CATASTRAL].[ALTAREGISTROTABLA] AS [ALTAREGISTROTABLA], 
+    [SIS_PC_CLAVE_CATASTRAL].[BAJAREGISTROTABLA] AS [BAJAREGISTROTABLA], 
+    [SIS_PC_CLAVE_CATASTRAL].[HORAALTAREGISTROTABLA] AS [HORAALTAREGISTROTABLA], 
+    [SIS_PC_CLAVE_CATASTRAL].[HORABAJAREGISTROTABLA] AS [HORABAJAREGISTROTABLA], 
+    [SIS_PC_CLAVE_CATASTRAL].[USUARIOALTA] AS [USUARIOALTA], 
+    [SIS_PC_CLAVE_CATASTRAL].[USUARIOBAJA] AS [USUARIOBAJA], 
+    [SIS_PC_CLAVE_CATASTRAL].[TERMINALALTA] AS [TERMINALALTA], 
+    [SIS_PC_CLAVE_CATASTRAL].[TERMINALBAJA] AS [TERMINALBAJA], 
+    [SIS_PC_CLAVE_CATASTRAL].[CVE_CAT_EST] AS [CVE_CAT_EST], 
+    [SIS_PC_CLAVE_CATASTRAL].[CVE_CAT_ORI] AS [CVE_CAT_ORI], 
+    [SIS_PC_CLAVE_CATASTRAL].[FECHA_REGISTRO] AS [FECHA_REGISTRO], 
+    [SIS_PC_CLAVE_CATASTRAL].[CVE_CAT_EST_ANT] AS [CVE_CAT_EST_ANT], 
+    [SIS_PC_CLAVE_CATASTRAL].[CVE_CAT_ANT] AS [CVE_CAT_ANT], 
+    [SIS_PC_CLAVE_CATASTRAL].[CVE_PREDIAL] AS [CVE_PREDIAL], 
+    [SIS_PC_CLAVE_CATASTRAL].[REGIMEN_PREDIAL] AS [REGIMEN_PREDIAL], 
+    [SIS_PC_CLAVE_CATASTRAL].[FCH_INSCRIP_RPP] AS [FCH_INSCRIP_RPP], 
+    [SIS_PC_CLAVE_CATASTRAL].[FOLIO_REAL] AS [FOLIO_REAL], 
+    [SIS_PC_CLAVE_CATASTRAL].[LEVANTAMIENTO] AS [LEVANTAMIENTO], 
+    [SIS_PC_CLAVE_CATASTRAL].[TD] AS [TD], 
+    [SIS_PC_CLAVE_CATASTRAL].[MANIFESTACION] AS [MANIFESTACION], 
+    [SIS_PC_CLAVE_CATASTRAL].[TITULO_RAN] AS [TITULO_RAN], 
+    [SIS_PC_CLAVE_CATASTRAL].[VOLUMEN] AS [VOLUMEN], 
+    [SIS_PC_CLAVE_CATASTRAL].[ESCRITURA] AS [ESCRITURA]
+    FROM [sde].[SIS_PC_CLAVE_CATASTRAL] AS [SIS_PC_CLAVE_CATASTRAL]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="SIS_PC_PROPIETARIOS" EntityType="Self.SIS_PC_PROPIETARIOS" store:Type="Tables" store:Schema="sde">
+            <DefiningQuery>SELECT 
+    [SIS_PC_PROPIETARIOS].[OBJECTID] AS [OBJECTID], 
+    [SIS_PC_PROPIETARIOS].[CLAVEUNICA] AS [CLAVEUNICA], 
+    [SIS_PC_PROPIETARIOS].[STATUSREGISTROTABLA] AS [STATUSREGISTROTABLA], 
+    [SIS_PC_PROPIETARIOS].[ALTAREGISTROTABLA] AS [ALTAREGISTROTABLA], 
+    [SIS_PC_PROPIETARIOS].[BAJAREGISTROTABLA] AS [BAJAREGISTROTABLA], 
+    [SIS_PC_PROPIETARIOS].[HORAALTAREGISTROTABLA] AS [HORAALTAREGISTROTABLA], 
+    [SIS_PC_PROPIETARIOS].[HORABAJAREGISTROTABLA] AS [HORABAJAREGISTROTABLA], 
+    [SIS_PC_PROPIETARIOS].[USUARIOALTA] AS [USUARIOALTA], 
+    [SIS_PC_PROPIETARIOS].[USUARIOBAJA] AS [USUARIOBAJA], 
+    [SIS_PC_PROPIETARIOS].[TERMINALALTA] AS [TERMINALALTA], 
+    [SIS_PC_PROPIETARIOS].[TERMINALBAJA] AS [TERMINALBAJA], 
+    [SIS_PC_PROPIETARIOS].[CVE_CAT_EST] AS [CVE_CAT_EST], 
+    [SIS_PC_PROPIETARIOS].[CVE_CAT_ORI] AS [CVE_CAT_ORI], 
+    [SIS_PC_PROPIETARIOS].[ID_PROPIETARIO] AS [ID_PROPIETARIO], 
+    [SIS_PC_PROPIETARIOS].[TIPO_PROPIETARIO] AS [TIPO_PROPIETARIO], 
+    [SIS_PC_PROPIETARIOS].[TIPO_PERSONA] AS [TIPO_PERSONA], 
+    [SIS_PC_PROPIETARIOS].[APELLIDO_PATERNO] AS [APELLIDO_PATERNO], 
+    [SIS_PC_PROPIETARIOS].[APELLIDO_MATERNO] AS [APELLIDO_MATERNO], 
+    [SIS_PC_PROPIETARIOS].[NOMBRE_O_RAZON_SOCIAL] AS [NOMBRE_O_RAZON_SOCIAL], 
+    [SIS_PC_PROPIETARIOS].[CURP] AS [CURP], 
+    [SIS_PC_PROPIETARIOS].[FECHA_NACIMIENTO] AS [FECHA_NACIMIENTO], 
+    [SIS_PC_PROPIETARIOS].[LUGAR_NACIMIENTO] AS [LUGAR_NACIMIENTO], 
+    [SIS_PC_PROPIETARIOS].[RFC] AS [RFC], 
+    [SIS_PC_PROPIETARIOS].[PORCENTAJE_POSESION] AS [PORCENTAJE_POSESION], 
+    [SIS_PC_PROPIETARIOS].[TELEFONO] AS [TELEFONO], 
+    [SIS_PC_PROPIETARIOS].[CORREO_ELECTRONICO] AS [CORREO_ELECTRONICO], 
+    [SIS_PC_PROPIETARIOS].[TIPO_PERSONA_VULNERABLE] AS [TIPO_PERSONA_VULNERABLE], 
+    [SIS_PC_PROPIETARIOS].[PROPIETARIO_ORIGINAL] AS [PROPIETARIO_ORIGINAL], 
+    [SIS_PC_PROPIETARIOS].[APELLIDO_PATERNO_HIG] AS [APELLIDO_PATERNO_HIG], 
+    [SIS_PC_PROPIETARIOS].[APELLIDO_MATERNO_HIG] AS [APELLIDO_MATERNO_HIG], 
+    [SIS_PC_PROPIETARIOS].[NOMBRE_O_RAZON_SOCIAL_HIG] AS [NOMBRE_O_RAZON_SOCIAL_HIG], 
+    [SIS_PC_PROPIETARIOS].[PROP_OBSERVACIONES] AS [PROP_OBSERVACIONES], 
+    [SIS_PC_PROPIETARIOS].[FOLIO_TD] AS [FOLIO_TD], 
+    [SIS_PC_PROPIETARIOS].[MONTO_OPERACION_TD] AS [MONTO_OPERACION_TD], 
+    [SIS_PC_PROPIETARIOS].[NUMERO_DIPI] AS [NUMERO_DIPI], 
+    [SIS_PC_PROPIETARIOS].[FECHA_DIPI] AS [FECHA_DIPI]
+    FROM [sde].[SIS_PC_PROPIETARIOS] AS [SIS_PC_PROPIETARIOS]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="SIS_PC_UBICACION" EntityType="Self.SIS_PC_UBICACION" store:Type="Tables" store:Schema="sde">
+            <DefiningQuery>SELECT 
+    [SIS_PC_UBICACION].[OBJECTID] AS [OBJECTID], 
+    [SIS_PC_UBICACION].[CLAVEUNICA] AS [CLAVEUNICA], 
+    [SIS_PC_UBICACION].[STATUSREGISTROTABLA] AS [STATUSREGISTROTABLA], 
+    [SIS_PC_UBICACION].[ALTAREGISTROTABLA] AS [ALTAREGISTROTABLA], 
+    [SIS_PC_UBICACION].[BAJAREGISTROTABLA] AS [BAJAREGISTROTABLA], 
+    [SIS_PC_UBICACION].[HORAALTAREGISTROTABLA] AS [HORAALTAREGISTROTABLA], 
+    [SIS_PC_UBICACION].[HORABAJAREGISTROTABLA] AS [HORABAJAREGISTROTABLA], 
+    [SIS_PC_UBICACION].[USUARIOALTA] AS [USUARIOALTA], 
+    [SIS_PC_UBICACION].[USUARIOBAJA] AS [USUARIOBAJA], 
+    [SIS_PC_UBICACION].[TERMINALALTA] AS [TERMINALALTA], 
+    [SIS_PC_UBICACION].[TERMINALBAJA] AS [TERMINALBAJA], 
+    [SIS_PC_UBICACION].[CVE_CAT_EST] AS [CVE_CAT_EST], 
+    [SIS_PC_UBICACION].[CVE_CAT_ORI] AS [CVE_CAT_ORI], 
+    [SIS_PC_UBICACION].[CVE_ENTIDAD] AS [CVE_ENTIDAD], 
+    [SIS_PC_UBICACION].[NOM_ENTIDAD] AS [NOM_ENTIDAD], 
+    [SIS_PC_UBICACION].[CVE_REGION_CATASTRAL] AS [CVE_REGION_CATASTRAL], 
+    [SIS_PC_UBICACION].[CVE_MUNICIPIO] AS [CVE_MUNICIPIO], 
+    [SIS_PC_UBICACION].[NOM_MUNICIPIO] AS [NOM_MUNICIPIO], 
+    [SIS_PC_UBICACION].[CVE_ZONA_CATASTRAL] AS [CVE_ZONA_CATASTRAL], 
+    [SIS_PC_UBICACION].[CVE_LOCALIDAD] AS [CVE_LOCALIDAD], 
+    [SIS_PC_UBICACION].[NOM_LOCALIDAD] AS [NOM_LOCALIDAD], 
+    [SIS_PC_UBICACION].[CVE_SECTOR_CATASTRAL] AS [CVE_SECTOR_CATASTRAL], 
+    [SIS_PC_UBICACION].[CVE_ASENTAMIENTO] AS [CVE_ASENTAMIENTO], 
+    [SIS_PC_UBICACION].[TIPO_ASENTAMIENTO] AS [TIPO_ASENTAMIENTO], 
+    [SIS_PC_UBICACION].[NOMBRE_ASENTAMIENTO] AS [NOMBRE_ASENTAMIENTO], 
+    [SIS_PC_UBICACION].[CP] AS [CP], 
+    [SIS_PC_UBICACION].[NOMBRE_COMPLETO_ASENTAMIENTO] AS [NOMBRE_COMPLETO_ASENTAMIENTO], 
+    [SIS_PC_UBICACION].[CVE_VIALIDAD] AS [CVE_VIALIDAD], 
+    [SIS_PC_UBICACION].[TIPO_VIALIDAD] AS [TIPO_VIALIDAD], 
+    [SIS_PC_UBICACION].[NOMBRE_VIALIDAD] AS [NOMBRE_VIALIDAD], 
+    [SIS_PC_UBICACION].[NOMBRE_COMPLETO_VIALIDAD] AS [NOMBRE_COMPLETO_VIALIDAD], 
+    [SIS_PC_UBICACION].[MANZANA] AS [MANZANA], 
+    [SIS_PC_UBICACION].[LOTE] AS [LOTE], 
+    [SIS_PC_UBICACION].[NUMERO_EXTERIOR] AS [NUMERO_EXTERIOR], 
+    [SIS_PC_UBICACION].[NUMERO_INTERIOR] AS [NUMERO_INTERIOR], 
+    [SIS_PC_UBICACION].[EDIFICIO_NOMBRE] AS [EDIFICIO_NOMBRE], 
+    [SIS_PC_UBICACION].[DESCRIPCION_UBICACION] AS [DESCRIPCION_UBICACION], 
+    [SIS_PC_UBICACION].[ID_CONDOMINIO] AS [ID_CONDOMINIO], 
+    [SIS_PC_UBICACION].[NOMBRE_CONDOMINIO] AS [NOMBRE_CONDOMINIO], 
+    [SIS_PC_UBICACION].[NIVEL] AS [NIVEL], 
+    [SIS_PC_UBICACION].[CARTOG_NOM_DIV] AS [CARTOG_NOM_DIV], 
+    [SIS_PC_UBICACION].[CVE_VIACOM] AS [CVE_VIACOM], 
+    [SIS_PC_UBICACION].[VIACOM_NOM] AS [VIACOM_NOM], 
+    [SIS_PC_UBICACION].[VIACOM_TERM_GEN] AS [VIACOM_TERM_GEN], 
+    [SIS_PC_UBICACION].[VIACOM_ADMON] AS [VIACOM_ADMON], 
+    [SIS_PC_UBICACION].[VIACOM_DER_TRANS] AS [VIACOM_DER_TRANS], 
+    [SIS_PC_UBICACION].[VIACOM_CODIGO] AS [VIACOM_CODIGO], 
+    [SIS_PC_UBICACION].[CARRETERA_TRAMO] AS [CARRETERA_TRAMO], 
+    [SIS_PC_UBICACION].[CAMINO_TRAMO] AS [CAMINO_TRAMO], 
+    [SIS_PC_UBICACION].[CARRETERA_CADENA] AS [CARRETERA_CADENA], 
+    [SIS_PC_UBICACION].[CAMINO_CADENA] AS [CAMINO_CADENA], 
+    [SIS_PC_UBICACION].[CAMINO_MARGEN] AS [CAMINO_MARGEN], 
+    [SIS_PC_UBICACION].[CVE_NA] AS [CVE_NA], 
+    [SIS_PC_UBICACION].[NOM_NA] AS [NOM_NA], 
+    [SIS_PC_UBICACION].[NUM_POL] AS [NUM_POL], 
+    [SIS_PC_UBICACION].[NUM_ZONA_TUC] AS [NUM_ZONA_TUC], 
+    [SIS_PC_UBICACION].[NUM_PARCELA] AS [NUM_PARCELA], 
+    [SIS_PC_UBICACION].[IGUALUN] AS [IGUALUN], 
+    [SIS_PC_UBICACION].[UBI_OBSERVACIONES] AS [UBI_OBSERVACIONES]
+    FROM [sde].[SIS_PC_UBICACION] AS [SIS_PC_UBICACION]</DefiningQuery>
+          </EntitySet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="GDB01001Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -137,7 +411,146 @@ advertencia 6002: La tabla o vista 'GDB01001.sde.SIS_ASENTAMIENTOS' no tiene def
         <EntityContainer Name="GDB01001Entities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="CAT_LOCALIDAD" EntityType="Self.CAT_LOCALIDAD" />
           <EntitySet Name="SIS_ASENTAMIENTOS" EntityType="Self.SIS_ASENTAMIENTOS" />
+          <EntitySet Name="SIS_PC_CLAVE_CATASTRAL" EntityType="GDB01001Model.SIS_PC_CLAVE_CATASTRAL" />
+          <EntitySet Name="SIS_PC_PROPIETARIOS" EntityType="GDB01001Model.SIS_PC_PROPIETARIOS" />
+          <EntitySet Name="SIS_PC_UBICACION" EntityType="GDB01001Model.SIS_PC_UBICACION" />
         </EntityContainer>
+        <EntityType Name="SIS_PC_CLAVE_CATASTRAL">
+          <Key>
+            <PropertyRef Name="OBJECTID" />
+          </Key>
+          <Property Name="OBJECTID" Type="Int32" Nullable="false" />
+          <Property Name="CLAVEUNICA" Type="Int32" />
+          <Property Name="STATUSREGISTROTABLA" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="ALTAREGISTROTABLA" Type="DateTime" Precision="7" />
+          <Property Name="BAJAREGISTROTABLA" Type="DateTime" Precision="7" />
+          <Property Name="HORAALTAREGISTROTABLA" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="HORABAJAREGISTROTABLA" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="USUARIOALTA" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="USUARIOBAJA" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="TERMINALALTA" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="TERMINALBAJA" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CVE_CAT_EST" Type="String" MaxLength="31" FixedLength="false" Unicode="true" />
+          <Property Name="CVE_CAT_ORI" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="FECHA_REGISTRO" Type="DateTime" Precision="7" />
+          <Property Name="CVE_CAT_EST_ANT" Type="String" MaxLength="31" FixedLength="false" Unicode="true" />
+          <Property Name="CVE_CAT_ANT" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="CVE_PREDIAL" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="REGIMEN_PREDIAL" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="FCH_INSCRIP_RPP" Type="DateTime" Precision="7" />
+          <Property Name="FOLIO_REAL" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="LEVANTAMIENTO" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="TD" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="MANIFESTACION" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="TITULO_RAN" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="VOLUMEN" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ESCRITURA" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="SIS_PC_PROPIETARIOS">
+          <Key>
+            <PropertyRef Name="OBJECTID" />
+          </Key>
+          <Property Name="OBJECTID" Type="Int32" Nullable="false" />
+          <Property Name="CLAVEUNICA" Type="Int32" />
+          <Property Name="STATUSREGISTROTABLA" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="ALTAREGISTROTABLA" Type="DateTime" Precision="7" />
+          <Property Name="BAJAREGISTROTABLA" Type="DateTime" Precision="7" />
+          <Property Name="HORAALTAREGISTROTABLA" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="HORABAJAREGISTROTABLA" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="USUARIOALTA" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="USUARIOBAJA" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="TERMINALALTA" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="TERMINALBAJA" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CVE_CAT_EST" Type="String" MaxLength="31" FixedLength="false" Unicode="true" />
+          <Property Name="CVE_CAT_ORI" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="ID_PROPIETARIO" Type="Int32" />
+          <Property Name="TIPO_PROPIETARIO" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="TIPO_PERSONA" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="APELLIDO_PATERNO" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="APELLIDO_MATERNO" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="NOMBRE_O_RAZON_SOCIAL" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="CURP" Type="String" MaxLength="18" FixedLength="false" Unicode="true" />
+          <Property Name="FECHA_NACIMIENTO" Type="DateTime" Precision="7" />
+          <Property Name="LUGAR_NACIMIENTO" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="RFC" Type="String" MaxLength="13" FixedLength="false" Unicode="true" />
+          <Property Name="PORCENTAJE_POSESION" Type="Decimal" Precision="38" Scale="8" />
+          <Property Name="TELEFONO" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="CORREO_ELECTRONICO" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="TIPO_PERSONA_VULNERABLE" Type="Int32" />
+          <Property Name="PROPIETARIO_ORIGINAL" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="APELLIDO_PATERNO_HIG" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="APELLIDO_MATERNO_HIG" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="NOMBRE_O_RAZON_SOCIAL_HIG" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="PROP_OBSERVACIONES" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="FOLIO_TD" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="MONTO_OPERACION_TD" Type="Decimal" Precision="38" Scale="2" />
+          <Property Name="NUMERO_DIPI" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="FECHA_DIPI" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="SIS_PC_UBICACION">
+          <Key>
+            <PropertyRef Name="OBJECTID" />
+          </Key>
+          <Property Name="OBJECTID" Type="Int32" Nullable="false" />
+          <Property Name="CLAVEUNICA" Type="Int32" />
+          <Property Name="STATUSREGISTROTABLA" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="ALTAREGISTROTABLA" Type="DateTime" Precision="7" />
+          <Property Name="BAJAREGISTROTABLA" Type="DateTime" Precision="7" />
+          <Property Name="HORAALTAREGISTROTABLA" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="HORABAJAREGISTROTABLA" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="USUARIOALTA" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="USUARIOBAJA" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="TERMINALALTA" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="TERMINALBAJA" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CVE_CAT_EST" Type="String" MaxLength="31" FixedLength="false" Unicode="true" />
+          <Property Name="CVE_CAT_ORI" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="CVE_ENTIDAD" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="NOM_ENTIDAD" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="CVE_REGION_CATASTRAL" Type="String" MaxLength="3" FixedLength="false" Unicode="true" />
+          <Property Name="CVE_MUNICIPIO" Type="String" MaxLength="3" FixedLength="false" Unicode="true" />
+          <Property Name="NOM_MUNICIPIO" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="CVE_ZONA_CATASTRAL" Type="String" MaxLength="2" FixedLength="false" Unicode="true" />
+          <Property Name="CVE_LOCALIDAD" Type="String" MaxLength="4" FixedLength="false" Unicode="true" />
+          <Property Name="NOM_LOCALIDAD" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="CVE_SECTOR_CATASTRAL" Type="String" MaxLength="3" FixedLength="false" Unicode="true" />
+          <Property Name="CVE_ASENTAMIENTO" Type="String" MaxLength="5" FixedLength="false" Unicode="true" />
+          <Property Name="TIPO_ASENTAMIENTO" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="NOMBRE_ASENTAMIENTO" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="CP" Type="String" MaxLength="5" FixedLength="false" Unicode="true" />
+          <Property Name="NOMBRE_COMPLETO_ASENTAMIENTO" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="CVE_VIALIDAD" Type="String" MaxLength="5" FixedLength="false" Unicode="true" />
+          <Property Name="TIPO_VIALIDAD" Type="String" MaxLength="14" FixedLength="false" Unicode="true" />
+          <Property Name="NOMBRE_VIALIDAD" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="NOMBRE_COMPLETO_VIALIDAD" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="MANZANA" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="LOTE" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="NUMERO_EXTERIOR" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="NUMERO_INTERIOR" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="EDIFICIO_NOMBRE" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="DESCRIPCION_UBICACION" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="ID_CONDOMINIO" Type="String" MaxLength="5" FixedLength="false" Unicode="true" />
+          <Property Name="NOMBRE_CONDOMINIO" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="NIVEL" Type="Int16" />
+          <Property Name="CARTOG_NOM_DIV" Type="String" MaxLength="12" FixedLength="false" Unicode="true" />
+          <Property Name="CVE_VIACOM" Type="String" MaxLength="5" FixedLength="false" Unicode="true" />
+          <Property Name="VIACOM_NOM" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="VIACOM_TERM_GEN" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="VIACOM_ADMON" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="VIACOM_DER_TRANS" Type="String" MaxLength="5" FixedLength="false" Unicode="true" />
+          <Property Name="VIACOM_CODIGO" Type="Int16" />
+          <Property Name="CARRETERA_TRAMO" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="CAMINO_TRAMO" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="CARRETERA_CADENA" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="CAMINO_CADENA" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="CAMINO_MARGEN" Type="String" MaxLength="9" FixedLength="false" Unicode="true" />
+          <Property Name="CVE_NA" Type="String" MaxLength="3" FixedLength="false" Unicode="true" />
+          <Property Name="NOM_NA" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="NUM_POL" Type="String" MaxLength="2" FixedLength="false" Unicode="true" />
+          <Property Name="NUM_ZONA_TUC" Type="String" MaxLength="2" FixedLength="false" Unicode="true" />
+          <Property Name="NUM_PARCELA" Type="String" MaxLength="5" FixedLength="false" Unicode="true" />
+          <Property Name="IGUALUN" Type="String" MaxLength="2" FixedLength="false" Unicode="true" />
+          <Property Name="UBI_OBSERVACIONES" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -183,6 +596,145 @@ advertencia 6002: La tabla o vista 'GDB01001.sde.SIS_ASENTAMIENTOS' no tiene def
                 <ScalarProperty Name="CP" ColumnName="CP" />
                 <ScalarProperty Name="NOMBRE_COMPLETO_ASENTAMIENTO" ColumnName="NOMBRE_COMPLETO_ASENTAMIENTO" />
                 <ScalarProperty Name="OBSERVACIONES" ColumnName="OBSERVACIONES" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SIS_PC_CLAVE_CATASTRAL">
+            <EntityTypeMapping TypeName="GDB01001Model.SIS_PC_CLAVE_CATASTRAL">
+              <MappingFragment StoreEntitySet="SIS_PC_CLAVE_CATASTRAL">
+                <ScalarProperty Name="ESCRITURA" ColumnName="ESCRITURA" />
+                <ScalarProperty Name="VOLUMEN" ColumnName="VOLUMEN" />
+                <ScalarProperty Name="TITULO_RAN" ColumnName="TITULO_RAN" />
+                <ScalarProperty Name="MANIFESTACION" ColumnName="MANIFESTACION" />
+                <ScalarProperty Name="TD" ColumnName="TD" />
+                <ScalarProperty Name="LEVANTAMIENTO" ColumnName="LEVANTAMIENTO" />
+                <ScalarProperty Name="FOLIO_REAL" ColumnName="FOLIO_REAL" />
+                <ScalarProperty Name="FCH_INSCRIP_RPP" ColumnName="FCH_INSCRIP_RPP" />
+                <ScalarProperty Name="REGIMEN_PREDIAL" ColumnName="REGIMEN_PREDIAL" />
+                <ScalarProperty Name="CVE_PREDIAL" ColumnName="CVE_PREDIAL" />
+                <ScalarProperty Name="CVE_CAT_ANT" ColumnName="CVE_CAT_ANT" />
+                <ScalarProperty Name="CVE_CAT_EST_ANT" ColumnName="CVE_CAT_EST_ANT" />
+                <ScalarProperty Name="FECHA_REGISTRO" ColumnName="FECHA_REGISTRO" />
+                <ScalarProperty Name="CVE_CAT_ORI" ColumnName="CVE_CAT_ORI" />
+                <ScalarProperty Name="CVE_CAT_EST" ColumnName="CVE_CAT_EST" />
+                <ScalarProperty Name="TERMINALBAJA" ColumnName="TERMINALBAJA" />
+                <ScalarProperty Name="TERMINALALTA" ColumnName="TERMINALALTA" />
+                <ScalarProperty Name="USUARIOBAJA" ColumnName="USUARIOBAJA" />
+                <ScalarProperty Name="USUARIOALTA" ColumnName="USUARIOALTA" />
+                <ScalarProperty Name="HORABAJAREGISTROTABLA" ColumnName="HORABAJAREGISTROTABLA" />
+                <ScalarProperty Name="HORAALTAREGISTROTABLA" ColumnName="HORAALTAREGISTROTABLA" />
+                <ScalarProperty Name="BAJAREGISTROTABLA" ColumnName="BAJAREGISTROTABLA" />
+                <ScalarProperty Name="ALTAREGISTROTABLA" ColumnName="ALTAREGISTROTABLA" />
+                <ScalarProperty Name="STATUSREGISTROTABLA" ColumnName="STATUSREGISTROTABLA" />
+                <ScalarProperty Name="CLAVEUNICA" ColumnName="CLAVEUNICA" />
+                <ScalarProperty Name="OBJECTID" ColumnName="OBJECTID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SIS_PC_PROPIETARIOS">
+            <EntityTypeMapping TypeName="GDB01001Model.SIS_PC_PROPIETARIOS">
+              <MappingFragment StoreEntitySet="SIS_PC_PROPIETARIOS">
+                <ScalarProperty Name="FECHA_DIPI" ColumnName="FECHA_DIPI" />
+                <ScalarProperty Name="NUMERO_DIPI" ColumnName="NUMERO_DIPI" />
+                <ScalarProperty Name="MONTO_OPERACION_TD" ColumnName="MONTO_OPERACION_TD" />
+                <ScalarProperty Name="FOLIO_TD" ColumnName="FOLIO_TD" />
+                <ScalarProperty Name="PROP_OBSERVACIONES" ColumnName="PROP_OBSERVACIONES" />
+                <ScalarProperty Name="NOMBRE_O_RAZON_SOCIAL_HIG" ColumnName="NOMBRE_O_RAZON_SOCIAL_HIG" />
+                <ScalarProperty Name="APELLIDO_MATERNO_HIG" ColumnName="APELLIDO_MATERNO_HIG" />
+                <ScalarProperty Name="APELLIDO_PATERNO_HIG" ColumnName="APELLIDO_PATERNO_HIG" />
+                <ScalarProperty Name="PROPIETARIO_ORIGINAL" ColumnName="PROPIETARIO_ORIGINAL" />
+                <ScalarProperty Name="TIPO_PERSONA_VULNERABLE" ColumnName="TIPO_PERSONA_VULNERABLE" />
+                <ScalarProperty Name="CORREO_ELECTRONICO" ColumnName="CORREO_ELECTRONICO" />
+                <ScalarProperty Name="TELEFONO" ColumnName="TELEFONO" />
+                <ScalarProperty Name="PORCENTAJE_POSESION" ColumnName="PORCENTAJE_POSESION" />
+                <ScalarProperty Name="RFC" ColumnName="RFC" />
+                <ScalarProperty Name="LUGAR_NACIMIENTO" ColumnName="LUGAR_NACIMIENTO" />
+                <ScalarProperty Name="FECHA_NACIMIENTO" ColumnName="FECHA_NACIMIENTO" />
+                <ScalarProperty Name="CURP" ColumnName="CURP" />
+                <ScalarProperty Name="NOMBRE_O_RAZON_SOCIAL" ColumnName="NOMBRE_O_RAZON_SOCIAL" />
+                <ScalarProperty Name="APELLIDO_MATERNO" ColumnName="APELLIDO_MATERNO" />
+                <ScalarProperty Name="APELLIDO_PATERNO" ColumnName="APELLIDO_PATERNO" />
+                <ScalarProperty Name="TIPO_PERSONA" ColumnName="TIPO_PERSONA" />
+                <ScalarProperty Name="TIPO_PROPIETARIO" ColumnName="TIPO_PROPIETARIO" />
+                <ScalarProperty Name="ID_PROPIETARIO" ColumnName="ID_PROPIETARIO" />
+                <ScalarProperty Name="CVE_CAT_ORI" ColumnName="CVE_CAT_ORI" />
+                <ScalarProperty Name="CVE_CAT_EST" ColumnName="CVE_CAT_EST" />
+                <ScalarProperty Name="TERMINALBAJA" ColumnName="TERMINALBAJA" />
+                <ScalarProperty Name="TERMINALALTA" ColumnName="TERMINALALTA" />
+                <ScalarProperty Name="USUARIOBAJA" ColumnName="USUARIOBAJA" />
+                <ScalarProperty Name="USUARIOALTA" ColumnName="USUARIOALTA" />
+                <ScalarProperty Name="HORABAJAREGISTROTABLA" ColumnName="HORABAJAREGISTROTABLA" />
+                <ScalarProperty Name="HORAALTAREGISTROTABLA" ColumnName="HORAALTAREGISTROTABLA" />
+                <ScalarProperty Name="BAJAREGISTROTABLA" ColumnName="BAJAREGISTROTABLA" />
+                <ScalarProperty Name="ALTAREGISTROTABLA" ColumnName="ALTAREGISTROTABLA" />
+                <ScalarProperty Name="STATUSREGISTROTABLA" ColumnName="STATUSREGISTROTABLA" />
+                <ScalarProperty Name="CLAVEUNICA" ColumnName="CLAVEUNICA" />
+                <ScalarProperty Name="OBJECTID" ColumnName="OBJECTID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SIS_PC_UBICACION">
+            <EntityTypeMapping TypeName="GDB01001Model.SIS_PC_UBICACION">
+              <MappingFragment StoreEntitySet="SIS_PC_UBICACION">
+                <ScalarProperty Name="UBI_OBSERVACIONES" ColumnName="UBI_OBSERVACIONES" />
+                <ScalarProperty Name="IGUALUN" ColumnName="IGUALUN" />
+                <ScalarProperty Name="NUM_PARCELA" ColumnName="NUM_PARCELA" />
+                <ScalarProperty Name="NUM_ZONA_TUC" ColumnName="NUM_ZONA_TUC" />
+                <ScalarProperty Name="NUM_POL" ColumnName="NUM_POL" />
+                <ScalarProperty Name="NOM_NA" ColumnName="NOM_NA" />
+                <ScalarProperty Name="CVE_NA" ColumnName="CVE_NA" />
+                <ScalarProperty Name="CAMINO_MARGEN" ColumnName="CAMINO_MARGEN" />
+                <ScalarProperty Name="CAMINO_CADENA" ColumnName="CAMINO_CADENA" />
+                <ScalarProperty Name="CARRETERA_CADENA" ColumnName="CARRETERA_CADENA" />
+                <ScalarProperty Name="CAMINO_TRAMO" ColumnName="CAMINO_TRAMO" />
+                <ScalarProperty Name="CARRETERA_TRAMO" ColumnName="CARRETERA_TRAMO" />
+                <ScalarProperty Name="VIACOM_CODIGO" ColumnName="VIACOM_CODIGO" />
+                <ScalarProperty Name="VIACOM_DER_TRANS" ColumnName="VIACOM_DER_TRANS" />
+                <ScalarProperty Name="VIACOM_ADMON" ColumnName="VIACOM_ADMON" />
+                <ScalarProperty Name="VIACOM_TERM_GEN" ColumnName="VIACOM_TERM_GEN" />
+                <ScalarProperty Name="VIACOM_NOM" ColumnName="VIACOM_NOM" />
+                <ScalarProperty Name="CVE_VIACOM" ColumnName="CVE_VIACOM" />
+                <ScalarProperty Name="CARTOG_NOM_DIV" ColumnName="CARTOG_NOM_DIV" />
+                <ScalarProperty Name="NIVEL" ColumnName="NIVEL" />
+                <ScalarProperty Name="NOMBRE_CONDOMINIO" ColumnName="NOMBRE_CONDOMINIO" />
+                <ScalarProperty Name="ID_CONDOMINIO" ColumnName="ID_CONDOMINIO" />
+                <ScalarProperty Name="DESCRIPCION_UBICACION" ColumnName="DESCRIPCION_UBICACION" />
+                <ScalarProperty Name="EDIFICIO_NOMBRE" ColumnName="EDIFICIO_NOMBRE" />
+                <ScalarProperty Name="NUMERO_INTERIOR" ColumnName="NUMERO_INTERIOR" />
+                <ScalarProperty Name="NUMERO_EXTERIOR" ColumnName="NUMERO_EXTERIOR" />
+                <ScalarProperty Name="LOTE" ColumnName="LOTE" />
+                <ScalarProperty Name="MANZANA" ColumnName="MANZANA" />
+                <ScalarProperty Name="NOMBRE_COMPLETO_VIALIDAD" ColumnName="NOMBRE_COMPLETO_VIALIDAD" />
+                <ScalarProperty Name="NOMBRE_VIALIDAD" ColumnName="NOMBRE_VIALIDAD" />
+                <ScalarProperty Name="TIPO_VIALIDAD" ColumnName="TIPO_VIALIDAD" />
+                <ScalarProperty Name="CVE_VIALIDAD" ColumnName="CVE_VIALIDAD" />
+                <ScalarProperty Name="NOMBRE_COMPLETO_ASENTAMIENTO" ColumnName="NOMBRE_COMPLETO_ASENTAMIENTO" />
+                <ScalarProperty Name="CP" ColumnName="CP" />
+                <ScalarProperty Name="NOMBRE_ASENTAMIENTO" ColumnName="NOMBRE_ASENTAMIENTO" />
+                <ScalarProperty Name="TIPO_ASENTAMIENTO" ColumnName="TIPO_ASENTAMIENTO" />
+                <ScalarProperty Name="CVE_ASENTAMIENTO" ColumnName="CVE_ASENTAMIENTO" />
+                <ScalarProperty Name="CVE_SECTOR_CATASTRAL" ColumnName="CVE_SECTOR_CATASTRAL" />
+                <ScalarProperty Name="NOM_LOCALIDAD" ColumnName="NOM_LOCALIDAD" />
+                <ScalarProperty Name="CVE_LOCALIDAD" ColumnName="CVE_LOCALIDAD" />
+                <ScalarProperty Name="CVE_ZONA_CATASTRAL" ColumnName="CVE_ZONA_CATASTRAL" />
+                <ScalarProperty Name="NOM_MUNICIPIO" ColumnName="NOM_MUNICIPIO" />
+                <ScalarProperty Name="CVE_MUNICIPIO" ColumnName="CVE_MUNICIPIO" />
+                <ScalarProperty Name="CVE_REGION_CATASTRAL" ColumnName="CVE_REGION_CATASTRAL" />
+                <ScalarProperty Name="NOM_ENTIDAD" ColumnName="NOM_ENTIDAD" />
+                <ScalarProperty Name="CVE_ENTIDAD" ColumnName="CVE_ENTIDAD" />
+                <ScalarProperty Name="CVE_CAT_ORI" ColumnName="CVE_CAT_ORI" />
+                <ScalarProperty Name="CVE_CAT_EST" ColumnName="CVE_CAT_EST" />
+                <ScalarProperty Name="TERMINALBAJA" ColumnName="TERMINALBAJA" />
+                <ScalarProperty Name="TERMINALALTA" ColumnName="TERMINALALTA" />
+                <ScalarProperty Name="USUARIOBAJA" ColumnName="USUARIOBAJA" />
+                <ScalarProperty Name="USUARIOALTA" ColumnName="USUARIOALTA" />
+                <ScalarProperty Name="HORABAJAREGISTROTABLA" ColumnName="HORABAJAREGISTROTABLA" />
+                <ScalarProperty Name="HORAALTAREGISTROTABLA" ColumnName="HORAALTAREGISTROTABLA" />
+                <ScalarProperty Name="BAJAREGISTROTABLA" ColumnName="BAJAREGISTROTABLA" />
+                <ScalarProperty Name="ALTAREGISTROTABLA" ColumnName="ALTAREGISTROTABLA" />
+                <ScalarProperty Name="STATUSREGISTROTABLA" ColumnName="STATUSREGISTROTABLA" />
+                <ScalarProperty Name="CLAVEUNICA" ColumnName="CLAVEUNICA" />
+                <ScalarProperty Name="OBJECTID" ColumnName="OBJECTID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

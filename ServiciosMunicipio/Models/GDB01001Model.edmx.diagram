@@ -7,6 +7,9 @@
       <Diagram DiagramId="ad6f37f3535b4ff986cb0598d7821f73" Name="Diagram1">
         <EntityTypeShape EntityType="GDB01001Model.CAT_LOCALIDAD" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="GDB01001Model.SIS_ASENTAMIENTOS" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="GDB01001Model.SIS_PC_CLAVE_CATASTRAL" Width="1.5" PointX="5.75" PointY="0.75" />
+        <EntityTypeShape EntityType="GDB01001Model.SIS_PC_PROPIETARIOS" Width="1.5" PointX="7.75" PointY="0.75" />
+        <EntityTypeShape EntityType="GDB01001Model.SIS_PC_UBICACION" Width="1.5" PointX="0.75" PointY="7.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

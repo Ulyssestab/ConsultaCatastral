@@ -43,5 +43,144 @@
   <EntityContainer Name="GDB01001Entities" annotation:LazyLoadingEnabled="true">
     <EntitySet Name="CAT_LOCALIDAD" EntityType="Self.CAT_LOCALIDAD" />
     <EntitySet Name="SIS_ASENTAMIENTOS" EntityType="Self.SIS_ASENTAMIENTOS" />
+    <EntitySet Name="SIS_PC_CLAVE_CATASTRAL" EntityType="GDB01001Model.SIS_PC_CLAVE_CATASTRAL" />
+    <EntitySet Name="SIS_PC_PROPIETARIOS" EntityType="GDB01001Model.SIS_PC_PROPIETARIOS" />
+    <EntitySet Name="SIS_PC_UBICACION" EntityType="GDB01001Model.SIS_PC_UBICACION" />
   </EntityContainer>
+  <EntityType Name="SIS_PC_CLAVE_CATASTRAL">
+    <Key>
+      <PropertyRef Name="OBJECTID" />
+    </Key>
+    <Property Name="OBJECTID" Type="Int32" Nullable="false" />
+    <Property Name="CLAVEUNICA" Type="Int32" />
+    <Property Name="STATUSREGISTROTABLA" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="ALTAREGISTROTABLA" Type="DateTime" Precision="7" />
+    <Property Name="BAJAREGISTROTABLA" Type="DateTime" Precision="7" />
+    <Property Name="HORAALTAREGISTROTABLA" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="HORABAJAREGISTROTABLA" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="USUARIOALTA" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="USUARIOBAJA" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="TERMINALALTA" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="TERMINALBAJA" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="CVE_CAT_EST" Type="String" MaxLength="31" FixedLength="false" Unicode="true" />
+    <Property Name="CVE_CAT_ORI" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+    <Property Name="FECHA_REGISTRO" Type="DateTime" Precision="7" />
+    <Property Name="CVE_CAT_EST_ANT" Type="String" MaxLength="31" FixedLength="false" Unicode="true" />
+    <Property Name="CVE_CAT_ANT" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+    <Property Name="CVE_PREDIAL" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+    <Property Name="REGIMEN_PREDIAL" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="FCH_INSCRIP_RPP" Type="DateTime" Precision="7" />
+    <Property Name="FOLIO_REAL" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+    <Property Name="LEVANTAMIENTO" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="TD" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="MANIFESTACION" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="TITULO_RAN" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="VOLUMEN" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="ESCRITURA" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="SIS_PC_PROPIETARIOS">
+    <Key>
+      <PropertyRef Name="OBJECTID" />
+    </Key>
+    <Property Name="OBJECTID" Type="Int32" Nullable="false" />
+    <Property Name="CLAVEUNICA" Type="Int32" />
+    <Property Name="STATUSREGISTROTABLA" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="ALTAREGISTROTABLA" Type="DateTime" Precision="7" />
+    <Property Name="BAJAREGISTROTABLA" Type="DateTime" Precision="7" />
+    <Property Name="HORAALTAREGISTROTABLA" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="HORABAJAREGISTROTABLA" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="USUARIOALTA" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="USUARIOBAJA" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="TERMINALALTA" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="TERMINALBAJA" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="CVE_CAT_EST" Type="String" MaxLength="31" FixedLength="false" Unicode="true" />
+    <Property Name="CVE_CAT_ORI" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+    <Property Name="ID_PROPIETARIO" Type="Int32" />
+    <Property Name="TIPO_PROPIETARIO" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+    <Property Name="TIPO_PERSONA" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+    <Property Name="APELLIDO_PATERNO" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="APELLIDO_MATERNO" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="NOMBRE_O_RAZON_SOCIAL" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="CURP" Type="String" MaxLength="18" FixedLength="false" Unicode="true" />
+    <Property Name="FECHA_NACIMIENTO" Type="DateTime" Precision="7" />
+    <Property Name="LUGAR_NACIMIENTO" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="RFC" Type="String" MaxLength="13" FixedLength="false" Unicode="true" />
+    <Property Name="PORCENTAJE_POSESION" Type="Decimal" Precision="38" Scale="8" />
+    <Property Name="TELEFONO" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="CORREO_ELECTRONICO" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="TIPO_PERSONA_VULNERABLE" Type="Int32" />
+    <Property Name="PROPIETARIO_ORIGINAL" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="APELLIDO_PATERNO_HIG" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="APELLIDO_MATERNO_HIG" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="NOMBRE_O_RAZON_SOCIAL_HIG" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="PROP_OBSERVACIONES" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="FOLIO_TD" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="MONTO_OPERACION_TD" Type="Decimal" Precision="38" Scale="2" />
+    <Property Name="NUMERO_DIPI" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="FECHA_DIPI" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="SIS_PC_UBICACION">
+    <Key>
+      <PropertyRef Name="OBJECTID" />
+    </Key>
+    <Property Name="OBJECTID" Type="Int32" Nullable="false" />
+    <Property Name="CLAVEUNICA" Type="Int32" />
+    <Property Name="STATUSREGISTROTABLA" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="ALTAREGISTROTABLA" Type="DateTime" Precision="7" />
+    <Property Name="BAJAREGISTROTABLA" Type="DateTime" Precision="7" />
+    <Property Name="HORAALTAREGISTROTABLA" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="HORABAJAREGISTROTABLA" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="USUARIOALTA" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="USUARIOBAJA" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="TERMINALALTA" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="TERMINALBAJA" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="CVE_CAT_EST" Type="String" MaxLength="31" FixedLength="false" Unicode="true" />
+    <Property Name="CVE_CAT_ORI" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+    <Property Name="CVE_ENTIDAD" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="NOM_ENTIDAD" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="CVE_REGION_CATASTRAL" Type="String" MaxLength="3" FixedLength="false" Unicode="true" />
+    <Property Name="CVE_MUNICIPIO" Type="String" MaxLength="3" FixedLength="false" Unicode="true" />
+    <Property Name="NOM_MUNICIPIO" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="CVE_ZONA_CATASTRAL" Type="String" MaxLength="2" FixedLength="false" Unicode="true" />
+    <Property Name="CVE_LOCALIDAD" Type="String" MaxLength="4" FixedLength="false" Unicode="true" />
+    <Property Name="NOM_LOCALIDAD" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="CVE_SECTOR_CATASTRAL" Type="String" MaxLength="3" FixedLength="false" Unicode="true" />
+    <Property Name="CVE_ASENTAMIENTO" Type="String" MaxLength="5" FixedLength="false" Unicode="true" />
+    <Property Name="TIPO_ASENTAMIENTO" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+    <Property Name="NOMBRE_ASENTAMIENTO" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="CP" Type="String" MaxLength="5" FixedLength="false" Unicode="true" />
+    <Property Name="NOMBRE_COMPLETO_ASENTAMIENTO" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="CVE_VIALIDAD" Type="String" MaxLength="5" FixedLength="false" Unicode="true" />
+    <Property Name="TIPO_VIALIDAD" Type="String" MaxLength="14" FixedLength="false" Unicode="true" />
+    <Property Name="NOMBRE_VIALIDAD" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="NOMBRE_COMPLETO_VIALIDAD" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="MANZANA" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="LOTE" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="NUMERO_EXTERIOR" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="NUMERO_INTERIOR" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="EDIFICIO_NOMBRE" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="DESCRIPCION_UBICACION" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="ID_CONDOMINIO" Type="String" MaxLength="5" FixedLength="false" Unicode="true" />
+    <Property Name="NOMBRE_CONDOMINIO" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="NIVEL" Type="Int16" />
+    <Property Name="CARTOG_NOM_DIV" Type="String" MaxLength="12" FixedLength="false" Unicode="true" />
+    <Property Name="CVE_VIACOM" Type="String" MaxLength="5" FixedLength="false" Unicode="true" />
+    <Property Name="VIACOM_NOM" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="VIACOM_TERM_GEN" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="VIACOM_ADMON" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="VIACOM_DER_TRANS" Type="String" MaxLength="5" FixedLength="false" Unicode="true" />
+    <Property Name="VIACOM_CODIGO" Type="Int16" />
+    <Property Name="CARRETERA_TRAMO" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="CAMINO_TRAMO" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="CARRETERA_CADENA" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="CAMINO_CADENA" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="CAMINO_MARGEN" Type="String" MaxLength="9" FixedLength="false" Unicode="true" />
+    <Property Name="CVE_NA" Type="String" MaxLength="3" FixedLength="false" Unicode="true" />
+    <Property Name="NOM_NA" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="NUM_POL" Type="String" MaxLength="2" FixedLength="false" Unicode="true" />
+    <Property Name="NUM_ZONA_TUC" Type="String" MaxLength="2" FixedLength="false" Unicode="true" />
+    <Property Name="NUM_PARCELA" Type="String" MaxLength="5" FixedLength="false" Unicode="true" />
+    <Property Name="IGUALUN" Type="String" MaxLength="2" FixedLength="false" Unicode="true" />
+    <Property Name="UBI_OBSERVACIONES" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+  </EntityType>
 </Schema>
