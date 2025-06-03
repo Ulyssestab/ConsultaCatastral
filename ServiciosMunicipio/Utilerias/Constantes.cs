@@ -8,6 +8,12 @@ namespace ServiciosMunicipio.Utilerias
     public class Constantes
     {
         public const int LONG_MAX_LOC = 6;
-        public const int LONG_MAX_NOM = 16;
+        public const int LONG_MAX_NOM = 50;
+        public const int LIKE = 0;
+        public const int IGUAL = 1;
+        public const int COMILLAS = 2;
+
+        public const int TOTALXPREDIO = 0;
+        public const int XPREDIO = 1;
     }
 }

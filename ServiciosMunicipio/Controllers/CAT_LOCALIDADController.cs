@@ -26,8 +26,7 @@ namespace ServiciosMunicipio.Controllers
             var r = dao.obtenerLocalidades(clave_localidad, nombre_localidad);
 
             this.ViewBag.Resultados = r;
-            return Json(r, JsonRequestBehavior.AllowGet);
-          //  return View();
+            return Json(r, JsonRequestBehavior.AllowGet);          
         }
 
 

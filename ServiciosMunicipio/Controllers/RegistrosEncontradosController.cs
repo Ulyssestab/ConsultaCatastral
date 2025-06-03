@@ -42,6 +42,24 @@ namespace ServiciosMunicipio.Controllers
             return Json(resultados);
         }
 
+        [System.Web.Http.HttpPost]
+        public ActionResult ClaveCatastralOriginal([FromBody] ClaveCatastralOriginal ClaveCatastralOriginal)
+        {
+            //Formulario: Menu Tramite, clave catastral estandar                                    
+            int offset = 0;            
+            //Uno la clave catastral estandar enviada desde el formulario
+            String claveCatastralOriginal = ClaveCatastralOriginal.campoMunicipioOri
+                + util.completarCeros(3, ClaveCatastralOriginal.campLocalidadOri)
+                + util.completarCeros(2, ClaveCatastralOriginal.campSectorOri)
+                + util.completarCeros(4, ClaveCatastralOriginal.campManzanaOri)
+                + util.completarCeros(3, ClaveCatastralOriginal.campPredioOri)
+                + util.completarCeros(3, ClaveCatastralOriginal.campCondominioOri);
+            int pag = Buscar.numClavesOriginales(claveCatastralOriginal);
+            //Hago la consulta a la base de datos para ver si existen registros asociados a dicha clave                        
+            List<Resultados> resultados = Buscar.obtenerClavesOriginal(claveCatastralOriginal, pag, offset);
+            return Json(resultados);
+        }
+
         public ActionResult ClavePredial(String claveCuentaPredial, String numCuentaPredial, String municipioCE, int offset)
         {
             List<Resultados> resultados = Buscar.obtenerClavesPredial(claveCuentaPredial, numCuentaPredial, municipioCE, offset);

@@ -160,3 +160,4 @@ C:\Users\RPP1\Documents\Catastro\Codigo\ConsultaCatastralServicios\ServiciosMuni
 C:\Users\RPP1\Documents\Catastro\Codigo\ConsultaCatastralServicios\ServiciosMunicipio\obj\Debug\ServiciosMunicipio.csproj.CopyComplete
 C:\Users\RPP1\Documents\Catastro\Codigo\ConsultaCatastralServicios\ServiciosMunicipio\obj\Debug\ServiciosMunicipio.dll
 C:\Users\RPP1\Documents\Catastro\Codigo\ConsultaCatastralServicios\ServiciosMunicipio\obj\Debug\ServiciosMunicipio.pdb
+C:\Users\RPP1\Documents\Catastro\Codigo\ConsultaCatastralServicios\ServiciosMunicipio\obj\Debug\ServiciosMunicipio.csproj.AssemblyReference.cache

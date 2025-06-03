@@ -189,6 +189,7 @@
     <Compile Include="Models\Cat_Municipio.cs">
       <DependentUpon>WFTRAMITESModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\Entidades\ClaveCatastralOriginal.cs" />
     <Compile Include="Models\Entidades\ClaveCatastral.cs" />
     <Compile Include="Models\Entidades\Resultados.cs" />
     <Compile Include="Models\Entidades\UbicacionPredio.cs" />

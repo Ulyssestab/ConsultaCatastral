@@ -142,9 +142,9 @@ namespace ServiciosMunicipio.Dao
         public List<Resultados> obtenerResultadoUbicacionPredio(UbicacionPredio ubicacionPredio, int pag)
         {                                    
             Utilidades utilidades = new Utilidades();
-            String sql = utilidades.formarSQLtotal(ubicacionPredio);
+            //String sql = utilidades.formarSQLtotal(ubicacionPredio);
             //int totalRegistros = numDireccion(sql, ubicacionPredio.municipio);
-            String condicion = utilidades.formarSQL(ubicacionPredio);
+            String condicion = utilidades.formarConsultaUbicacionXpredio(ubicacionPredio, Constantes.XPREDIO);
             String consulta = "";
             int max = 10;
             
@@ -163,8 +163,8 @@ namespace ServiciosMunicipio.Dao
                           + "NUMERO_EXTERIOR "
                           + "from ("
                           + "select pu.CVE_CAT_EST, pu.CVE_CAT_ORI, pp.cve_predial clavePredial, p.NOMBRE_O_RAZON_SOCIAL, p.APELLIDO_PATERNO, p.APELLIDO_MATERNO, pu.NOM_LOCALIDAD, pu.NOMBRE_COMPLETO_ASENTAMIENTO, pu.NOMBRE_COMPLETO_VIALIDAD, pu.NUMERO_EXTERIOR, ROW_NUMBER() OVER (ORDER BY pu.CVE_CAT_EST ) AS NUM "
-                          + "	from sde.sis_pc_clave_catastral pp left join sde.SIS_PC_UBICACION pu on pu.CVE_CAT_EST = pp.CVE_CAT_EST left join sde.SIS_PC_PROPIETARIOS p on p.CVE_CAT_EST = pp.CVE_CAT_EST "
-                          + "	Where pp.STATUSREGISTROTABLA = 'ACTIVO' AND pu.STATUSREGISTROTABLA = 'ACTIVO' and P.STATUSREGISTROTABLA='ACTIVO' AND " + condicion + " "
+                          + "from sde.sis_pc_clave_catastral pp left join sde.SIS_PC_UBICACION pu on pu.CVE_CAT_EST = pp.CVE_CAT_EST left join sde.SIS_PC_PROPIETARIOS p on p.CVE_CAT_EST = pp.CVE_CAT_EST "
+                          + "Where pp.STATUSREGISTROTABLA = 'ACTIVO' AND pu.STATUSREGISTROTABLA = 'ACTIVO' and P.STATUSREGISTROTABLA='ACTIVO' AND " + condicion + " "
                           + ") as a "
                           + "WHERE NUM BETWEEN " + ((pag * max) + 1) + " AND " + (((pag + 1) * max)) + "";
             }
@@ -177,6 +177,57 @@ namespace ServiciosMunicipio.Dao
                     + "from sde.sis_pc_clave_catastral pp inner join sde.SIS_PC_UBICACION pu on pu.CVE_CAT_EST = pp.CVE_CAT_EST inner join sde.SIS_PC_PROPIETARIOS p on p.CVE_CAT_EST = pp.CVE_CAT_EST "
                     + " where pp.STATUSREGISTROTABLA = 'ACTIVO' and pu.STATUSREGISTROTABLA = 'ACTIVO' AND P.STATUSREGISTROTABLA='ACTIVO' AND " + sql;
             return repositorio.ObtenerTotal(consulta, municipio);
+        }
+
+        public int numClavesOriginales(String claveCatastralOriginal)
+        {            
+            claveCatastralOriginal = AntiInjectionSQL.quitarComillas(claveCatastralOriginal, 5);
+            String municipio = Utilidades.getMunicipioCve_Ori(claveCatastralOriginal);
+                        
+            //Defino la consulta a realizar
+            String consulta = "select count(*) total"
+                    + "from sde.sis_pc_clave_catastral pp "
+                    + "left join sde.SIS_PC_UBICACION pu on pu.CVE_CAT_ORI = pp.CVE_CAT_ORI and pu.STATUSREGISTROTABLA = 'ACTIVO' "
+                    + "left join sde.SIS_PC_PROPIETARIOS p on p.CVE_CAT_ORI = pp.CVE_CAT_ORI " 
+                    + "and p.STATUSREGISTROTABLA = 'ACTIVO' and p.TIPO_PROPIETARIO = 'PROPIETARIO' "
+                    + "where pp.CVE_CAT_ORI like '" + claveCatastralOriginal + "%' and pp.STATUSREGISTROTABLA = 'ACTIVO'";            
+            return repositorio.ObtenerTotal(consulta, municipio); 
+        }
+
+        public List<Resultados> obtenerClavesOriginal(String claveCatastralOriginal, int pag, int offset)
+        {
+            int max = pag;
+            String consulta = "select NUM,"
+                + " CVE_CAT_EST,"
+                + " CVE_CAT_ORI,"
+                + " clavePredial,"
+                + " NOMBRE_O_RAZON_SOCIAL,"
+                + " APELLIDO_PATERNO,"
+                + " APELLIDO_MATERNO,"
+                + " NOM_LOCALIDAD,"
+                + " NOMBRE_COMPLETO_ASENTAMIENTO,"
+                + " NOMBRE_COMPLETO_VIALIDAD,"
+                + " NUMERO_EXTERIOR "
+                + " from ("
+                + " select pu.CVE_CAT_EST,"
+                + " pu.CVE_CAT_ORI,"
+                + " pp.cve_predial clavePredial,"
+                + " p.NOMBRE_O_RAZON_SOCIAL,"
+                + " p.APELLIDO_PATERNO,"
+                + " p.APELLIDO_MATERNO,"
+                + " pu.NOM_LOCALIDAD,"
+                + " pu.NOMBRE_COMPLETO_ASENTAMIENTO,"
+                + " pu.NOMBRE_COMPLETO_VIALIDAD,"
+                + " pu.NUMERO_EXTERIOR,"
+                + " ROW_NUMBER() OVER (ORDER BY pu.CVE_CAT_EST ) AS NUM "
+                + " from sde.sis_pc_clave_catastral pp"
+                + " left join sde.SIS_PC_UBICACION pu on pu.CVE_CAT_ORI = pp.CVE_CAT_ORI and pu.STATUSREGISTROTABLA='ACTIVO'"
+                + " left join sde.SIS_PC_PROPIETARIOS p on p.OBJECTID=(select max (OBJECTID)from sde.SIS_PC_PROPIETARIOS where STATUSREGISTROTABLA='ACTIVO' and CVE_CAT_ORI=pp.CVE_CAT_ORI)" +
+            "	where  pp.CVE_CAT_ORI like '" + claveCatastralOriginal + "%' and  pp.STATUSREGISTROTABLA = 'ACTIVO'" +
+            ") as a " +
+            "WHERE NUM BETWEEN " + ((pag * max) + 1) + " AND " + (((pag + 1) * max)) + ";"; 
+            String municipio = Utilidades.getMunicipioCve_Ori(claveCatastralOriginal);
+            return repositorio.ObtenerLista(consulta, municipio);
         }
 
     }
