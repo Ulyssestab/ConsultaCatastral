@@ -95,7 +95,6 @@ namespace ServiciosMunicipio.Dao
                                 + "WHERE NUM BETWEEN " + ((pag * max) + 1) + " AND " + (((pag + 1) * max)) + ";";
             return repositorio.ObtenerLista(consulta, municipioCE);
         }
-
         public int numFolioreal(string folioReal, string municipio)
         {
             String consulta = "select count(*) total"
@@ -181,11 +180,11 @@ namespace ServiciosMunicipio.Dao
 
         public int numClavesOriginales(String claveCatastralOriginal)
         {            
-            claveCatastralOriginal = AntiInjectionSQL.quitarComillas(claveCatastralOriginal, 5);
+            claveCatastralOriginal = AntiInjectionSQL.quitarComillas(claveCatastralOriginal, Constantes.LONG_MAX_NOM);
             String municipio = Utilidades.getMunicipioCve_Ori(claveCatastralOriginal);
                         
             //Defino la consulta a realizar
-            String consulta = "select count(*) total"
+            String consulta = "select count(*) total "
                     + "from sde.sis_pc_clave_catastral pp "
                     + "left join sde.SIS_PC_UBICACION pu on pu.CVE_CAT_ORI = pp.CVE_CAT_ORI and pu.STATUSREGISTROTABLA = 'ACTIVO' "
                     + "left join sde.SIS_PC_PROPIETARIOS p on p.CVE_CAT_ORI = pp.CVE_CAT_ORI " 
@@ -196,7 +195,7 @@ namespace ServiciosMunicipio.Dao
 
         public List<Resultados> obtenerClavesOriginal(String claveCatastralOriginal, int pag, int offset)
         {
-            int max = pag;
+            int max = offset;
             String consulta = "select NUM,"
                 + " CVE_CAT_EST,"
                 + " CVE_CAT_ORI,"
@@ -222,13 +221,79 @@ namespace ServiciosMunicipio.Dao
                 + " ROW_NUMBER() OVER (ORDER BY pu.CVE_CAT_EST ) AS NUM "
                 + " from sde.sis_pc_clave_catastral pp"
                 + " left join sde.SIS_PC_UBICACION pu on pu.CVE_CAT_ORI = pp.CVE_CAT_ORI and pu.STATUSREGISTROTABLA='ACTIVO'"
-                + " left join sde.SIS_PC_PROPIETARIOS p on p.OBJECTID=(select max (OBJECTID)from sde.SIS_PC_PROPIETARIOS where STATUSREGISTROTABLA='ACTIVO' and CVE_CAT_ORI=pp.CVE_CAT_ORI)" +
-            "	where  pp.CVE_CAT_ORI like '" + claveCatastralOriginal + "%' and  pp.STATUSREGISTROTABLA = 'ACTIVO'" +
-            ") as a " +
-            "WHERE NUM BETWEEN " + ((pag * max) + 1) + " AND " + (((pag + 1) * max)) + ";"; 
+                + " left join sde.SIS_PC_PROPIETARIOS p on p.OBJECTID=(select max (OBJECTID)from sde.SIS_PC_PROPIETARIOS where STATUSREGISTROTABLA='ACTIVO' and CVE_CAT_ORI=pp.CVE_CAT_ORI)" 
+                + "	where  pp.CVE_CAT_ORI like '" + claveCatastralOriginal + "%' and  pp.STATUSREGISTROTABLA = 'ACTIVO') as a" 
+                + " WHERE NUM BETWEEN " + ((pag * max) + 1) + " AND " + (((pag + 1) * max)) + ";"; 
             String municipio = Utilidades.getMunicipioCve_Ori(claveCatastralOriginal);
             return repositorio.ObtenerLista(consulta, municipio);
         }
+
+        public int numPredioxPersonaFisica(PersonaFisica personaFisica)
+        {
+            String nombre = AntiInjectionSQL.quitarComillas(personaFisica.nombre.ToUpper(), Constantes.LONG_MAX_NOM);
+            String apaterno = AntiInjectionSQL.quitarComillas(personaFisica.apaterno.ToUpper(), Constantes.LONG_MAX_NOM);
+            String amaterno = AntiInjectionSQL.quitarComillas(personaFisica.amaterno.ToUpper(), Constantes.LONG_MAX_NOM);
+            String municipio = AntiInjectionSQL.quitarComillas(personaFisica.municipio, Constantes.LONG_MAX_NOM);
+            
+            //Defino la consulta a realizar
+            String consulta = "select count(*) total "
+                    + "from sde.SIS_PC_PROPIETARIOS p "
+                    + "left join sde.SIS_PC_UBICACION pu on pu.CVE_CAT_ORI = p.CVE_CAT_ORI "
+                    + "left join sde.sis_pc_clave_catastral pp on pp.CVE_CAT_ORI = p.CVE_CAT_ORI "
+                    + "where pp.STATUSREGISTROTABLA = 'ACTIVO' and p.tipo_persona != 'moral' and p.STATUSREGISTROTABLA = 'ACTIVO' " 
+                    + "AND pu.STATUSREGISTROTABLA = 'ACTIVO' " 
+                    + "and p.NOMBRE_O_RAZON_SOCIAL like '%" + nombre + "%' and p.APELLIDO_PATERNO like '%" + apaterno + "%' and p.APELLIDO_MATERNO like '%" + amaterno + "%'";
+            return repositorio.ObtenerTotal(consulta, municipio);
+        }
+            public List<Resultados> obtenerResultadoPersonaFisica(PersonaFisica personaFisica, int pag, int max)
+        {            
+            String nombre = AntiInjectionSQL.quitarComillas(personaFisica.nombre.ToUpper(), Constantes.LONG_MAX_NOM);
+            String apaterno = AntiInjectionSQL.quitarComillas(personaFisica.apaterno.ToUpper(), Constantes.LONG_MAX_NOM);
+            String amaterno = AntiInjectionSQL.quitarComillas(personaFisica.amaterno.ToUpper(), Constantes.LONG_MAX_NOM);
+            String municipio = AntiInjectionSQL.quitarComillas(personaFisica.municipio, Constantes.LONG_MAX_NOM);                        
+            //Defino la consulta a realizar            
+            String consulta = "select NUM, CVE_CAT_EST, CVE_CAT_ORI, clavePredial, NOMBRE_O_RAZON_SOCIAL, APELLIDO_PATERNO, APELLIDO_MATERNO, NOM_LOCALIDAD, NOMBRE_COMPLETO_ASENTAMIENTO, NOMBRE_COMPLETO_VIALIDAD, NUMERO_EXTERIOR \n" +
+               "from (" 
+               + "select pu.CVE_CAT_EST, pu.CVE_CAT_ORI, pp.cve_predial clavePredial, p.NOMBRE_O_RAZON_SOCIAL, p.APELLIDO_PATERNO, p.APELLIDO_MATERNO, pu.NOM_LOCALIDAD, pu.NOMBRE_COMPLETO_ASENTAMIENTO, pu.NOMBRE_COMPLETO_VIALIDAD, pu.NUMERO_EXTERIOR, ROW_NUMBER() OVER (ORDER BY pu.CVE_CAT_ORI ) AS NUM " 
+               + "from sde.sis_pc_clave_catastral pp " 
+               + "left join sde.SIS_PC_UBICACION pu on pu.CVE_CAT_ORI = pp.CVE_CAT_ORI " 
+               + "left join sde.SIS_PC_PROPIETARIOS p on p.CVE_CAT_ORI = pp.CVE_CAT_ORI " 
+               + "where pp.STATUSREGISTROTABLA = 'ACTIVO' and p.tipo_persona = 'FISICA' and pu.STATUSREGISTROTABLA = 'ACTIVO' and p.STATUSREGISTROTABLA = 'ACTIVO' " 
+               + "and RTRIM(LTRIM(ISNULL(p.NOMBRE_O_RAZON_SOCIAL,''))) + ' ' + RTRIM(LTRIM(ISNULL(p.APELLIDO_PATERNO ,''))) + ' ' + RTRIM(LTRIM(ISNULL(p.APELLIDO_MATERNO,''))) " 
+               + "LIKE '%" + nombre + " " + apaterno + " " + amaterno + "%' ) as a " 
+               + "WHERE NUM BETWEEN " + ((pag * max) + 1) + " AND " + (((pag + 1) * max)) + ";";
+
+            return repositorio.ObtenerLista(consulta, municipio);
+        }
+
+        public int numPredioxPersonaMoral(String personaMoral, String municipio)
+        {
+            String consulta = "select count(*) total"
+                 + "from sde.SIS_PC_PROPIETARIOS p "
+                 + "left join sde.SIS_PC_UBICACION pu on pu.CVE_CAT_ORI = p.CVE_CAT_ORI"
+                 + "left join sde.sis_pc_clave_catastral pp on pp.CVE_CAT_ORI = p.CVE_CAT_ORI "
+                 + "where pp.STATUSREGISTROTABLA = 'ACTIVO' and p.tipo_persona != 'fisica' and p.STATUSREGISTROTABLA = 'ACTIVO' " 
+                 + "AND pu.STATUSREGISTROTABLA = 'ACTIVO' and p.NOMBRE_O_RAZON_SOCIAL like '%" + personaMoral + "%' ;";
+            return repositorio.ObtenerTotal(consulta, municipio);
+        }
+
+        public List<Resultados> obtenerResultadoPersonaMoral(String  razonSocial, String municipio, int pag, int max)
+        {            
+            razonSocial = AntiInjectionSQL.quitarComillas(razonSocial.ToUpper(), Constantes.LONG_MAX_NOM);
+            municipio = AntiInjectionSQL.quitarComillas(municipio, Constantes.LONG_MAX_NOM);
+            String consulta = "select NUM, CVE_CAT_EST, CVE_CAT_ORI, clavePredial, NOMBRE_O_RAZON_SOCIAL, APELLIDO_PATERNO, APELLIDO_MATERNO, NOM_LOCALIDAD, NOMBRE_COMPLETO_ASENTAMIENTO, NOMBRE_COMPLETO_VIALIDAD, NUMERO_EXTERIOR " 
+                + "from ( " 
+                + "select pu.CVE_CAT_EST, pu.CVE_CAT_ORI, pp.cve_predial clavePredial, p.NOMBRE_O_RAZON_SOCIAL, p.APELLIDO_PATERNO, p.APELLIDO_MATERNO, pu.NOM_LOCALIDAD, pu.NOMBRE_COMPLETO_ASENTAMIENTO, pu.NOMBRE_COMPLETO_VIALIDAD, pu.NUMERO_EXTERIOR, ROW_NUMBER() OVER (ORDER BY pu.CVE_CAT_ORI ) AS NUM "
+                + "from sde.sis_pc_clave_catastral pp " 
+                + "left join sde.SIS_PC_UBICACION pu on pu.CVE_CAT_ORI = pp.CVE_CAT_ORI " 
+                + "left join sde.SIS_PC_PROPIETARIOS p on p.CVE_CAT_ORI = pp.CVE_CAT_ORI " 
+                + "where pp.STATUSREGISTROTABLA = 'ACTIVO' and p.tipo_persona = 'moral' and pu.STATUSREGISTROTABLA = 'ACTIVO' " 
+                + "and p.STATUSREGISTROTABLA = 'ACTIVO' " 
+                + "and p.NOMBRE_O_RAZON_SOCIAL like '%" + @razonSocial + "%') as a " 
+                + "WHERE NUM BETWEEN " + ((pag * max) + 1) + " AND " + (((pag + 1) * max)) + ";";
+            return repositorio.ObtenerLista(consulta, municipio);
+        }
+
 
     }
 

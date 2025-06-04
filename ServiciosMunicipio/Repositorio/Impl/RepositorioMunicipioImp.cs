@@ -78,17 +78,19 @@ namespace InstitutoCatastralAGS.Repositorio.Impl
 
                 while (reader.Read())
                 {
-                    elemento.CVE_CAT_EST = reader.GetString(1);
-                    elemento.CVE_CAT_ORI = reader.GetString(2);
-                    elemento.clavePredial = reader.GetString(3);
-                    elemento.NOMBRE_O_RAZON_SOCIAL = reader.GetString(4);
-                    elemento.APELLIDO_PATERNO = reader.GetString(5);
-                    elemento.APELLIDO_MATERNO = reader.GetString(6);
-                    elemento.NOM_LOCALIDAD = reader.GetString(7);
-                    elemento.NOMBRE_COMPLETO_ASENTAMIENTO = reader.GetString(8);
-                    elemento.NOMBRE_COMPLETO_VIALIDAD = reader.GetString(9);
-                    elemento.NUMERO_EXTERIOR = reader.GetString(10);
+                    
+                    elemento.CVE_CAT_EST = !reader.IsDBNull(1) ? reader.GetString(1) : "";
+                    elemento.CVE_CAT_ORI = !reader.IsDBNull(2) ? reader.GetString(2) : "";
+                    elemento.clavePredial = !reader.IsDBNull(3) ? reader.GetString(3) : "";
+                    elemento.NOMBRE_O_RAZON_SOCIAL = !reader.IsDBNull(4) ? reader.GetString(4) : "";
+                    elemento.APELLIDO_PATERNO = !reader.IsDBNull(5) ? reader.GetString(5) : "";
+                    elemento.APELLIDO_MATERNO = !reader.IsDBNull(6) ? reader.GetString(6) : "";
+                    elemento.NOM_LOCALIDAD = !reader.IsDBNull(7) ? reader.GetString(7) : "";
+                    elemento.NOMBRE_COMPLETO_ASENTAMIENTO = !reader.IsDBNull(8) ? reader.GetString(8) : "";
+                    elemento.NOMBRE_COMPLETO_VIALIDAD = !reader.IsDBNull(9) ? reader.GetString(9) : "";
+                    elemento.NUMERO_EXTERIOR = !reader.IsDBNull(10) ? reader.GetString(10) : "";
                     lista.Add(elemento);
+                    elemento = new Resultados();
                 }                
 
             }

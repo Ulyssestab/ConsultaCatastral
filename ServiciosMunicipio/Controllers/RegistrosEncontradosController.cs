@@ -46,7 +46,7 @@ namespace ServiciosMunicipio.Controllers
         public ActionResult ClaveCatastralOriginal([FromBody] ClaveCatastralOriginal ClaveCatastralOriginal)
         {
             //Formulario: Menu Tramite, clave catastral estandar                                    
-            int offset = 0;            
+            int offset = 10;            
             //Uno la clave catastral estandar enviada desde el formulario
             String claveCatastralOriginal = ClaveCatastralOriginal.campoMunicipioOri
                 + util.completarCeros(3, ClaveCatastralOriginal.campLocalidadOri)
@@ -77,6 +77,21 @@ namespace ServiciosMunicipio.Controllers
         public ActionResult UbicacionPredio([FromBody] UbicacionPredio ubicacionPredio, int pag) {
             List<Resultados> resultados = Buscar.obtenerResultadoUbicacionPredio(ubicacionPredio, pag);
             return Json(resultados);
+        }
+
+        [System.Web.Http.HttpPost]
+        public ActionResult NombrePropietarioPersonaFisica([FromBody] PersonaFisica personaFisica, int pag)
+        {
+            int max = Buscar.numPredioxPersonaFisica(personaFisica);
+            List<Resultados> resultados = Buscar.obtenerResultadoPersonaFisica(personaFisica, pag, max);
+            return Json(resultados);
+        }
+        
+        public ActionResult NombrePropietarioPersonaMoral(String razonSocial, String municipio, int pag)
+        {
+            int max = Buscar.numPredioxPersonaMoral(razonSocial, municipio);
+            List<Resultados> resultados = Buscar.obtenerResultadoPersonaMoral(razonSocial, municipio, pag ,max);
+            return Json(resultados, JsonRequestBehavior.AllowGet);
         }
     }
 }
