@@ -21,14 +21,15 @@ namespace ServiciosMunicipio.Dao
 
         [TestMethod]
         public void obtenerClavesEstandarTest()
-        {             
+        {
+            DetallePredio mock = new DetallePredio();
             // Actuar
             resultado = dao.getDetallePredio(claveCatastral, municipio);
-
-            DetallePredio mock = new DetallePredio();
+            
             mock.CVE_CAT_EST = claveCatastral;
             Assert.IsNotNull(resultado);
             Assert.AreEqual(mock.CVE_CAT_EST, resultado.CVE_CAT_EST);
+
             claveCatastral = "apeornok123";
             resultado = dao.getDetallePredio(claveCatastral, municipio);
             Assert.AreNotEqual(mock.CVE_CAT_EST, resultado.CVE_CAT_EST);
