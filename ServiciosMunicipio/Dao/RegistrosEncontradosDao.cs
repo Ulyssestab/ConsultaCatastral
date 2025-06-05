@@ -1,7 +1,7 @@
-﻿using InstitutoCatastralAGS.Models;
-using InstitutoCatastralAGS.Repositorio.Impl;
-using ServiciosMunicipio.Conexion;
+﻿using ServiciosMunicipio.Conexion;
+using ServiciosMunicipio.Models;
 using ServiciosMunicipio.Models.Entidades;
+using ServiciosMunicipio.Repositorio.Impl;
 using ServiciosMunicipio.Utilerias;
 using System;
 using System.Collections.Generic;

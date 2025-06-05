@@ -1,4 +1,4 @@
-﻿using ServiciosMunicipio.Models;
+﻿using ServiciosMunicipio.Models.Entidades;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 
 namespace ServiciosMunicipio.Repositorio
 {
-    interface RepositorioMunicipio
+    interface RepositorioDetallePredio
     {
-        List<Resultados> ObtenerLista(String consulta, String municipio);
+        DetallePredio ObtenerElemento(String consulta, String municipio);
         int ObtenerTotal(String consulta, String municipio);
     }
 }

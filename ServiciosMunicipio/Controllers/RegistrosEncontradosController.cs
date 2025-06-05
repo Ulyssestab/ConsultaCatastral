@@ -1,5 +1,5 @@
-﻿using InstitutoCatastralAGS.Models;
-using ServiciosMunicipio.Dao;
+﻿using ServiciosMunicipio.Dao;
+using ServiciosMunicipio.Models;
 using ServiciosMunicipio.Models.Entidades;
 using ServiciosMunicipio.Utilerias;
 using System;
@@ -74,7 +74,8 @@ namespace ServiciosMunicipio.Controllers
         }
 
         [System.Web.Http.HttpPost]
-        public ActionResult UbicacionPredio([FromBody] UbicacionPredio ubicacionPredio, int pag) {
+        public ActionResult UbicacionPredio([FromBody] UbicacionPredio ubicacionPredio, int pag) 
+        {            
             List<Resultados> resultados = Buscar.obtenerResultadoUbicacionPredio(ubicacionPredio, pag);
             return Json(resultados);
         }

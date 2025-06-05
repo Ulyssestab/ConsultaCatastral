@@ -173,11 +173,13 @@
     <Compile Include="Conexion\ConexionAsentamientosBD.cs" />
     <Compile Include="Controllers\CAT_LOCALIDADController.cs" />
     <Compile Include="Controllers\Cat_MunicipioController.cs" />
+    <Compile Include="Controllers\DetallePredioController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\RegistrosEncontradosController.cs" />
     <Compile Include="Controllers\SIS_ASENTAMIENTOSController.cs" />
     <Compile Include="Dao\CAT_LOCALIDAD_Dao.cs" />
     <Compile Include="Dao\Cat_Municipio_Dao.cs" />
+    <Compile Include="Dao\DetallePredioDao.cs" />
     <Compile Include="Dao\RegistrosEncontradosDao.cs" />
     <Compile Include="Dao\SIS_ASENTAMIENTOS_Dao.cs" />
     <Compile Include="Global.asax.cs">
@@ -191,6 +193,7 @@
     </Compile>
     <Compile Include="Models\Entidades\ClaveCatastralOriginal.cs" />
     <Compile Include="Models\Entidades\ClaveCatastral.cs" />
+    <Compile Include="Models\Entidades\DetallePredio.cs" />
     <Compile Include="Models\Entidades\PersonaFisica.cs" />
     <Compile Include="Models\Entidades\Resultados.cs" />
     <Compile Include="Models\Entidades\UbicacionPredio.cs" />
@@ -237,7 +240,9 @@
       <DependentUpon>WFTRAMITESModel.edmx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repositorio\Impl\RepositorioDetallePredioImp.cs" />
     <Compile Include="Repositorio\Impl\RepositorioMunicipioImp.cs" />
+    <Compile Include="Repositorio\RepositorioDetallePredio.cs" />
     <Compile Include="Repositorio\RepositorioMunicipio.cs" />
     <Compile Include="Utilerias\AntiInjectionSQL.cs" />
     <Compile Include="Utilerias\Catalogos.cs" />
@@ -333,6 +338,7 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Views\Cat_Municipio\" />
+    <Folder Include="Views\DetallePredio\" />
     <Folder Include="Views\RegistrosEncontrados\" />
   </ItemGroup>
   <ItemGroup>
