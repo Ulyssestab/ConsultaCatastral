@@ -111,5 +111,54 @@ namespace ServiciosMunicipio.Repositorio.Impl
             }
             return resultado;
         }
+
+        public List<Tramite> obtenerTramites(string consulta, string municipio)
+        {
+            var builder = new SqlConnectionStringBuilder
+            {
+                DataSource = "10.1.2.126",
+                UserID = "CatastroSA",
+                Password = "CatAdmin#",
+                InitialCatalog = "GDB01" + municipio
+            };
+
+            Tramite elemento = new Tramite();
+            List<Tramite> lista = new List<Tramite>();
+
+            var connectionString = builder.ConnectionString;
+            var connection = new SqlConnection(connectionString);
+            try
+            {
+
+                connection.Open();
+
+                var command = new SqlCommand(consulta, connection);
+                var reader = command.ExecuteReader();
+
+                while (reader.Read())
+                {
+
+                    elemento.NumeroTramite = !reader.IsDBNull(0) ? reader.GetString(0) : "";
+                    elemento.estatus = !reader.IsDBNull(1) ? reader.GetString(1) : "";
+                    elemento.NombreTramite = !reader.IsDBNull(2) ? reader.GetString(2) : "";
+                    lista.Add(elemento);
+                    elemento = new Tramite();
+                }
+
+            }
+            catch (SqlException e)
+            {
+                Console.WriteLine($"SQL Error: {e.Message}");
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.ToString());
+            }
+            finally
+            {
+                connection.Close();
+            }
+            return lista;
+        }
     }
 }

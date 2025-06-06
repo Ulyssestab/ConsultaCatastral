@@ -14,7 +14,7 @@ namespace ServiciosMunicipio.Tests.Dao
     {
         Cat_Municipio_Dao dao = new Cat_Municipio_Dao();
        [TestMethod]
-        public void numClavePredialTest()
+        public void listaDeMunicipiosTest()
         {
             // Actuar
             List<Cat_Municipio> resultado = dao.obtenerLista();

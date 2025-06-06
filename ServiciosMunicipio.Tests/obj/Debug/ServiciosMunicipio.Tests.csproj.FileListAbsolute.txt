@@ -67,3 +67,5 @@ C:\Users\RPP1\Documents\Catastro\Codigo\ConsultaCatastralServicios\ServiciosMuni
 C:\Users\RPP1\Documents\Catastro\Codigo\ConsultaCatastralServicios\ServiciosMunicipio.Tests\obj\Debug\ServiciosMunicipio.Tests.csproj.CopyComplete
 C:\Users\RPP1\Documents\Catastro\Codigo\ConsultaCatastralServicios\ServiciosMunicipio.Tests\obj\Debug\ServiciosMunicipio.Tests.dll
 C:\Users\RPP1\Documents\Catastro\Codigo\ConsultaCatastralServicios\ServiciosMunicipio.Tests\obj\Debug\ServiciosMunicipio.Tests.pdb
+C:\Users\RPP1\Documents\Catastro\Codigo\ConsultaCatastralServicios\ServiciosMunicipio.Tests\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\RPP1\Documents\Catastro\Codigo\ConsultaCatastralServicios\ServiciosMunicipio.Tests\bin\Debug\EntityFramework.SqlServer.xml

@@ -39,6 +39,10 @@ namespace ServiciosMunicipio.Utilerias
                 {
                     resultado.CVE_LOCALIDAD = x.Value + "";
                 }
+                if (x.Key == "NOM_LOCALIDAD")
+                {
+                    resultado.NOM_LOCALIDAD = x.Value + "";
+                }
             }
             return resultado;
         }

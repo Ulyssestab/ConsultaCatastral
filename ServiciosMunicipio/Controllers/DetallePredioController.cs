@@ -17,5 +17,12 @@ namespace ServiciosMunicipio.Controllers
             DetallePredio detallePredio = dao.getDetallePredio(claveCatastralEst, municipio);
             return Json(detallePredio, JsonRequestBehavior.AllowGet);
         }
+        // GET: DetallePredio/Tramites
+        public ActionResult Tramites(String claveCatastralEst, String municipio)
+        {
+            DetallePredioDao dao = new DetallePredioDao();
+            DetallePredio detallePredio = dao.getDetallePredio(claveCatastralEst, municipio);
+            return Json(detallePredio, JsonRequestBehavior.AllowGet);
+        }
     }
 }

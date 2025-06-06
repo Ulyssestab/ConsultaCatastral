@@ -1,5 +1,6 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using ServiciosMunicipio.Controllers;
 using ServiciosMunicipio.Models;
 using ServiciosMunicipio.Utilerias;
@@ -11,6 +12,7 @@ using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Web.Helpers;
 using System.Web.Mvc;
+using System.Web.Script.Serialization;
 
 namespace ServiciosMunicipio.Tests.Controllers
 {
@@ -41,9 +43,11 @@ namespace ServiciosMunicipio.Tests.Controllers
 
             // Actuar
             System.Web.Mvc.JsonResult result = (System.Web.Mvc.JsonResult) controller.Localidades(clave_localidad, nombre_localidad);
-
-            String resultado  = JsonConvert.SerializeObject(result.Data);
-            variable = resultado != "[]" ? util.crearObjeto(resultado) : variable;
+            var data = result.Data;
+            var serializer = new JavaScriptSerializer();
+            var jsonString = serializer.Serialize(data);            
+            
+            variable = jsonString != "[]" ? util.crearObjeto(jsonString.Replace("[","").Replace("]","")) : variable;
             // Declarar
             Assert.IsNotNull(result);
             Assert.AreEqual(localidad.NOM_LOCALIDAD,variable.NOM_LOCALIDAD);
@@ -53,15 +57,19 @@ namespace ServiciosMunicipio.Tests.Controllers
         {
             // Disponer
             CAT_LOCALIDADController controller = new CAT_LOCALIDADController();
-            String resultados;
+            CAT_LOCALIDAD variable = new CAT_LOCALIDAD();
+            
             // Actuar
-            System.Web.Mvc.JsonResult result = (System.Web.Mvc.JsonResult)controller.NombreLocalidad(localidad.CVE_LOCALIDAD, localidad.CVE_MUNICIPIO);
-            resultados = JsonConvert.SerializeObject(result.Data);
-            //resultados = resultados != null ? resultados.TrimStart('[').TrimEnd(']') : "";
-                
+            System.Web.Mvc.JsonResult result = (System.Web.Mvc.JsonResult) controller.NombreLocalidad(localidad.CVE_MUNICIPIO, localidad.CVE_LOCALIDAD);
+            var data = result.Data;
+            var serializer = new JavaScriptSerializer();
+            var jsonString = serializer.Serialize(data);
+
+            variable = jsonString != "[]" ? util.crearObjeto(jsonString.Replace("[", "").Replace("]", "")) : variable;
+
             // Declarar
             Assert.IsNotNull(result);
-            //Assert.AreEqual(localidad, util.crearObjeto(resultados));
+            Assert.AreEqual(localidad.NOM_LOCALIDAD,variable.NOM_LOCALIDAD);
         }
     }
 }

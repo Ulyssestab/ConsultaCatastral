@@ -55,5 +55,21 @@ namespace ServiciosMunicipio.Dao
                 + "where p." + cv + " = '" + clave + "' and p.STATUSREGISTROTABLA='ACTIVO' ";
             return repositorio.ObtenerElemento(consulta, municipio);
         }
+
+        public List<Tramite> obtenerTramites(String claveCatEst, String municipio) 
+        {
+            String consulta = "SELECT " 
+                + "distinct " 
+                + "t.NumeroTramite, " 
+                + "t.Habilitado estatus," 
+                + "ctpt.Nombre NombreTramite " 
+                + "FROM dbo.Tramite t inner join dbo.SeguimientoTramite st " 
+                + "on st.FK_NumeroTramite = t.NumeroTramite inner join dbo.Cat_EstatusTramite cet " 
+                + "on cet.id = st.FK_Cat_EstatusTramite inner join dbo.Cat_TipodeProcesodeTramite ctpt " 
+                + "on ctpt.id = t.FK_Cat_TipodeProcesoTramite " 
+                + "where isnull(t.ClaveCatastralEstandar,'')!='' and t.ClaveCatastralEstandar = '" + claveCatEst + "' and t.Habilitado = 'true' " 
+                + "order by t.NumeroTramite";
+            return repositorio.obtenerTramites(consulta, municipio);
+        }
     }
 }
