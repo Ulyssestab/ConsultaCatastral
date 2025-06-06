@@ -100,6 +100,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controllers\CAT_LOCALIDADControllerTest.cs" />
+    <Compile Include="Dao\AccesosDaoTest.cs" />
     <Compile Include="Dao\Cat_Municipio_DaoTest.cs" />
     <Compile Include="Dao\DetallePredioDaoTest.cs" />
     <Compile Include="Dao\RegistrosEncontradosDaoTest.cs" />
