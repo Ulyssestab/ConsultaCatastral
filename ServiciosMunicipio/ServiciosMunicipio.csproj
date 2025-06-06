@@ -196,6 +196,8 @@
     <Compile Include="Models\Entidades\DetallePredio.cs" />
     <Compile Include="Models\Entidades\PersonaFisica.cs" />
     <Compile Include="Models\Entidades\Resultados.cs" />
+    <Compile Include="Models\Entidades\TareasTramite.cs" />
+    <Compile Include="Models\Entidades\Tramite.cs" />
     <Compile Include="Models\Entidades\UbicacionPredio.cs" />
     <Compile Include="Models\GDB01001Model.Context.cs">
       <AutoGen>True</AutoGen>

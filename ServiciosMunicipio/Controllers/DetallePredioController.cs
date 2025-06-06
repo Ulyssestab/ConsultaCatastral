@@ -10,19 +10,25 @@ namespace ServiciosMunicipio.Controllers
 {
     public class DetallePredioController : Controller
     {
+        private DetallePredioDao dao = new DetallePredioDao();
         // GET: DetallePredio
         public ActionResult Resultado(String claveCatastralEst, String municipio)
-        {
-            DetallePredioDao dao = new DetallePredioDao();
+        {            
             DetallePredio detallePredio = dao.getDetallePredio(claveCatastralEst, municipio);
             return Json(detallePredio, JsonRequestBehavior.AllowGet);
         }
         // GET: DetallePredio/Tramites
-        public ActionResult Tramites(String claveCatastralEst, String municipio)
+        public ActionResult Tramites(String claveCatastralEst)
+        {            
+            List<Tramite> tramites = dao.obtenerTramites(claveCatastralEst);
+            return Json(tramites, JsonRequestBehavior.AllowGet);
+        }
+
+        // GET: DetallePredio/Tramites
+        public ActionResult DetalleTareasTramites(String numeroTramite)
         {
-            DetallePredioDao dao = new DetallePredioDao();
-            DetallePredio detallePredio = dao.getDetallePredio(claveCatastralEst, municipio);
-            return Json(detallePredio, JsonRequestBehavior.AllowGet);
+            List<TareasTramite> tramites = dao.obtenerDetalleTareasTramite(numeroTramite);
+            return Json(tramites, JsonRequestBehavior.AllowGet);
         }
     }
 }

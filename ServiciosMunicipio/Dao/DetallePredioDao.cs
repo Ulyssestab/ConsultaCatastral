@@ -56,8 +56,9 @@ namespace ServiciosMunicipio.Dao
             return repositorio.ObtenerElemento(consulta, municipio);
         }
 
-        public List<Tramite> obtenerTramites(String claveCatEst, String municipio) 
+        public List<Tramite> obtenerTramites(String claveCatEst) 
         {
+            String clave = AntiInjectionSQL.quitarComillas(claveCatEst, Constantes.LONG_MAX_NOM);
             String consulta = "SELECT " 
                 + "distinct " 
                 + "t.NumeroTramite, " 
@@ -67,9 +68,24 @@ namespace ServiciosMunicipio.Dao
                 + "on st.FK_NumeroTramite = t.NumeroTramite inner join dbo.Cat_EstatusTramite cet " 
                 + "on cet.id = st.FK_Cat_EstatusTramite inner join dbo.Cat_TipodeProcesodeTramite ctpt " 
                 + "on ctpt.id = t.FK_Cat_TipodeProcesoTramite " 
-                + "where isnull(t.ClaveCatastralEstandar,'')!='' and t.ClaveCatastralEstandar = '" + claveCatEst + "' and t.Habilitado = 'true' " 
+                + "where isnull(t.ClaveCatastralEstandar,'')!='' and t.ClaveCatastralEstandar = '" + clave + "' and t.Habilitado = 'true' " 
                 + "order by t.NumeroTramite";
-            return repositorio.obtenerTramites(consulta, municipio);
+            return repositorio.obtenerTramites(consulta);
+        }
+
+        public List <TareasTramite> obtenerDetalleTareasTramite(String numeroTramite) 
+        {
+            String consulta = "SELECT " 
+                + "st.Tarea, " 
+                + "st.Orden, " 
+                + "cet.Descripcion estatus " 
+                + "FROM dbo.Tramite t " 
+                + "left join dbo.SeguimientoTramite st on st.FK_NumeroTramite = t.NumeroTramite " 
+                + "left join dbo.Cat_EstatusTramite cet on cet.id = st.FK_Cat_EstatusTramite " 
+                + "left join dbo.Cat_TipodeProcesodeTramite ctpt on ctpt.id = t.FK_Cat_TipodeProcesoTramite  " 
+                + " where t.NumeroTramite = '" + numeroTramite + "' " 
+                + " order by st.Orden";
+            return repositorio.obtenerListaTareasTramites(consulta);
         }
     }
 }

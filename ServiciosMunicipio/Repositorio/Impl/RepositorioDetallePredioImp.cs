@@ -112,14 +112,14 @@ namespace ServiciosMunicipio.Repositorio.Impl
             return resultado;
         }
 
-        public List<Tramite> obtenerTramites(string consulta, string municipio)
+        public List<Tramite> obtenerTramites(string consulta)
         {
             var builder = new SqlConnectionStringBuilder
             {
                 DataSource = "10.1.2.126",
                 UserID = "CatastroSA",
                 Password = "CatAdmin#",
-                InitialCatalog = "GDB01" + municipio
+                InitialCatalog = "WFTRAMITES"
             };
 
             Tramite elemento = new Tramite();
@@ -139,10 +139,59 @@ namespace ServiciosMunicipio.Repositorio.Impl
                 {
 
                     elemento.NumeroTramite = !reader.IsDBNull(0) ? reader.GetString(0) : "";
-                    elemento.estatus = !reader.IsDBNull(1) ? reader.GetString(1) : "";
+                    elemento.estatus = !reader.IsDBNull(1) ? reader.GetBoolean(1) + "" : "";
                     elemento.NombreTramite = !reader.IsDBNull(2) ? reader.GetString(2) : "";
                     lista.Add(elemento);
                     elemento = new Tramite();
+                }
+
+            }
+            catch (SqlException e)
+            {
+                Console.WriteLine($"SQL Error: {e.Message}");
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.ToString());
+            }
+            finally
+            {
+                connection.Close();
+            }
+            return lista;
+        }
+
+        public  List<TareasTramite> obtenerListaTareasTramites(String consulta)
+        {
+            var builder = new SqlConnectionStringBuilder
+            {
+                DataSource = "10.1.2.126",
+                UserID = "CatastroSA",
+                Password = "CatAdmin#",
+                InitialCatalog = "WFTRAMITES"
+            };
+
+            TareasTramite elemento = new TareasTramite();
+            List<TareasTramite> lista = new List<TareasTramite>();
+
+            var connectionString = builder.ConnectionString;
+            var connection = new SqlConnection(connectionString);
+            try
+            {
+
+                connection.Open();
+
+                var command = new SqlCommand(consulta, connection);
+                var reader = command.ExecuteReader();
+
+                while (reader.Read())
+                {
+
+                    elemento.Tarea = !reader.IsDBNull(0) ? reader.GetString(0) : "";
+                    elemento.Orden = !reader.IsDBNull(1) ? reader.GetInt32(1) + "" : "";
+                    elemento.estatus = !reader.IsDBNull(2) ? reader.GetString(2) : "";
+                    lista.Add(elemento);
+                    elemento = new TareasTramite();
                 }
 
             }
