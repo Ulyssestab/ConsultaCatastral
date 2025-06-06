@@ -1,4 +1,5 @@
 ﻿using ServiciosMunicipio.Models.Entidades;
+using ServiciosMunicipio.Utilerias;
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
@@ -116,10 +117,10 @@ namespace ServiciosMunicipio.Repositorio.Impl
         {
             var builder = new SqlConnectionStringBuilder
             {
-                DataSource = "10.1.2.126",
-                UserID = "CatastroSA",
-                Password = "CatAdmin#",
-                InitialCatalog = "WFTRAMITES"
+                DataSource = Constantes.DataSource,
+                UserID = Constantes.UserID,
+                Password = Constantes.Password,
+                InitialCatalog = Constantes.InitialCatalogW
             };
 
             Tramite elemento = new Tramite();
