@@ -2,3 +2,5 @@ ServiciosMunicipio/obj/Debug/DesignTimeResolveAssemblyReferencesInput.cache
 ServiciosMunicipio/bin/**
 ServiciosMunicipio/obj/Debug/**
 ServiciosMunicipio/v16/**
+ServiciosMunicipio.Tests\bin\**
+.vs/**

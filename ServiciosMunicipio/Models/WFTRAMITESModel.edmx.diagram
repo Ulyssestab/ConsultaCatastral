@@ -6,6 +6,8 @@
     <edmx:Diagrams>
       <Diagram DiagramId="2844f67435224d068ad779d5ff9ebe35" Name="Diagram1">
         <EntityTypeShape EntityType="WFTRAMITESModel.Cat_Municipio" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="WFTRAMITESModel.Cat_Acceso" Width="1.5" PointX="3.75" PointY="0.75" />
+        <EntityTypeShape EntityType="WFTRAMITESModel.Usuario" Width="1.5" PointX="0.75" PointY="3.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

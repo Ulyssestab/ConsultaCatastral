@@ -4,7 +4,14 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="WFTRAMITESModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="WFTRAMITESModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Cat_Acceso">
+          <Key>
+            <PropertyRef Name="Nombre_Completo" />
+          </Key>
+          <Property Name="Nombre_Completo" Type="nvarchar" MaxLength="250" Nullable="false" />
+          <Property Name="NombreUsuario" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
         <EntityType Name="Cat_Municipio">
           <Key>
             <PropertyRef Name="Id" />
@@ -16,11 +23,57 @@
           <Property Name="FK_Estado" Type="int" Nullable="false" />
           <Property Name="BD" Type="nvarchar" MaxLength="250" />
         </EntityType>
+        <EntityType Name="Usuario">
+          <Key>
+            <PropertyRef Name="NombreUsuario" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NombreCompleto" Type="varchar" MaxLength="120" Nullable="false" />
+          <Property Name="ApellidoPaterno" Type="varchar" MaxLength="150" Nullable="false" />
+          <Property Name="ApellidoMaterno" Type="nvarchar" MaxLength="150" Nullable="false" />
+          <Property Name="NombreUsuario" Type="nvarchar" MaxLength="120" Nullable="false" />
+          <Property Name="Contrasena" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="FK_Puesto" Type="int" Nullable="false" />
+          <Property Name="FK_Coordinacion" Type="int" Nullable="false" />
+          <Property Name="SistemaTramites" Type="bit" Nullable="false" />
+          <Property Name="SistemaCatastral" Type="bit" Nullable="false" />
+          <Property Name="SistemaVisualizador" Type="bit" Nullable="false" />
+          <Property Name="Habilitado" Type="bit" Nullable="false" />
+          <Property Name="Fotografia" Type="binary" MaxLength="100" />
+          <Property Name="NumeroControl" Type="int" />
+          <Property Name="Analista" Type="bit" />
+          <Property Name="Recepcionista" Type="bit" />
+          <Property Name="CorreoElectronico" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="ContrasenaInicial" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="Celular" Type="nvarchar" MaxLength="20" />
+          <Property Name="Telefono" Type="nvarchar" MaxLength="20" />
+          <Property Name="FechaActivacion" Type="datetime" Nullable="false" />
+          <Property Name="FK_Cat_Municipio" Type="int" />
+          <Property Name="PagoDerechos" Type="bit" />
+          <Property Name="FK_Cat_Perfil" Type="int" />
+          <Property Name="VersionSDE" Type="nvarchar" MaxLength="50" />
+          <Property Name="TipoSolicitante" Type="nvarchar" MaxLength="150" />
+          <Property Name="NumNotaria" Type="int" />
+          <Property Name="Vialidad" Type="varchar" MaxLength="100" />
+          <Property Name="NumInterior" Type="varchar" MaxLength="30" />
+          <Property Name="NumExterior" Type="varchar" MaxLength="30" />
+          <Property Name="NombreColonia" Type="varchar" MaxLength="100" />
+          <Property Name="CP" Type="varchar" MaxLength="10" />
+          <Property Name="NombreLocalidad" Type="varchar" MaxLength="100" />
+          <Property Name="NombreEntidad" Type="varchar" MaxLength="100" />
+          <Property Name="ID_PISABIT" Type="nvarchar" MaxLength="50" />
+          <Property Name="SesionActiva" Type="bit" />
+          <Property Name="SesionActivaConsulta" Type="bit" Nullable="false" />
+          <Property Name="UltimaSesion" Type="datetime" />
+          <Property Name="Puesto" Type="int" />
+          <Property Name="Descripcion_Puesto" Type="varchar" MaxLength="100" />
+        </EntityType>
         <EntityContainer Name="WFTRAMITESModelStoreContainer">
+          <EntitySet Name="Cat_Acceso" EntityType="Self.Cat_Acceso" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Cat_Municipio" EntityType="Self.Cat_Municipio" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Usuario" EntityType="Self.Usuario" Schema="dbo" store:Type="Tables" />
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="WFTRAMITESModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -37,7 +90,61 @@
         </EntityType>
         <EntityContainer Name="WFTRAMITESEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Cat_Municipio" EntityType="Self.Cat_Municipio" />
+          <EntitySet Name="Cat_Acceso" EntityType="WFTRAMITESModel.Cat_Acceso" />
+          <EntitySet Name="Usuario" EntityType="WFTRAMITESModel.Usuario" />
         </EntityContainer>
+        <EntityType Name="Cat_Acceso">
+          <Key>
+            <PropertyRef Name="Nombre_Completo" />
+          </Key>
+          <Property Name="Nombre_Completo" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="NombreUsuario" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Usuario">
+          <Key>
+            <PropertyRef Name="NombreUsuario" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NombreCompleto" Type="String" Nullable="false" MaxLength="120" FixedLength="false" Unicode="false" />
+          <Property Name="ApellidoPaterno" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="ApellidoMaterno" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="NombreUsuario" Type="String" Nullable="false" MaxLength="120" FixedLength="false" Unicode="true" />
+          <Property Name="Contrasena" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="FK_Puesto" Type="Int32" Nullable="false" />
+          <Property Name="FK_Coordinacion" Type="Int32" Nullable="false" />
+          <Property Name="SistemaTramites" Type="Boolean" Nullable="false" />
+          <Property Name="SistemaCatastral" Type="Boolean" Nullable="false" />
+          <Property Name="SistemaVisualizador" Type="Boolean" Nullable="false" />
+          <Property Name="Habilitado" Type="Boolean" Nullable="false" />
+          <Property Name="Fotografia" Type="Binary" MaxLength="100" FixedLength="true" />
+          <Property Name="NumeroControl" Type="Int32" />
+          <Property Name="Analista" Type="Boolean" />
+          <Property Name="Recepcionista" Type="Boolean" />
+          <Property Name="CorreoElectronico" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="ContrasenaInicial" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="Celular" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="Telefono" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="FechaActivacion" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="FK_Cat_Municipio" Type="Int32" />
+          <Property Name="PagoDerechos" Type="Boolean" />
+          <Property Name="FK_Cat_Perfil" Type="Int32" />
+          <Property Name="VersionSDE" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="TipoSolicitante" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="NumNotaria" Type="Int32" />
+          <Property Name="Vialidad" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="NumInterior" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="NumExterior" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="NombreColonia" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="CP" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="NombreLocalidad" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="NombreEntidad" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="ID_PISABIT" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="SesionActiva" Type="Boolean" />
+          <Property Name="SesionActivaConsulta" Type="Boolean" Nullable="false" />
+          <Property Name="UltimaSesion" Type="DateTime" Precision="3" />
+          <Property Name="Puesto" Type="Int32" />
+          <Property Name="Descripcion_Puesto" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -53,6 +160,60 @@
                 <ScalarProperty Name="Activo" ColumnName="Activo" />
                 <ScalarProperty Name="FK_Estado" ColumnName="FK_Estado" />
                 <ScalarProperty Name="BD" ColumnName="BD" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Cat_Acceso">
+            <EntityTypeMapping TypeName="WFTRAMITESModel.Cat_Acceso">
+              <MappingFragment StoreEntitySet="Cat_Acceso">
+                <ScalarProperty Name="NombreUsuario" ColumnName="NombreUsuario" />
+                <ScalarProperty Name="Nombre_Completo" ColumnName="Nombre_Completo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Usuario">
+            <EntityTypeMapping TypeName="WFTRAMITESModel.Usuario">
+              <MappingFragment StoreEntitySet="Usuario">
+                <ScalarProperty Name="Descripcion_Puesto" ColumnName="Descripcion_Puesto" />
+                <ScalarProperty Name="Puesto" ColumnName="Puesto" />
+                <ScalarProperty Name="UltimaSesion" ColumnName="UltimaSesion" />
+                <ScalarProperty Name="SesionActivaConsulta" ColumnName="SesionActivaConsulta" />
+                <ScalarProperty Name="SesionActiva" ColumnName="SesionActiva" />
+                <ScalarProperty Name="ID_PISABIT" ColumnName="ID_PISABIT" />
+                <ScalarProperty Name="NombreEntidad" ColumnName="NombreEntidad" />
+                <ScalarProperty Name="NombreLocalidad" ColumnName="NombreLocalidad" />
+                <ScalarProperty Name="CP" ColumnName="CP" />
+                <ScalarProperty Name="NombreColonia" ColumnName="NombreColonia" />
+                <ScalarProperty Name="NumExterior" ColumnName="NumExterior" />
+                <ScalarProperty Name="NumInterior" ColumnName="NumInterior" />
+                <ScalarProperty Name="Vialidad" ColumnName="Vialidad" />
+                <ScalarProperty Name="NumNotaria" ColumnName="NumNotaria" />
+                <ScalarProperty Name="TipoSolicitante" ColumnName="TipoSolicitante" />
+                <ScalarProperty Name="VersionSDE" ColumnName="VersionSDE" />
+                <ScalarProperty Name="FK_Cat_Perfil" ColumnName="FK_Cat_Perfil" />
+                <ScalarProperty Name="PagoDerechos" ColumnName="PagoDerechos" />
+                <ScalarProperty Name="FK_Cat_Municipio" ColumnName="FK_Cat_Municipio" />
+                <ScalarProperty Name="FechaActivacion" ColumnName="FechaActivacion" />
+                <ScalarProperty Name="Telefono" ColumnName="Telefono" />
+                <ScalarProperty Name="Celular" ColumnName="Celular" />
+                <ScalarProperty Name="ContrasenaInicial" ColumnName="ContrasenaInicial" />
+                <ScalarProperty Name="CorreoElectronico" ColumnName="CorreoElectronico" />
+                <ScalarProperty Name="Recepcionista" ColumnName="Recepcionista" />
+                <ScalarProperty Name="Analista" ColumnName="Analista" />
+                <ScalarProperty Name="NumeroControl" ColumnName="NumeroControl" />
+                <ScalarProperty Name="Fotografia" ColumnName="Fotografia" />
+                <ScalarProperty Name="Habilitado" ColumnName="Habilitado" />
+                <ScalarProperty Name="SistemaVisualizador" ColumnName="SistemaVisualizador" />
+                <ScalarProperty Name="SistemaCatastral" ColumnName="SistemaCatastral" />
+                <ScalarProperty Name="SistemaTramites" ColumnName="SistemaTramites" />
+                <ScalarProperty Name="FK_Coordinacion" ColumnName="FK_Coordinacion" />
+                <ScalarProperty Name="FK_Puesto" ColumnName="FK_Puesto" />
+                <ScalarProperty Name="Contrasena" ColumnName="Contrasena" />
+                <ScalarProperty Name="NombreUsuario" ColumnName="NombreUsuario" />
+                <ScalarProperty Name="ApellidoMaterno" ColumnName="ApellidoMaterno" />
+                <ScalarProperty Name="ApellidoPaterno" ColumnName="ApellidoPaterno" />
+                <ScalarProperty Name="NombreCompleto" ColumnName="NombreCompleto" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

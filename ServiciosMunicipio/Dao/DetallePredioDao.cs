@@ -12,7 +12,7 @@ namespace ServiciosMunicipio.Dao
     public class DetallePredioDao
     {
         RepositorioDetallePredioImp repositorio = new RepositorioDetallePredioImp();
-        public DetallePredio getDetallePredio(String clave, String municipio)
+        public DetallePredio getDetallePredio(String clave, String municipio) //getDetallePredio
         {
             clave = Utilerias.AntiInjectionSQL.quitarComillas(clave, Constantes.LONG_MAX_NOM);
             String cv = "CVE_CAT_EST";
@@ -56,7 +56,7 @@ namespace ServiciosMunicipio.Dao
             return repositorio.ObtenerElemento(consulta, municipio);
         }
 
-        public List<Tramite> obtenerTramites(String claveCatEst) 
+        public List<Tramite> obtenerTramites(String claveCatEst) //getTramitesGeneral
         {
             String clave = AntiInjectionSQL.quitarComillas(claveCatEst, Constantes.LONG_MAX_NOM);
             String consulta = "SELECT " 
@@ -73,7 +73,7 @@ namespace ServiciosMunicipio.Dao
             return repositorio.obtenerTramites(consulta);
         }
 
-        public List <TareasTramite> obtenerDetalleTareasTramite(String numeroTramite) 
+        public List <TareasTramite> obtenerDetalleTareasTramite(String numeroTramite) //getDetalleTareasTramite
         {
             String consulta = "SELECT " 
                 + "st.Tarea, " 

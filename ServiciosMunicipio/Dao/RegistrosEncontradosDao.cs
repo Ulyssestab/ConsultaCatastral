@@ -13,7 +13,7 @@ namespace ServiciosMunicipio.Dao
     public class RegistrosEncontradosDao
     {
         RepositorioMunicipioImp repositorio = new RepositorioMunicipioImp();
-        public int numClavesEstandar(String clave, String municipio)
+        public int numClavesEstandar(String clave, String municipio) //numClavesEstandar
         {
             String consulta = "select count(*) total "
                                 + "from sde.sis_pc_clave_catastral pp "
@@ -27,7 +27,7 @@ namespace ServiciosMunicipio.Dao
 
             return repositorio.ObtenerTotal(consulta, municipio);
         }
-        public List<Resultados> obtenerClavesEstandar(String clave, String municipio, int pag)
+        public List<Resultados> obtenerClavesEstandar(String clave, String municipio, int pag) //getClavesEstandar
 
         {
             int max = numClavesEstandar(clave, municipio);
@@ -74,7 +74,7 @@ namespace ServiciosMunicipio.Dao
                 + "where pp.cve_predial like '" + clavePredial + numCuentaPredial + "%' and pp.STATUSREGISTROTABLA = 'ACTIVO' ";
             return repositorio.ObtenerTotal(consulta, municipio);
         }
-        internal List<Resultados> obtenerClavesPredial(String clavePredial, String numCuentaPredial,  String municipioCE, int pag)
+        internal List<Resultados> obtenerClavesPredial(String clavePredial, String numCuentaPredial,  String municipioCE, int pag) //getClavesPrediales
         {
             int max = numClavePredial(clavePredial, numCuentaPredial, municipioCE);
             String consulta = "select NUM,"
@@ -95,7 +95,7 @@ namespace ServiciosMunicipio.Dao
                                 + "WHERE NUM BETWEEN " + ((pag * max) + 1) + " AND " + (((pag + 1) * max)) + ";";
             return repositorio.ObtenerLista(consulta, municipioCE);
         }
-        public int numFolioreal(string folioReal, string municipio)
+        public int numFolioreal(string folioReal, string municipio) //numFolioReal
         {
             String consulta = "select count(*) total"
                 + " from sde.SIS_PC_CLAVE_CATASTRAL"
@@ -104,7 +104,7 @@ namespace ServiciosMunicipio.Dao
             return repositorio.ObtenerTotal(consulta, municipio);
         }
 
-        public List<Resultados> obtenerResultadoFolioReal(String folioReal, String municipio, int pag)
+        public List<Resultados> obtenerResultadoFolioReal(String folioReal, String municipio, int pag) //getFolioReal
         {
             int max = numFolioreal(folioReal, municipio);
             String consulta = "select NUM,"
@@ -138,7 +138,7 @@ namespace ServiciosMunicipio.Dao
 
             return repositorio.ObtenerLista(consulta, municipio);
         }
-        public List<Resultados> obtenerResultadoUbicacionPredio(UbicacionPredio ubicacionPredio, int pag)
+        public List<Resultados> obtenerResultadoUbicacionPredio(UbicacionPredio ubicacionPredio, int pag) //getDirecciones
         {                                    
             Utilidades utilidades = new Utilidades();
             //String sql = utilidades.formarSQLtotal(ubicacionPredio);
@@ -170,7 +170,7 @@ namespace ServiciosMunicipio.Dao
             return repositorio.ObtenerLista(consulta, ubicacionPredio.municipio);
         }
 
-        public int numDireccion(String sql, String municipio ) 
+        public int numDireccion(String sql, String municipio) //numDireccion
         {
             String consulta = "select  count(*) total "
                     + "from sde.sis_pc_clave_catastral pp inner join sde.SIS_PC_UBICACION pu on pu.CVE_CAT_EST = pp.CVE_CAT_EST inner join sde.SIS_PC_PROPIETARIOS p on p.CVE_CAT_EST = pp.CVE_CAT_EST "
@@ -178,7 +178,7 @@ namespace ServiciosMunicipio.Dao
             return repositorio.ObtenerTotal(consulta, municipio);
         }
 
-        public int numClavesOriginales(String claveCatastralOriginal)
+        public int numClavesOriginales(String claveCatastralOriginal) //numClavesOriginales
         {            
             claveCatastralOriginal = AntiInjectionSQL.quitarComillas(claveCatastralOriginal, Constantes.LONG_MAX_NOM);
             String municipio = Utilidades.getMunicipioCve_Ori(claveCatastralOriginal);
@@ -193,7 +193,7 @@ namespace ServiciosMunicipio.Dao
             return repositorio.ObtenerTotal(consulta, municipio); 
         }
 
-        public List<Resultados> obtenerClavesOriginal(String claveCatastralOriginal, int pag, int offset)
+        public List<Resultados> obtenerClavesOriginal(String claveCatastralOriginal, int pag, int offset) //getClavesOriginales
         {
             int max = offset;
             String consulta = "select NUM,"
@@ -228,7 +228,7 @@ namespace ServiciosMunicipio.Dao
             return repositorio.ObtenerLista(consulta, municipio);
         }
 
-        public int numPredioxPersonaFisica(PersonaFisica personaFisica)
+        public int numPredioxPersonaFisica(PersonaFisica personaFisica) //numPredioxPersonaFisica
         {
             String nombre = AntiInjectionSQL.quitarComillas(personaFisica.nombre.ToUpper(), Constantes.LONG_MAX_NOM);
             String apaterno = AntiInjectionSQL.quitarComillas(personaFisica.apaterno.ToUpper(), Constantes.LONG_MAX_NOM);
@@ -245,7 +245,7 @@ namespace ServiciosMunicipio.Dao
                     + "and p.NOMBRE_O_RAZON_SOCIAL like '%" + nombre + "%' and p.APELLIDO_PATERNO like '%" + apaterno + "%' and p.APELLIDO_MATERNO like '%" + amaterno + "%'";
             return repositorio.ObtenerTotal(consulta, municipio);
         }
-            public List<Resultados> obtenerResultadoPersonaFisica(PersonaFisica personaFisica, int pag, int max)
+            public List<Resultados> obtenerResultadoPersonaFisica(PersonaFisica personaFisica, int pag, int max) //getPersonasFisica
         {            
             String nombre = AntiInjectionSQL.quitarComillas(personaFisica.nombre.ToUpper(), Constantes.LONG_MAX_NOM);
             String apaterno = AntiInjectionSQL.quitarComillas(personaFisica.apaterno.ToUpper(), Constantes.LONG_MAX_NOM);
@@ -266,7 +266,7 @@ namespace ServiciosMunicipio.Dao
             return repositorio.ObtenerLista(consulta, municipio);
         }
 
-        public int numPredioxPersonaMoral(String personaMoral, String municipio)
+        public int numPredioxPersonaMoral(String personaMoral, String municipio) //numPredioxPersonaMoral
         {
             String consulta = "select count(*) total"
                  + "from sde.SIS_PC_PROPIETARIOS p "
@@ -277,7 +277,7 @@ namespace ServiciosMunicipio.Dao
             return repositorio.ObtenerTotal(consulta, municipio);
         }
 
-        public List<Resultados> obtenerResultadoPersonaMoral(String  razonSocial, String municipio, int pag, int max)
+        public List<Resultados> obtenerResultadoPersonaMoral(String  razonSocial, String municipio, int pag, int max) //getPersonasMoral
         {            
             razonSocial = AntiInjectionSQL.quitarComillas(razonSocial.ToUpper(), Constantes.LONG_MAX_NOM);
             municipio = AntiInjectionSQL.quitarComillas(municipio, Constantes.LONG_MAX_NOM);

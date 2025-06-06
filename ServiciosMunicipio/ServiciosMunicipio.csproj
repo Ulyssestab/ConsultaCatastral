@@ -177,6 +177,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\RegistrosEncontradosController.cs" />
     <Compile Include="Controllers\SIS_ASENTAMIENTOSController.cs" />
+    <Compile Include="Dao\AccesosDao.cs" />
     <Compile Include="Dao\CAT_LOCALIDAD_Dao.cs" />
     <Compile Include="Dao\Cat_Municipio_Dao.cs" />
     <Compile Include="Dao\DetallePredioDao.cs" />
@@ -184,6 +185,9 @@
     <Compile Include="Dao\SIS_ASENTAMIENTOS_Dao.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Cat_Acceso.cs">
+      <DependentUpon>WFTRAMITESModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\CAT_LOCALIDAD.cs">
       <DependentUpon>GDB01001Model.tt</DependentUpon>
@@ -225,6 +229,9 @@
     </Compile>
     <Compile Include="Models\SIS_PC_UBICACION.cs">
       <DependentUpon>GDB01001Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Usuario.cs">
+      <DependentUpon>WFTRAMITESModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\WFTRAMITESModel.Context.cs">
       <AutoGen>True</AutoGen>
