@@ -74,7 +74,7 @@ namespace ServiciosMunicipio.Dao
                 + "where pp.cve_predial like '" + clavePredial + numCuentaPredial + "%' and pp.STATUSREGISTROTABLA = 'ACTIVO' ";
             return repositorio.ObtenerTotal(consulta, municipio);
         }
-        internal List<Resultados> obtenerClavesPredial(String clavePredial, String numCuentaPredial,  String municipioCE, int pag) //getClavesPrediales
+        public List<Resultados> obtenerClavesPredial(String clavePredial, String numCuentaPredial,  String municipioCE, int pag) //getClavesPrediales
         {
             int max = numClavePredial(clavePredial, numCuentaPredial, municipioCE);
             String consulta = "select NUM,"

@@ -14,13 +14,24 @@ namespace ServiciosMunicipio.Dao
         private RepositorioAccesosImp dao = new RepositorioAccesosImp();
         public Boolean AccesoUsuario(String nombreUsuario)
         {
-            return db.Cat_Acceso.SqlQuery("SELECT * FROM dbo.Cat_Acceso where NombreUsuario = '" + @nombreUsuario + "'").First<Cat_Acceso>().NombreUsuario != null;
+            Boolean existe = false;
+            List<Cat_Acceso> acceso = db.Cat_Acceso.SqlQuery("SELECT * FROM dbo.Cat_Acceso where NombreUsuario = '" + @nombreUsuario + "'").ToList<Cat_Acceso>();
+            if (acceso.Count > 0) 
+            {
+                existe = acceso[0].NombreUsuario != null ? true : false;
+            }
+            return existe;
         }
 
         public String AccesoUsuarioPerfil(String nombreUsuario)
         {
-            return db.Usuario.SqlQuery("SELECT * FROM dbo.Usuario " +
-                    "where NombreUsuario = '" + @nombreUsuario + "' and Habilitado = 'true'").First<Usuario>().FK_Cat_Perfil + "";
+            String r = "";
+            List<Usuario> acceso = db.Usuario.SqlQuery("SELECT * FROM dbo.Usuario where NombreUsuario = '" + @nombreUsuario + "' and Habilitado = 'true'").ToList<Usuario>();
+            if (acceso.Count > 0)
+            {
+                r = acceso[0].FK_Cat_Perfil != null ? acceso[0].FK_Cat_Perfil + "" : "";
+            }
+            return r;
         }
 
         public Usuario existeAccesoUsuario(String usuario, String password) //existUserAccess

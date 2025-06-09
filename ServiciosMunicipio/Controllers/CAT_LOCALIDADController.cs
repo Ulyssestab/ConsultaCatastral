@@ -16,7 +16,7 @@ namespace ServiciosMunicipio.Controllers
     {
         CAT_LOCALIDAD_Dao dao = new CAT_LOCALIDAD_Dao();
 
-        // GET: CAT_LOCALIDAD/Localidades/5 AjaxResultados -- Localidad
+        // GET: CAT_LOCALIDAD/Localidades?clave_localidad&nombre_localidad AjaxResultados -- Localidad
         public ActionResult Localidades(String clave_localidad, String nombre_localidad)
         {
             if (clave_localidad == null && nombre_localidad==null)
