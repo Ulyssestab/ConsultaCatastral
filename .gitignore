@@ -2,5 +2,9 @@ ServiciosMunicipio/obj/Debug/DesignTimeResolveAssemblyReferencesInput.cache
 ServiciosMunicipio/bin/**
 ServiciosMunicipio/obj/Debug/**
 ServiciosMunicipio/v16/**
-ServiciosMunicipio.Tests\bin\**
+ServiciosMunicipio.Tests/bin/**
+ServiciosMunicipio.Tests/bin/Debug/ServiciosMunicipio.pdb
+ServiciosMunicipio.Tests/bin/Debug/ServiciosMunicipio.Tests.dll
+ServiciosMunicipio.Tests/bin/Debug/ServiciosMunicipio.Tests.pdb
+ServiciosMunicipio.Tests/obj/Debug/ServiciosMunicipio.Tests.csproj.AssemblyReference.cache
 .vs/**
