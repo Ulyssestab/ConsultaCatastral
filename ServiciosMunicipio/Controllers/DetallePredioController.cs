@@ -11,7 +11,7 @@ namespace ServiciosMunicipio.Controllers
     public class DetallePredioController : Controller
     {
         private DetallePredioDao dao = new DetallePredioDao();
-        // GET: DetallePredio
+        // GET: DetallePredio/Resultado
         public ActionResult Resultado(String claveCatastralEst, String municipio)
         {            
             DetallePredio detallePredio = dao.getDetallePredio(claveCatastralEst, municipio);
@@ -24,7 +24,7 @@ namespace ServiciosMunicipio.Controllers
             return Json(tramites, JsonRequestBehavior.AllowGet);
         }
 
-        // GET: DetallePredio/Tramites
+        // GET: DetallePredio/TareasTramites
         public ActionResult DetalleTareasTramites(String numeroTramite)
         {
             List<TareasTramite> tramites = dao.obtenerDetalleTareasTramite(numeroTramite);

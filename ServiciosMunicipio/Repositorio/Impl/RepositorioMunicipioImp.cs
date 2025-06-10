@@ -1,4 +1,5 @@
 ﻿using ServiciosMunicipio.Models;
+using ServiciosMunicipio.Utilerias;
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
@@ -57,10 +58,10 @@ namespace ServiciosMunicipio.Repositorio.Impl
         {
             var builder = new SqlConnectionStringBuilder
             {
-                DataSource = "10.1.2.126",
-                UserID = "CatastroSA",
-                Password = "CatAdmin#",
-                InitialCatalog = "GDB01" + municipio
+                DataSource = Constantes.DataSource,
+                UserID = Constantes.UserID,
+                Password = Constantes.Password,
+                InitialCatalog = Constantes.InitialCatalogM + municipio
             };
             
             List<Resultados> lista = new List<Resultados>();

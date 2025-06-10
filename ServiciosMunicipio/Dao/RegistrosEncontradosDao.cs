@@ -74,9 +74,14 @@ namespace ServiciosMunicipio.Dao
                 + "where pp.cve_predial like '" + clavePredial + numCuentaPredial + "%' and pp.STATUSREGISTROTABLA = 'ACTIVO' ";
             return repositorio.ObtenerTotal(consulta, municipio);
         }
-        public List<Resultados> obtenerClavesPredial(String clavePredial, String numCuentaPredial,  String municipioCE, int pag) //getClavesPrediales
+        public List<Resultados> obtenerClavesPredial(ClavePredial clavePredial) //getClavesPrediales
         {
-            int max = numClavePredial(clavePredial, numCuentaPredial, municipioCE);
+            String clavePredialNum = clavePredial.claveCuentaPredial;
+            String numCuentaPredial = clavePredial.numCuentaPredial;
+            String municipioCE = clavePredial.municipioCE; 
+            int pag = clavePredial.offset;
+
+            int max = numClavePredial(clavePredialNum, numCuentaPredial, municipioCE);
             String consulta = "select NUM,"
                                 + " CVE_CAT_EST,"
                                 + " CVE_CAT_ORI,"
@@ -91,7 +96,7 @@ namespace ServiciosMunicipio.Dao
                                 + "from sde.sis_pc_clave_catastral pp "
                                 + "left join sde.SIS_PC_UBICACION pu on pu.CVE_CAT_ORI = pp.CVE_CAT_ORI and pu.STATUSREGISTROTABLA = 'ACTIVO' "
                                 + "left join sde.SIS_PC_PROPIETARIOS p on p.OBJECTID=(select max (OBJECTID)from sde.SIS_PC_PROPIETARIOS where STATUSREGISTROTABLA='ACTIVO' and CVE_CAT_ORI=pp.CVE_CAT_ORI) "
-                                + "where pp.cve_Predial like '" + @clavePredial + @numCuentaPredial + "%' and pp.STATUSREGISTROTABLA = 'ACTIVO') as a " 
+                                + "where pp.cve_Predial like '" + @clavePredialNum + @numCuentaPredial + "%' and pp.STATUSREGISTROTABLA = 'ACTIVO') as a " 
                                 + "WHERE NUM BETWEEN " + ((pag * max) + 1) + " AND " + (((pag + 1) * max)) + ";";
             return repositorio.ObtenerLista(consulta, municipioCE);
         }

@@ -20,6 +20,7 @@ namespace ServiciosMunicipio.Utilerias
         public const string UserID = "CatastroSA";
         public const string Password = "CatAdmin#";
         public const string DataSource = "10.1.2.126";
-        public const string InitialCatalogW = "WFTRAMITES";        
+        public const string InitialCatalogW = "WFTRAMITES";
+        public const string InitialCatalogM = "GDB01";
     }
 }

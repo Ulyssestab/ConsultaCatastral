@@ -182,6 +182,7 @@
     <Compile Include="Dao\Cat_Municipio_Dao.cs" />
     <Compile Include="Dao\DetallePredioDao.cs" />
     <Compile Include="Dao\RegistrosEncontradosDao.cs" />
+    <Compile Include="Dao\Servicios_Consulta_Cat_Dao.cs" />
     <Compile Include="Dao\SIS_ASENTAMIENTOS_Dao.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -197,6 +198,7 @@
     </Compile>
     <Compile Include="Models\Entidades\ClaveCatastralOriginal.cs" />
     <Compile Include="Models\Entidades\ClaveCatastral.cs" />
+    <Compile Include="Models\Entidades\ClavePredial.cs" />
     <Compile Include="Models\Entidades\DetallePredio.cs" />
     <Compile Include="Models\Entidades\PersonaFisica.cs" />
     <Compile Include="Models\Entidades\Resultados.cs" />
@@ -217,6 +219,9 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>GDB01001Model.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Servicios_Consulta_Cat.cs">
+      <DependentUpon>WFTRAMITESModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\SIS_ASENTAMIENTOS.cs">
       <DependentUpon>GDB01001Model.tt</DependentUpon>

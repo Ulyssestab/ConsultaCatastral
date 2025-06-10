@@ -23,6 +23,17 @@
           <Property Name="FK_Estado" Type="int" Nullable="false" />
           <Property Name="BD" Type="nvarchar" MaxLength="250" />
         </EntityType>
+        <EntityType Name="Servicios_Consulta_Cat">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nombre" Type="varchar" MaxLength="50" />
+          <Property Name="parametros" Type="int" />
+          <Property Name="tipo" Type="varchar" MaxLength="10" />
+          <Property Name="url" Type="varchar" MaxLength="80" />
+          <Property Name="nombre_parametro" Type="varchar" MaxLength="80" />
+        </EntityType>
         <EntityType Name="Usuario">
           <Key>
             <PropertyRef Name="NombreUsuario" />
@@ -71,6 +82,7 @@
         <EntityContainer Name="WFTRAMITESModelStoreContainer">
           <EntitySet Name="Cat_Acceso" EntityType="Self.Cat_Acceso" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Cat_Municipio" EntityType="Self.Cat_Municipio" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Servicios_Consulta_Cat" EntityType="Self.Servicios_Consulta_Cat" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Usuario" EntityType="Self.Usuario" Schema="dbo" store:Type="Tables" />
         </EntityContainer>
       </Schema></edmx:StorageModels>
@@ -92,6 +104,7 @@
           <EntitySet Name="Cat_Municipio" EntityType="Self.Cat_Municipio" />
           <EntitySet Name="Cat_Acceso" EntityType="WFTRAMITESModel.Cat_Acceso" />
           <EntitySet Name="Usuario" EntityType="WFTRAMITESModel.Usuario" />
+          <EntitySet Name="Servicios_Consulta_Cat" EntityType="WFTRAMITESModel.Servicios_Consulta_Cat" />
         </EntityContainer>
         <EntityType Name="Cat_Acceso">
           <Key>
@@ -144,6 +157,17 @@
           <Property Name="UltimaSesion" Type="DateTime" Precision="3" />
           <Property Name="Puesto" Type="Int32" />
           <Property Name="Descripcion_Puesto" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="Servicios_Consulta_Cat">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="parametros" Type="Int32" />
+          <Property Name="tipo" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="url" Type="String" MaxLength="80" FixedLength="false" Unicode="false" />
+          <Property Name="nombre_parametro" Type="String" MaxLength="80" FixedLength="false" Unicode="false" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -214,6 +238,18 @@
                 <ScalarProperty Name="ApellidoPaterno" ColumnName="ApellidoPaterno" />
                 <ScalarProperty Name="NombreCompleto" ColumnName="NombreCompleto" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Servicios_Consulta_Cat">
+            <EntityTypeMapping TypeName="WFTRAMITESModel.Servicios_Consulta_Cat">
+              <MappingFragment StoreEntitySet="Servicios_Consulta_Cat">
+                <ScalarProperty Name="nombre_parametro" ColumnName="nombre_parametro" />
+                <ScalarProperty Name="url" ColumnName="url" />
+                <ScalarProperty Name="tipo" ColumnName="tipo" />
+                <ScalarProperty Name="parametros" ColumnName="parametros" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

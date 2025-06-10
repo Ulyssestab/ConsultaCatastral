@@ -59,9 +59,9 @@ namespace ServiciosMunicipio.Tests.Controllers
 
         private PersonaFisica personaFisica = new PersonaFisica
         {
-            nombre = "Reynaldo Alejandro",
-            apaterno = "Gutierrez",
-            amaterno = "Gonzalez",
+            nombre = "Roberto",
+            apaterno = "Solis",
+            amaterno = "Montes",
             municipio = "001"
         };
         private RegistrosEncontradosDao dao = new RegistrosEncontradosDao();
@@ -170,7 +170,7 @@ namespace ServiciosMunicipio.Tests.Controllers
         }
 
         [TestMethod]
-        public void obtenerClavesOriginal()
+        public void obtenerClavesOriginalTest()
         {
             List<Resultados> mock = new List<Resultados>();
             mock.Add(modelo);
@@ -179,11 +179,26 @@ namespace ServiciosMunicipio.Tests.Controllers
         }
 
         [TestMethod]
+        public void obtenerClavesPredialTest()
+        {
+            ClavePredial clavePredial = new ClavePredial()
+            {
+                claveCuentaPredial = "",
+                numCuentaPredial = "R001040",
+                municipioCE = "001",
+                offset = 0
+            };
+            List<Resultados> mock = new List<Resultados>();
+            mock.Add(modelo);
+            List<Resultados> resultado = dao.obtenerClavesPredial(clavePredial);
+            Assert.AreEqual(resultado.Count, mock.Count);
+        }
+
+        [TestMethod]
         public void obtenerResultadoPersonaFisicaTest()
         {            
             List<Resultados> mock = new List<Resultados>();
-            mock.Add(modelo);
-            mock.Add(modelo);
+            mock.Add(modelo);            
             List<Resultados> resultado = dao.obtenerResultadoPersonaFisica(personaFisica, 0, 10);
             Assert.AreEqual(resultado.Count, mock.Count);
         }

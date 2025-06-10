@@ -28,5 +28,6 @@ namespace ServiciosMunicipio.Models
         public virtual DbSet<Cat_Municipio> Cat_Municipio { get; set; }
         public virtual DbSet<Cat_Acceso> Cat_Acceso { get; set; }
         public virtual DbSet<Usuario> Usuario { get; set; }
+        public virtual DbSet<Servicios_Consulta_Cat> Servicios_Consulta_Cat { get; set; }
     }
 }

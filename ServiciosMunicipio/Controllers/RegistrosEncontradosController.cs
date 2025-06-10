@@ -20,6 +20,8 @@ namespace ServiciosMunicipio.Controllers
         {
             return View();
         }
+
+        // POST: RegistrosEncontrados/ClaveCatastral
         [System.Web.Http.HttpPost]
         public ActionResult ClaveCatastral([FromBody] ClaveCatastral ClaveCatastral)
         {
@@ -42,6 +44,7 @@ namespace ServiciosMunicipio.Controllers
             return Json(resultados);
         }
 
+        // POST: RegistrosEncontrados/ClaveCatastralOriginal
         [System.Web.Http.HttpPost]
         public ActionResult ClaveCatastralOriginal([FromBody] ClaveCatastralOriginal ClaveCatastralOriginal)
         {
@@ -60,12 +63,14 @@ namespace ServiciosMunicipio.Controllers
             return Json(resultados);
         }
 
-        public ActionResult ClavePredial(String claveCuentaPredial, String numCuentaPredial, String municipioCE, int offset)
+        // POST: RegistrosEncontrados/ClavePredial
+        public ActionResult ClavePredial(ClavePredial clavePredial)
         {
-            List<Resultados> resultados = Buscar.obtenerClavesPredial(claveCuentaPredial, numCuentaPredial, municipioCE, offset);
-            return Json(resultados, JsonRequestBehavior.AllowGet);
+            List<Resultados> resultados = Buscar.obtenerClavesPredial(clavePredial);
+            return Json(resultados);
         }
-        
+
+        // GET: RegistrosEncontrados/FolioReal
         public ActionResult FolioReal(String folioReal, String municipioCE, int offset)
         {
             //Hago la consulta a la base de datos para ver si existen registros asociados a dicha clave                        
@@ -73,6 +78,7 @@ namespace ServiciosMunicipio.Controllers
             return Json(resultados, JsonRequestBehavior.AllowGet); 
         }
 
+        // POST: RegistrosEncontrados/UbicacionPredio
         [System.Web.Http.HttpPost]
         public ActionResult UbicacionPredio([FromBody] UbicacionPredio ubicacionPredio, int pag) 
         {            
@@ -80,6 +86,7 @@ namespace ServiciosMunicipio.Controllers
             return Json(resultados);
         }
 
+        // POST: RegistrosEncontrados/NombrePropietarioPersonaFisica
         [System.Web.Http.HttpPost]
         public ActionResult NombrePropietarioPersonaFisica([FromBody] PersonaFisica personaFisica, int pag)
         {
@@ -87,7 +94,8 @@ namespace ServiciosMunicipio.Controllers
             List<Resultados> resultados = Buscar.obtenerResultadoPersonaFisica(personaFisica, pag, max);
             return Json(resultados);
         }
-        
+
+        // GET: RegistrosEncontrados/NombrePropietarioPersonaMoral
         public ActionResult NombrePropietarioPersonaMoral(String razonSocial, String municipio, int pag)
         {
             int max = Buscar.numPredioxPersonaMoral(razonSocial, municipio);

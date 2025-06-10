@@ -1,4 +1,6 @@
 ﻿using ServiciosMunicipio.Dao;
+using ServiciosMunicipio.Models;
+using ServiciosMunicipio.Models.Entidades;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,18 +11,22 @@ namespace ServiciosMunicipio.Controllers
 {
     public class HomeController : Controller
     {
-        AccesosDao dao = new AccesosDao();
+        private AccesosDao dao = new AccesosDao();
+        private Servicios_Consulta_Cat_Dao daoServ = new Servicios_Consulta_Cat_Dao();
 
+        //Home/Index
         public ActionResult Index()
         {
             ViewBag.Title = "Home Page";
-
+            List<Servicios_Consulta_Cat> lista = daoServ.obtenerLista();
+              
+            ViewBag.Resultados = lista;
             return View();
         }
 
         //Home/Acceso
         public ActionResult Acceso(String nombreUsuario)
-        {            
+        {
 
             return Json(dao.AccesoUsuario(nombreUsuario), JsonRequestBehavior.AllowGet);
         }
@@ -33,7 +39,7 @@ namespace ServiciosMunicipio.Controllers
         }
 
         //Home/AccesoUsuarioPerfil
-        public ActionResult AccesoUsuarioPerfil(String nombreUsuario) 
+        public ActionResult AccesoUsuarioPerfil(String nombreUsuario)
         {
             return Json(dao.AccesoUsuarioPerfil(nombreUsuario), JsonRequestBehavior.AllowGet);
         }

@@ -24,7 +24,7 @@ namespace ServiciosMunicipio.Controllers
             return Json(r ,JsonRequestBehavior.AllowGet);
         }
 
-        // Post: CAT_LOCALIDAD/Asentamiento/ AjaxResultados -Fraccionamiento o Colonia
+        // Post: SIS_ASENTAMIENTOS/Asentamiento/ AjaxResultados -Fraccionamiento o Colonia
         [System.Web.Http.HttpPost]
         public ActionResult Asentamientos([FromBody] SIS_ASENTAMIENTOS asentamiento)
         {
