@@ -257,9 +257,11 @@
     <Compile Include="Repositorio\Impl\RepositorioAccesosImp.cs" />
     <Compile Include="Repositorio\Impl\RepositorioDetallePredioImp.cs" />
     <Compile Include="Repositorio\Impl\RepositorioMunicipioImp.cs" />
+    <Compile Include="Repositorio\Impl\RepositorioSIS_ASENTAMIENTOImp.cs" />
     <Compile Include="Repositorio\RepositorioAccesos.cs" />
     <Compile Include="Repositorio\RepositorioDetallePredio.cs" />
     <Compile Include="Repositorio\RepositorioMunicipio.cs" />
+    <Compile Include="Repositorio\RepositorioSIS_ASENTAMIENTO.cs" />
     <Compile Include="Utilerias\AntiInjectionSQL.cs" />
     <Compile Include="Utilerias\Catalogos.cs" />
     <Compile Include="Utilerias\Constantes.cs" />

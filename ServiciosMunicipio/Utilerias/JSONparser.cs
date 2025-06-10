@@ -65,6 +65,101 @@ namespace ServiciosMunicipio.Utilerias
             return resultado;
         }
 
+        public SIS_ASENTAMIENTOS crearObjetoAsentamiento(string v)
+        {
+            SIS_ASENTAMIENTOS resultado = new SIS_ASENTAMIENTOS();
+            JObject r = JObject.Parse(v);
+            foreach (var x in r)
+            {
+                if (x.Key == "OBJECTID")
+                {
+                    resultado.OBJECTID = x.Value + "" != "" ? Int32.Parse(x.Value + "") : 0;
+                }
+                if (x.Key == "CLAVEUNICA")
+                {
+                    resultado.CLAVEUNICA = x.Value + "" != "" ? Int32.Parse(x.Value + "") : 0;
+                }
+                if (x.Key == "STATUSREGISTROTABLA")
+                {
+                    resultado.STATUSREGISTROTABLA = x.Value + "";
+                }
+                if (x.Key == "ALTAREGISTROTABLA")
+                {
+                    resultado.ALTAREGISTROTABLA = DateTime.Parse(x.Value + "");
+                }
+                if (x.Key == "BAJAREGISTROTABLA")
+                {
+                    resultado.BAJAREGISTROTABLA = DateTime.Parse(x.Value + "");
+                }
+                if (x.Key == "USUARIOALTA")
+                {
+                    resultado.USUARIOALTA = x.Value + "";
+                }
+                if (x.Key == "USUARIOBAJA")
+                {
+                    resultado.USUARIOBAJA = x.Value + "";
+                }
+                if (x.Key == "TERMINALALTA")
+                {
+                    resultado.TERMINALALTA = x.Value + "";
+                }
+                if (x.Key == "TERMINALBAJA")
+                {
+                    resultado.TERMINALBAJA = x.Value + "";
+                }
+                if (x.Key == "CVE_ENTIDAD")
+                {
+                    resultado.CVE_ENTIDAD = x.Value + "";
+                }
+                if (x.Key == "CVE_REGION_CATASTRAL")
+                {
+                    resultado.CVE_REGION_CATASTRAL = x.Value + "";
+                }
+                if (x.Key == "CVE_MUNICIPIO")
+                {
+                    resultado.CVE_MUNICIPIO = x.Value + "";
+                }
+                if (x.Key == "CVE_ZONA_CATASTRAL")
+                {
+                    resultado.CVE_ZONA_CATASTRAL = x.Value + "";
+                }
+                if (x.Key == "CVE_LOCALIDAD")
+                {
+                    resultado.CVE_LOCALIDAD = x.Value + "";
+                }
+                if (x.Key == "CVE_SECTOR_CATASTRAL")
+                {
+                    resultado.CVE_SECTOR_CATASTRAL = x.Value + "";
+                }
+                if (x.Key == "CVE_ASENTAMIENTO")
+                {
+                    resultado.CVE_ASENTAMIENTO = x.Value + "";
+                }
+                if (x.Key == "TIPO_ASENTAMIENTO")
+                {
+                    resultado.TIPO_ASENTAMIENTO = x.Value + "";
+                }
+                if (x.Key == "NOMBRE_ASENTAMIENTO")
+                {
+                    resultado.NOMBRE_ASENTAMIENTO = x.Value + "";
+                }
+                if (x.Key == "CP")
+                {
+                    resultado.CP = x.Value + "";
+                }
+                if (x.Key == "NOMBRE_COMPLETO_ASENTAMIENTO")
+                {
+                    resultado.NOMBRE_COMPLETO_ASENTAMIENTO = x.Value + "";
+                }
+                if (x.Key == "OBSERVACIONES")
+                {
+                    resultado.OBSERVACIONES = x.Value + "";
+                }
+            }
+
+            return resultado;
+        }
+
         public Usuario crearObjetoUsuario(string json)
         {
             Usuario resultado = new Usuario();
