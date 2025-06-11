@@ -226,7 +226,8 @@ namespace ServiciosMunicipio.Dao
                 + " ROW_NUMBER() OVER (ORDER BY pu.CVE_CAT_EST ) AS NUM "
                 + " from sde.sis_pc_clave_catastral pp"
                 + " left join sde.SIS_PC_UBICACION pu on pu.CVE_CAT_ORI = pp.CVE_CAT_ORI and pu.STATUSREGISTROTABLA='ACTIVO'"
-                + " left join sde.SIS_PC_PROPIETARIOS p on p.OBJECTID=(select max (OBJECTID)from sde.SIS_PC_PROPIETARIOS where STATUSREGISTROTABLA='ACTIVO' and CVE_CAT_ORI=pp.CVE_CAT_ORI)" 
+                + " left join sde.SIS_PC_PROPIETARIOS p on p.OBJECTID=(select max (OBJECTID)from sde.SIS_PC_PROPIETARIOS where STATUSREGISTROTABLA='ACTIVO'" 
+                + " and CVE_CAT_ORI=pp.CVE_CAT_ORI)" 
                 + "	where  pp.CVE_CAT_ORI like '" + claveCatastralOriginal + "%' and  pp.STATUSREGISTROTABLA = 'ACTIVO') as a" 
                 + " WHERE NUM BETWEEN " + ((pag * max) + 1) + " AND " + (((pag + 1) * max)) + ";"; 
             String municipio = Utilidades.getMunicipioCve_Ori(claveCatastralOriginal);

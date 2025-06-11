@@ -1,6 +1,7 @@
 ﻿using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using ServiciosMunicipio.Models;
+using ServiciosMunicipio.Models.Entidades;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -273,6 +274,120 @@ namespace ServiciosMunicipio.Utilerias
             }
             return objects;
 
+        }
+
+        public DetallePredio parseJsonStringPredio(string jsonString)
+        {
+            DetallePredio predio = new DetallePredio();
+            if (!String.IsNullOrEmpty(jsonString))
+            {
+                using (var stringReader = new StringReader(jsonString))
+                using (var reader = new JsonTextReader(stringReader))
+                {
+                    reader.SupportMultipleContent = true;
+                    var serializer1 = new JsonSerializer();
+                    while (reader.Read())
+                    {
+                        if (reader.TokenType == JsonToken.StartObject)
+                        {
+                            predio = serializer1.Deserialize<DetallePredio>(reader);
+                        }
+                    }
+                }
+            }
+            return predio;
+        }
+
+
+        public Tramite parseJsonStringTramite(string jsonString)
+        {
+            Tramite tramite = new Tramite();
+            if (!String.IsNullOrEmpty(jsonString))
+            {
+                using (var stringReader = new StringReader(jsonString))
+                using (var reader = new JsonTextReader(stringReader))
+                {
+                    reader.SupportMultipleContent = true;
+                    var serializer1 = new JsonSerializer();
+                    while (reader.Read())
+                    {
+                        if (reader.TokenType == JsonToken.StartObject)
+                        {
+                            tramite = serializer1.Deserialize<Tramite>(reader);
+                        }
+                    }
+                }
+            }
+            return tramite;
+        }
+
+        public List<TareasTramite> parseJsonStringTareasTramite(string jsonString)
+        {
+            List<TareasTramite> objects = new List<TareasTramite>();
+            if (!String.IsNullOrEmpty(jsonString))
+            {
+                using (var stringReader = new StringReader(jsonString))
+                using (var reader = new JsonTextReader(stringReader))
+                {
+                    reader.SupportMultipleContent = true;
+                    var serializer1 = new JsonSerializer();
+                    while (reader.Read())
+                    {
+                        if (reader.TokenType == JsonToken.StartObject)
+                        {
+                            TareasTramite obj = serializer1.Deserialize<TareasTramite>(reader);
+                            objects.Add(obj);
+                        }
+                    }
+                }
+            }
+            return objects;
+        }
+
+        public List<Cat_Municipio> crearObjetoMunicipio(string jsonString)
+        {
+            List<Cat_Municipio> objects = new List<Cat_Municipio>();
+            if (!String.IsNullOrEmpty(jsonString))
+            {
+                using (var stringReader = new StringReader(jsonString))
+                using (var reader = new JsonTextReader(stringReader))
+                {
+                    reader.SupportMultipleContent = true;
+                    var serializer1 = new JsonSerializer();
+                    while (reader.Read())
+                    {
+                        if (reader.TokenType == JsonToken.StartObject)
+                        {
+                            Cat_Municipio obj = serializer1.Deserialize<Cat_Municipio>(reader);
+                            objects.Add(obj);
+                        }
+                    }
+                }
+            }
+            return objects;
+        }
+
+        public List<Resultados> crearObjetoResultados(string jsonString)
+        {
+            List<Resultados> objects = new List<Resultados>();
+            if (!String.IsNullOrEmpty(jsonString))
+            {
+                using (var stringReader = new StringReader(jsonString))
+                using (var reader = new JsonTextReader(stringReader))
+                {
+                    reader.SupportMultipleContent = true;
+                    var serializer1 = new JsonSerializer();
+                    while (reader.Read())
+                    {
+                        if (reader.TokenType == JsonToken.StartObject)
+                        {
+                            Resultados obj = serializer1.Deserialize<Resultados>(reader);
+                            objects.Add(obj);
+                        }
+                    }
+                }
+            }
+            return objects;
         }
     }
 

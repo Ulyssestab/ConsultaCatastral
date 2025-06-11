@@ -49,17 +49,26 @@ namespace ServiciosMunicipio.Controllers
         public ActionResult ClaveCatastralOriginal([FromBody] ClaveCatastralOriginal ClaveCatastralOriginal)
         {
             //Formulario: Menu Tramite, clave catastral estandar                                    
-            int offset = 10;            
-            //Uno la clave catastral estandar enviada desde el formulario
-            String claveCatastralOriginal = ClaveCatastralOriginal.campoMunicipioOri
+            int offset = 0;
+            int pag = 0;
+            String claveCatastralOriginal = "";
+            List<Resultados> resultados = new List<Resultados>();
+            if (ClaveCatastralOriginal != null)
+            {
+                claveCatastralOriginal = ClaveCatastralOriginal.campoMunicipioOri
                 + util.completarCeros(3, ClaveCatastralOriginal.campLocalidadOri)
                 + util.completarCeros(2, ClaveCatastralOriginal.campSectorOri)
                 + util.completarCeros(4, ClaveCatastralOriginal.campManzanaOri)
                 + util.completarCeros(3, ClaveCatastralOriginal.campPredioOri)
                 + util.completarCeros(3, ClaveCatastralOriginal.campCondominioOri);
-            int pag = Buscar.numClavesOriginales(claveCatastralOriginal);
-            //Hago la consulta a la base de datos para ver si existen registros asociados a dicha clave                        
-            List<Resultados> resultados = Buscar.obtenerClavesOriginal(claveCatastralOriginal, pag, offset);
+
+                pag = Buscar.numClavesOriginales(claveCatastralOriginal);
+                //Hago la consulta a la base de datos para ver si existen registros asociados a dicha clave                        
+                resultados = Buscar.obtenerClavesOriginal(claveCatastralOriginal, offset, pag);
+            }
+            //Uno la clave catastral estandar enviada desde el formulario
+            
+
             return Json(resultados);
         }
 
