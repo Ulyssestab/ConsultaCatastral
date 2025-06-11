@@ -1,7 +1,9 @@
-﻿using Newtonsoft.Json.Linq;
+﻿using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using ServiciosMunicipio.Models;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Web;
 
@@ -224,6 +226,53 @@ namespace ServiciosMunicipio.Utilerias
                 }
             }
             return resultado;
+        }
+
+        public Usuario parseJsonStringUsuario(String jsonString)
+        {
+            Usuario usuario = new Usuario();
+            if (!String.IsNullOrEmpty(jsonString))
+            {
+                using (var stringReader = new StringReader(jsonString))
+                using (var reader = new JsonTextReader(stringReader))
+                {
+                    reader.SupportMultipleContent = true;
+                    var serializer1 = new JsonSerializer();
+                    while (reader.Read())
+                    {
+                        if (reader.TokenType == JsonToken.StartObject)
+                        {
+                            usuario = serializer1.Deserialize<Usuario>(reader);                            
+                        }
+                    }
+                }
+            }
+            return usuario;
+
+        }
+
+        public List<SIS_ASENTAMIENTOS> parseJsonString(String jsonString)
+        {
+            List<SIS_ASENTAMIENTOS> objects = new List<SIS_ASENTAMIENTOS>();
+            if (!String.IsNullOrEmpty(jsonString))
+            {
+                using (var stringReader = new StringReader(jsonString))
+                using (var reader = new JsonTextReader(stringReader))
+                {
+                    reader.SupportMultipleContent = true;
+                    var serializer1 = new JsonSerializer();
+                    while (reader.Read())
+                    {
+                        if (reader.TokenType == JsonToken.StartObject)
+                        {
+                            SIS_ASENTAMIENTOS obj = serializer1.Deserialize<SIS_ASENTAMIENTOS>(reader);
+                            objects.Add(obj);
+                        }
+                    }
+                }                
+            }
+            return objects;
+
         }
     }
 

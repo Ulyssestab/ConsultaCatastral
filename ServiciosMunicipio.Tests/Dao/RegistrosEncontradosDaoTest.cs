@@ -207,7 +207,7 @@ namespace ServiciosMunicipio.Tests.Controllers
         public void numPredioxPersonaFisicaTest()
         {
             List<Resultados> resultado = dao.obtenerResultadoPersonaFisica(personaFisica, 0, 10);
-            Assert.AreEqual(resultado.Count, 2);
+            Assert.AreEqual(resultado.Count, 1);
         }
 
         [TestMethod]

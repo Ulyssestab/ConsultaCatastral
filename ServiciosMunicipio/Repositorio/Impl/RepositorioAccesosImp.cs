@@ -34,12 +34,16 @@ namespace ServiciosMunicipio.Repositorio.Impl
 
                 while (reader.Read())
                 {
-                    usuario.NombreUsuario = !reader.IsDBNull(0) ? reader.GetString(0) : "";
-                    usuario.NombreCompleto = !reader.IsDBNull(1) ? reader.GetString(1) : "";
-                    usuario.FK_Puesto = !reader.IsDBNull(2) ? reader.GetInt32(2) : 0;
-                    usuario.FK_Coordinacion = !reader.IsDBNull(3) ? reader.GetInt32(3) : 0;
+                    
+                    usuario.NombreCompleto = !reader.IsDBNull(0) ? reader.GetString(0) : "";
+                    usuario.ApellidoPaterno = !reader.IsDBNull(1) ? reader.GetString(1) : "";
+                    usuario.ApellidoMaterno = !reader.IsDBNull(2) ? reader.GetString(2) : "";
+                    usuario.NombreUsuario = !reader.IsDBNull(3) ? reader.GetString(3) : "";
                     usuario.Contrasena = !reader.IsDBNull(4) ? reader.GetString(4) : "";
-                    usuario.FK_Cat_Perfil = !reader.IsDBNull(5) ? reader.GetInt32(5) : 0;
+                    usuario.FK_Puesto = !reader.IsDBNull(5) ? Int32.Parse(reader.GetString(5) == "" ? "0" : reader.GetString(5)) : 0;
+                    usuario.FK_Coordinacion = !reader.IsDBNull(6) ? Int32.Parse(reader.GetString(6) == "" ? "0" : reader.GetString(6)) : 0;
+                    usuario.FK_Cat_Municipio = !reader.IsDBNull(7) ? Int32.Parse(reader.GetString(7) == "" ? "0" : reader.GetString(7)) : 0;
+                    usuario.FK_Cat_Perfil = !reader.IsDBNull(8) ? Int32.Parse(reader.GetString(8) == "" ? "0" : reader.GetString(8)) : 0;
                 }
 
             }

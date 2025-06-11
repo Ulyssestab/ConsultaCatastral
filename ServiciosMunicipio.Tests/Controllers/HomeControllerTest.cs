@@ -12,7 +12,7 @@ namespace ServiciosMunicipio.Tests.Controllers
     [TestClass]
     public class HomeControllerTest
     {
-        private string nombre = "Administrador";
+        private string nombre = "10du2";
         private string pass = "66FAEE583898CC373ED7EC34FC887DFF34809195";
         private JSONparser util = new JSONparser();
 
@@ -80,10 +80,10 @@ namespace ServiciosMunicipio.Tests.Controllers
             var serializer = new JavaScriptSerializer();
             var jsonString = serializer.Serialize(data);
 
-            variable = jsonString != "[]" ? util.crearObjetoUsuario(jsonString.Replace("[", "").Replace("]", "")) : variable;
+            variable = util.parseJsonStringUsuario(jsonString);
             // Declarar
             Assert.IsNotNull(result);
-            Assert.AreEqual("EL_Usuario", variable.NombreUsuario);
+            Assert.AreEqual("EL_USUARIO", variable.NombreUsuario);
         }
     }
 }

@@ -35,7 +35,7 @@ namespace ServiciosMunicipio.Tests.Dao
             nombreUsuario = "10du2";
             Usuario usuario = dao.existeAccesoUsuario(nombreUsuario, pass);
             Assert.IsNotNull(usuario);
-            Assert.AreEqual(usuario.NombreCompleto, "EL LLANO");
+            Assert.AreEqual(usuario.NombreUsuario, "EL_USUARIO");
 
 
         }

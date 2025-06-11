@@ -52,14 +52,16 @@ namespace ServiciosMunicipio.Dao
             String CVE_ASENTAMIENTO = AntiInjectionSQL.quitarComillas(@asentamiento.CVE_ASENTAMIENTO, Constantes.LONG_MAX_NOM);
             String CVE_LOCALIDAD = AntiInjectionSQL.quitarComillas(@asentamiento.CVE_LOCALIDAD, Constantes.LONG_MAX_LOC);
             String CVE_MUNICIPIO = AntiInjectionSQL.quitarComillas(@asentamiento.CVE_MUNICIPIO, Constantes.LONG_MAX_LOC);
+            String NOM_COM_ASENT = AntiInjectionSQL.quitarComillas(@asentamiento.NOMBRE_COMPLETO_ASENTAMIENTO, Constantes.LONG_MAX_NOM);
 
-            String consulta = "SELECT * " +
-                    "FROM sde.SIS_ASENTAMIENTOS " +
-                    "where STATUSREGISTROTABLA='ACTIVO' " +
-                    "and CVE_ENTIDAD='01' " +
-                    "and CVE_MUNICIPIO='" + CVE_MUNICIPIO + "' " +
-                    "and CVE_LOCALIDAD='" + CVE_LOCALIDAD
-                    + "' and CVE_ASENTAMIENTO ='" + CVE_ASENTAMIENTO + "';";
+            String consulta = "SELECT * " 
+                    + "FROM sde.SIS_ASENTAMIENTOS " 
+                    + "where STATUSREGISTROTABLA='ACTIVO' " 
+                    + "and CVE_ENTIDAD='01' " 
+                    + "and CVE_MUNICIPIO='" + CVE_MUNICIPIO + "' " 
+                    + "and CVE_LOCALIDAD='" + CVE_LOCALIDAD
+                    + "' and CVE_ASENTAMIENTO ='" + CVE_ASENTAMIENTO + "' " 
+                    + "and NOMBRE_COMPLETO_ASENTAMIENTO like '%"+ NOM_COM_ASENT  +"%';";
 
             try
             {
