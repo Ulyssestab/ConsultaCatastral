@@ -45,7 +45,7 @@ namespace ServiciosMunicipio.Tests.Controllers
             
             // Declarar
             Assert.IsNotNull(result);
-            Assert.AreEqual("true", jsonString);
+            Assert.AreEqual("false", jsonString);
         }
 
 
@@ -64,7 +64,7 @@ namespace ServiciosMunicipio.Tests.Controllers
             
             // Declarar
             Assert.IsNotNull(result);
-            Assert.AreEqual("1", jsonString.Replace("\"", ""));
+            Assert.AreEqual("1003", jsonString.Replace("\"", ""));
         }
 
         [TestMethod]

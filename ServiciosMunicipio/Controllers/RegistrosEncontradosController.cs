@@ -75,23 +75,35 @@ namespace ServiciosMunicipio.Controllers
         // POST: RegistrosEncontrados/ClavePredial
         public ActionResult ClavePredial(ClavePredial clavePredial)
         {
-            List<Resultados> resultados = Buscar.obtenerClavesPredial(clavePredial);
+            List<Resultados> resultados =  null;
+            if (clavePredial != null && !String.IsNullOrEmpty(clavePredial.numCuentaPredial) && !String.IsNullOrEmpty(clavePredial.claveCuentaPredial)) {
+                resultados = Buscar.obtenerClavesPredial(clavePredial);
+            }
+             
             return Json(resultados);
         }
 
         // GET: RegistrosEncontrados/FolioReal
         public ActionResult FolioReal(String folioReal, String municipioCE, int offset)
         {
+            List<Resultados> resultados = new List<Resultados>();
             //Hago la consulta a la base de datos para ver si existen registros asociados a dicha clave                        
-            List<Resultados> resultados = Buscar.obtenerResultadoFolioReal(folioReal,municipioCE, offset);
+            if (!String.IsNullOrEmpty(folioReal)) {
+                resultados = Buscar.obtenerResultadoFolioReal(folioReal, municipioCE, offset);
+            } 
             return Json(resultados, JsonRequestBehavior.AllowGet); 
         }
 
         // POST: RegistrosEncontrados/UbicacionPredio
         [System.Web.Http.HttpPost]
         public ActionResult UbicacionPredio([FromBody] UbicacionPredio ubicacionPredio, int pag) 
-        {            
-            List<Resultados> resultados = Buscar.obtenerResultadoUbicacionPredio(ubicacionPredio, pag);
+        {
+            List<Resultados> resultados = null;
+            if (ubicacionPredio != null && !String.IsNullOrEmpty(ubicacionPredio.municipio) && !String.IsNullOrEmpty(ubicacionPredio.localidad)) 
+            {
+                resultados = Buscar.obtenerResultadoUbicacionPredio(ubicacionPredio, pag);
+            }
+            
             return Json(resultados);
         }
 
@@ -99,16 +111,25 @@ namespace ServiciosMunicipio.Controllers
         [System.Web.Http.HttpPost]
         public ActionResult NombrePropietarioPersonaFisica([FromBody] PersonaFisica personaFisica, int pag)
         {
-            int max = Buscar.numPredioxPersonaFisica(personaFisica);
-            List<Resultados> resultados = Buscar.obtenerResultadoPersonaFisica(personaFisica, pag, max);
+            List<Resultados> resultados =  null;
+            if (personaFisica != null) 
+            {
+                int max = Buscar.numPredioxPersonaFisica(personaFisica);
+                resultados = Buscar.obtenerResultadoPersonaFisica(personaFisica, pag, max);
+            }
+            
             return Json(resultados);
         }
 
         // GET: RegistrosEncontrados/NombrePropietarioPersonaMoral
         public ActionResult NombrePropietarioPersonaMoral(String razonSocial, String municipio, int pag)
         {
-            int max = Buscar.numPredioxPersonaMoral(razonSocial, municipio);
-            List<Resultados> resultados = Buscar.obtenerResultadoPersonaMoral(razonSocial, municipio, pag ,max);
+            List<Resultados> resultados = new List<Resultados>();
+            if (!String.IsNullOrEmpty(razonSocial) && !String.IsNullOrEmpty(municipio)) 
+            {
+                int max = Buscar.numPredioxPersonaMoral(razonSocial, municipio);
+                resultados = Buscar.obtenerResultadoPersonaMoral(razonSocial, municipio, pag, max);
+            }            
             return Json(resultados, JsonRequestBehavior.AllowGet);
         }
     }

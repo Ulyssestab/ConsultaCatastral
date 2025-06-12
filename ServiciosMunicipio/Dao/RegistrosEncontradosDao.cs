@@ -274,9 +274,9 @@ namespace ServiciosMunicipio.Dao
 
         public int numPredioxPersonaMoral(String personaMoral, String municipio) //numPredioxPersonaMoral
         {
-            String consulta = "select count(*) total"
+            String consulta = "select count(*) total "
                  + "from sde.SIS_PC_PROPIETARIOS p "
-                 + "left join sde.SIS_PC_UBICACION pu on pu.CVE_CAT_ORI = p.CVE_CAT_ORI"
+                 + "left join sde.SIS_PC_UBICACION pu on pu.CVE_CAT_ORI = p.CVE_CAT_ORI "
                  + "left join sde.sis_pc_clave_catastral pp on pp.CVE_CAT_ORI = p.CVE_CAT_ORI "
                  + "where pp.STATUSREGISTROTABLA = 'ACTIVO' and p.tipo_persona != 'fisica' and p.STATUSREGISTROTABLA = 'ACTIVO' " 
                  + "AND pu.STATUSREGISTROTABLA = 'ACTIVO' and p.NOMBRE_O_RAZON_SOCIAL like '%" + personaMoral + "%' ;";
