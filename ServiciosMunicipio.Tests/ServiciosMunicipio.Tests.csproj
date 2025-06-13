@@ -116,6 +116,10 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
+    <Compile Include="Utilerias\AntiInjectionSQLTest.cs" />
+    <Compile Include="Utilerias\CatalogosTest.cs" />
+    <Compile Include="Utilerias\JSONparserTest.cs" />
+    <Compile Include="Utilerias\UtilidadesTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="App.config" />
