@@ -7,7 +7,7 @@ namespace ServiciosMunicipio.Utilerias
 {
     public class Catalogos
     {
-        internal static string formarCondicion(String condicion_anterior, String nombre_campo, String valor, String tipo_condicion, int tipo_campo)
+        public static string formarCondicion(String condicion_anterior, String nombre_campo, String valor, String tipo_condicion, int tipo_campo)
         {
             String sql = "";
             //Si condicion anterior no es vacia concatenar

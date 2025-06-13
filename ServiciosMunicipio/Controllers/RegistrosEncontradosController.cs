@@ -76,7 +76,7 @@ namespace ServiciosMunicipio.Controllers
         public ActionResult ClavePredial(ClavePredial clavePredial)
         {
             List<Resultados> resultados =  null;
-            if (clavePredial != null && !String.IsNullOrEmpty(clavePredial.numCuentaPredial) && !String.IsNullOrEmpty(clavePredial.claveCuentaPredial)) {
+            if (clavePredial != null && (!String.IsNullOrEmpty(clavePredial.numCuentaPredial) || !String.IsNullOrEmpty(clavePredial.claveCuentaPredial))) {
                 resultados = Buscar.obtenerClavesPredial(clavePredial);
             }
              

@@ -104,7 +104,7 @@ namespace ServiciosMunicipio.Tests.Controllers
             serializer = new JavaScriptSerializer();
             jsonString = serializer.Serialize(data);
             resultado = jsonString != "[]" ? util.crearObjetoResultados(jsonString) : null;
-            Assert.AreEqual("LOPEZ", resultado[0].APELLIDO_PATERNO);
+            Assert.AreEqual("COMISION FEDERAL DE ELECTRICIDAD", resultado[0].NOMBRE_O_RAZON_SOCIAL);
         }
 
         [TestMethod]
