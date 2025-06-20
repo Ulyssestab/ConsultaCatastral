@@ -43,5 +43,18 @@ namespace ServiciosMunicipio.Controllers
         {
             return Json(dao.AccesoUsuarioPerfil(nombreUsuario), JsonRequestBehavior.AllowGet);
         }
+        //Home/AccesoUsuarioPerfil
+        public ActionResult Formas()
+        {
+            List<Forma> formas = new List<Forma>();
+            formas.Add(new Forma { accion = "POST", nombre = "formxCatastralEst", controlador = "ClaveCatastral" });
+            formas.Add(new Forma { accion = "POST", nombre = "formxCatastralOri", controlador = "ClaveCatastralOriginal" });
+            formas.Add(new Forma { accion = "POST", nombre = "formxPredial", controlador = "ClavePredial" });
+            formas.Add(new Forma { accion = "POST", nombre = "formxFolioReal", controlador = "FolioReal" });
+            formas.Add(new Forma { accion = "POST", nombre = "formxUbicacion", controlador = "Ubicacion" });
+            formas.Add(new Forma { accion = "POST", nombre = "formxPerFisica", controlador = "NombrePropietarioPersonaFisica" });
+            formas.Add(new Forma { accion = "POST", nombre = "formxPerMoral", controlador = "NombrePropietarioPersonaMoral" });
+            return Json(formas, JsonRequestBehavior.AllowGet);
+        }
     }
 }

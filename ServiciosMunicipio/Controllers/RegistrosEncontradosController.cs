@@ -94,6 +94,18 @@ namespace ServiciosMunicipio.Controllers
             return Json(resultados, JsonRequestBehavior.AllowGet); 
         }
 
+        // GET: RegistrosEncontrados/TotalFolioReal
+        public ActionResult TotalFolioReal(String folioReal, String municipioCE)
+        {
+            int resultado = 0;
+            //Hago la consulta a la base de datos para ver si existen registros asociados a dicha clave                        
+            if (!String.IsNullOrEmpty(folioReal))
+            {
+                resultado = Buscar.numFolioreal(folioReal, municipioCE);
+            }
+            return Json(resultado, JsonRequestBehavior.AllowGet);
+        }
+
         // POST: RegistrosEncontrados/UbicacionPredio
         [System.Web.Http.HttpPost]
         public ActionResult UbicacionPredio([FromBody] UbicacionPredio ubicacionPredio, int pag) 

@@ -32,6 +32,9 @@ namespace ServiciosMunicipio.Dao
         {
             int max = numClavesEstandar(clave, municipio);
 
+            if (max == 0) {
+                return new List<Resultados>();
+            }
             String consulta = "select NUM,"
                     + " CVE_CAT_EST,"
                     + " CVE_CAT_ORI,"

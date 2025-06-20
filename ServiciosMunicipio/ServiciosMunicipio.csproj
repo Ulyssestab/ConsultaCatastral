@@ -200,6 +200,7 @@
     <Compile Include="Models\Entidades\ClaveCatastral.cs" />
     <Compile Include="Models\Entidades\ClavePredial.cs" />
     <Compile Include="Models\Entidades\DetallePredio.cs" />
+    <Compile Include="Models\Entidades\Forma.cs" />
     <Compile Include="Models\Entidades\PersonaFisica.cs" />
     <Compile Include="Models\Entidades\Resultados.cs" />
     <Compile Include="Models\Entidades\TareasTramite.cs" />
