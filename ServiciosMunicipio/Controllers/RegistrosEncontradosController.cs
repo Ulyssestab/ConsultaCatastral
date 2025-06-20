@@ -63,8 +63,10 @@ namespace ServiciosMunicipio.Controllers
                 + util.completarCeros(3, ClaveCatastralOriginal.campCondominioOri);
 
                 pag = Buscar.numClavesOriginales(claveCatastralOriginal);
-                //Hago la consulta a la base de datos para ver si existen registros asociados a dicha clave                        
-                resultados = Buscar.obtenerClavesOriginal(claveCatastralOriginal, offset, pag);
+                if (pag > 0) {
+                    //Hago la consulta a la base de datos para ver si existen registros asociados a dicha clave                        
+                    resultados = Buscar.obtenerClavesOriginal(claveCatastralOriginal, offset, pag);
+                }
             }
             //Uno la clave catastral estandar enviada desde el formulario
             

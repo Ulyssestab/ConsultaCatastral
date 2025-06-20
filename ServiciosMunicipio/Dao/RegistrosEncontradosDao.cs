@@ -85,6 +85,10 @@ namespace ServiciosMunicipio.Dao
             int pag = clavePredial.offset;
 
             int max = numClavePredial(clavePredialNum, numCuentaPredial, municipioCE);
+            if (max == 0)
+            {
+                return new List<Resultados>();
+            }
             String consulta = "select NUM,"
                                 + " CVE_CAT_EST,"
                                 + " CVE_CAT_ORI,"
