@@ -188,5 +188,49 @@ namespace ServiciosMunicipio.Repositorio.Impl
             }
             return nombre;
         }
+
+        public int obtenerTotalNombreAsentamiento(String consulta, string municipio)
+        {
+            var builder = new SqlConnectionStringBuilder
+            {
+                DataSource = Utilerias.Constantes.DataSource,
+                UserID = Constantes.UserID,
+                Password = Constantes.Password,
+                InitialCatalog = Constantes.InitialCatalogM + municipio
+            };
+
+            int total = 0;
+
+            var connectionString = builder.ConnectionString;
+            var connection = new SqlConnection(connectionString);
+            try
+            {
+
+                connection.Open();
+
+                var command = new SqlCommand(consulta, connection);
+                var reader = command.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    total = !reader.IsDBNull(0) ? reader.GetInt32(0) : 0; //total
+                    break;
+                }
+
+            }
+            catch (SqlException e)
+            {
+                Console.WriteLine($"SQL Error: {e.Message}");
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.ToString());
+            }
+            finally
+            {
+                connection.Close();
+            }
+            return total;
+        }
     }
 }

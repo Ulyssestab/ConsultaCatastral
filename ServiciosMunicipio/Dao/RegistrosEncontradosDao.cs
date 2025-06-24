@@ -153,8 +153,7 @@ namespace ServiciosMunicipio.Dao
         public List<Resultados> obtenerResultadoUbicacionPredio(UbicacionPredio ubicacionPredio, int pag) //getDirecciones
         {                                    
             Utilidades utilidades = new Utilidades();
-            //String sql = utilidades.formarSQLtotal(ubicacionPredio);
-            //int totalRegistros = numDireccion(sql, ubicacionPredio.municipio);
+
             String condicion = utilidades.formarConsultaUbicacionXpredio(ubicacionPredio, Constantes.XPREDIO);
             String consulta = "";
             int max = 10;

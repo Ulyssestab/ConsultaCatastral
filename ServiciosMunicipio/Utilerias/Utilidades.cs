@@ -24,18 +24,19 @@ namespace ServiciosMunicipio.Utilerias
                     {
                         int n = (getMiles(num) + numero);
                         cad = n + "";
-                        return cad.Substring(1, cad.Length);
+                        cad =  cad.Substring(1, cad.Length);
                     }
                     else
                     {
                         return cad;
                     }
                 }
-                catch (NotFiniteNumberException e)
+                catch (Exception e)
                 {
                     return "";
                 }
             }
+            return cad;
         }
 
         public static int getMiles(int num)
@@ -119,14 +120,17 @@ namespace ServiciosMunicipio.Utilerias
                     tipo_formato = Constantes.COMILLAS;
                 }
                 String cve_asentamiento = utilidades.completarCeros(5, ubicacionPredio.cve_asentamiento);
-                if (String.IsNullOrEmpty(sql))
+                if ( cve_asentamiento != "") 
                 {
-                    sql = (Catalogos.formarCondicion("", "CVE_ASENTAMIENTO", cve_asentamiento, cond, tipo_formato));
-                }
-                else
-                {
-                    sql = (Catalogos.formarCondicion((sql + " and "), "CVE_ASENTAMIENTO", cve_asentamiento, cond, tipo_formato));
-                }
+                    if (String.IsNullOrEmpty(sql))
+                    {
+                        sql = (Catalogos.formarCondicion("", "CVE_ASENTAMIENTO", cve_asentamiento, cond, tipo_formato));
+                    }
+                    else
+                    {
+                        sql = (Catalogos.formarCondicion((sql + " and "), "CVE_ASENTAMIENTO", cve_asentamiento, cond, tipo_formato));
+                    }
+                }                
             }            
             /*************************************ASENTAMIENTO**************************************************/
             if (String.IsNullOrEmpty(ubicacionPredio.asentamiento) == false)
@@ -137,15 +141,15 @@ namespace ServiciosMunicipio.Utilerias
                 }
                 else if (tipo == Constantes.XPREDIO)
                 {
-                    tipo_formato = Constantes.IGUAL;
+                    tipo_formato = Constantes.COMILLAS;
                 }
                 if (String.IsNullOrEmpty(sql))
                 {
-                    sql = Catalogos.formarCondicion("", "NOMBRE_ASENTAMIENTO", ubicacionPredio.asentamiento, cond, tipo_formato);
+                    sql = Catalogos.formarCondicion("", "NOMBRE_COMPLETO_ASENTAMIENTO", ubicacionPredio.asentamiento, cond, tipo_formato);
                 }
                 else
                 {
-                    sql = " and " + (Catalogos.formarCondicion(sql, "NOMBRE_ASENTAMIENTO", ubicacionPredio.asentamiento, cond, tipo_formato));
+                    sql = Catalogos.formarCondicion(sql + " and ", "NOMBRE_COMPLETO_ASENTAMIENTO", ubicacionPredio.asentamiento, cond, tipo_formato);
                 }                
             }
             /******************************Numero Exterior ********/

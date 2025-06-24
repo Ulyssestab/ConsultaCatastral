@@ -11,6 +11,7 @@ namespace ServiciosMunicipio.Controllers
 {
     public class SIS_ASENTAMIENTOSController : Controller
     {
+        SIS_ASENTAMIENTOS_Dao buscar = new SIS_ASENTAMIENTOS_Dao();
         // GET: SIS_ASENTAMIENTOS/Asentamiento/5
         public ActionResult Asentamiento(int id, String municipio)
         {
@@ -19,19 +20,25 @@ namespace ServiciosMunicipio.Controllers
                 return new HttpStatusCodeResult(System.Net.HttpStatusCode.BadRequest);
             }
 
-            var r = new SIS_ASENTAMIENTOS_Dao().obtenerAsentamiento(id, municipio);
+            var r = buscar.obtenerAsentamiento(id, municipio);
 
             return Json(r ,JsonRequestBehavior.AllowGet);
         }
 
-        // Post: SIS_ASENTAMIENTOS/Asentamiento/ AjaxResultados -Fraccionamiento o Colonia
+        // Post: SIS_ASENTAMIENTOS/Asentamientos/ AjaxResultados -Fraccionamiento o Colonia
         [System.Web.Http.HttpPost]
         public ActionResult Asentamientos([FromBody] SIS_ASENTAMIENTOS asentamiento)
         {
-
+            int total = 0;
+            List<SIS_ASENTAMIENTOS> r = new List<SIS_ASENTAMIENTOS>();
             if (asentamiento != null && asentamiento.CVE_MUNICIPIO != null && asentamiento.CVE_LOCALIDAD != null && asentamiento.NOMBRE_ASENTAMIENTO != null)
-            {                
-                var r = new SIS_ASENTAMIENTOS_Dao().obtenerAsentamientos(asentamiento);
+            {
+                total = buscar.obtenerTotalNombreAsentamiento(asentamiento);
+                if (total > 0) 
+                {
+                    r = buscar.obtenerAsentamientos(asentamiento);
+                }
+                
                 return Json(r);
                 
             }
@@ -49,7 +56,7 @@ namespace ServiciosMunicipio.Controllers
         {
             if (asentamiento != null && asentamiento.CVE_MUNICIPIO != null && asentamiento.CVE_LOCALIDAD != null && asentamiento.NOMBRE_ASENTAMIENTO != null)
             {
-                var r = new SIS_ASENTAMIENTOS_Dao().obtenerCatalogoNombreAsentamiento(asentamiento);
+                var r = buscar.obtenerCatalogoNombreAsentamiento(asentamiento);
                 return Json(r);
 
             }

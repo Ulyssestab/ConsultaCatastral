@@ -78,7 +78,8 @@ namespace ServiciosMunicipio.Controllers
         public ActionResult ClavePredial(ClavePredial clavePredial)
         {
             List<Resultados> resultados =  null;
-            if (clavePredial != null && (!String.IsNullOrEmpty(clavePredial.numCuentaPredial) || !String.IsNullOrEmpty(clavePredial.claveCuentaPredial))) {
+            if (clavePredial != null && (!String.IsNullOrEmpty(clavePredial.numCuentaPredial) || !String.IsNullOrEmpty(clavePredial.claveCuentaPredial))) 
+            {
                 resultados = Buscar.obtenerClavesPredial(clavePredial);
             }
              
@@ -89,9 +90,15 @@ namespace ServiciosMunicipio.Controllers
         public ActionResult FolioReal(String folioReal, String municipioCE, int offset)
         {
             List<Resultados> resultados = new List<Resultados>();
+            int num = 0;
             //Hago la consulta a la base de datos para ver si existen registros asociados a dicha clave                        
-            if (!String.IsNullOrEmpty(folioReal)) {
-                resultados = Buscar.obtenerResultadoFolioReal(folioReal, municipioCE, offset);
+            if (!String.IsNullOrEmpty(folioReal)) 
+            {
+                num = Buscar.numFolioreal(folioReal, municipioCE);
+                if (num > 0) 
+                {
+                    resultados = Buscar.obtenerResultadoFolioReal(folioReal, municipioCE, offset);
+                }
             } 
             return Json(resultados, JsonRequestBehavior.AllowGet); 
         }
@@ -113,9 +120,14 @@ namespace ServiciosMunicipio.Controllers
         public ActionResult UbicacionPredio([FromBody] UbicacionPredio ubicacionPredio, int pag) 
         {
             List<Resultados> resultados = null;
+            int max = 0;
             if (ubicacionPredio != null && !String.IsNullOrEmpty(ubicacionPredio.municipio) && !String.IsNullOrEmpty(ubicacionPredio.localidad)) 
             {
-                resultados = Buscar.obtenerResultadoUbicacionPredio(ubicacionPredio, pag);
+                max = Buscar.numDireccion(new Utilidades().formarConsultaUbicacionXpredio(ubicacionPredio, Constantes.TOTALXPREDIO), ubicacionPredio.municipio);
+                if (max > 0) 
+                {
+                    resultados = Buscar.obtenerResultadoUbicacionPredio(ubicacionPredio, pag);
+                }                
             }
             
             return Json(resultados);
@@ -129,7 +141,10 @@ namespace ServiciosMunicipio.Controllers
             if (personaFisica != null) 
             {
                 int max = Buscar.numPredioxPersonaFisica(personaFisica);
-                resultados = Buscar.obtenerResultadoPersonaFisica(personaFisica, pag, max);
+                if (max > 0) 
+                {
+                    resultados = Buscar.obtenerResultadoPersonaFisica(personaFisica, pag, max);
+                }                
             }
             
             return Json(resultados);
@@ -142,7 +157,9 @@ namespace ServiciosMunicipio.Controllers
             if (!String.IsNullOrEmpty(razonSocial) && !String.IsNullOrEmpty(municipio)) 
             {
                 int max = Buscar.numPredioxPersonaMoral(razonSocial, municipio);
-                resultados = Buscar.obtenerResultadoPersonaMoral(razonSocial, municipio, pag, max);
+                if (max > 0) {
+                    resultados = Buscar.obtenerResultadoPersonaMoral(razonSocial, municipio, pag, max);
+                }                
             }            
             return Json(resultados, JsonRequestBehavior.AllowGet);
         }
