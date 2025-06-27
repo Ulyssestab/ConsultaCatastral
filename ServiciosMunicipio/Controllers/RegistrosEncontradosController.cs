@@ -119,7 +119,7 @@ namespace ServiciosMunicipio.Controllers
         [System.Web.Http.HttpPost]
         public ActionResult UbicacionPredio([FromBody] UbicacionPredio ubicacionPredio, int pag) 
         {
-            List<Resultados> resultados = null;
+            List<Resultados> resultados = new List<Resultados>();
             int max = 0;
             if (ubicacionPredio != null && !String.IsNullOrEmpty(ubicacionPredio.municipio) && !String.IsNullOrEmpty(ubicacionPredio.localidad)) 
             {
