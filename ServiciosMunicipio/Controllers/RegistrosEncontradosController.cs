@@ -133,6 +133,33 @@ namespace ServiciosMunicipio.Controllers
             return Json(resultados);
         }
 
+        // GET: RegistrosEncontrados/UbicacionPredio        
+        public ActionResult UbicacionPredioGet(String cve_localidad, String nom_localidad, String cve_colonia,String colonia, String municipio, String calle, String numExt,  int pag)
+        {
+            UbicacionPredio ubicacionPredio = new UbicacionPredio 
+            { 
+                calle = calle != "0" ? calle : "",
+                clave_localidad = cve_localidad != "0" ? cve_localidad : "",
+                asentamiento = colonia != "0" ? colonia : "",
+                cve_asentamiento = cve_colonia != "0" ? cve_colonia : "",
+                localidad = nom_localidad != "0" ? nom_localidad : "",
+                municipio = municipio != "0" ? municipio : "",
+                numExt =  numExt != "0" ? numExt : "",
+            };
+            List<Resultados> resultados = new List<Resultados>();
+            int max = 0;
+            if (ubicacionPredio != null && !String.IsNullOrEmpty(ubicacionPredio.municipio) && !String.IsNullOrEmpty(ubicacionPredio.localidad))
+            {
+                max = Buscar.numDireccion(new Utilidades().formarConsultaUbicacionXpredio(ubicacionPredio, Constantes.TOTALXPREDIO), ubicacionPredio.municipio);
+                if (max > 0)
+                {
+                    resultados = Buscar.obtenerResultadoUbicacionPredio(ubicacionPredio, pag);
+                }
+            }
+
+            return Json(resultados, JsonRequestBehavior.AllowGet);
+        }
+
         // POST: RegistrosEncontrados/NombrePropietarioPersonaFisica
         [System.Web.Http.HttpPost]
         public ActionResult NombrePropietarioPersonaFisica([FromBody] PersonaFisica personaFisica, int pag)
