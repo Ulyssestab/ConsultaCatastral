@@ -103,7 +103,7 @@ namespace ServiciosMunicipio.Dao
                                 + "from sde.sis_pc_clave_catastral pp "
                                 + "left join sde.SIS_PC_UBICACION pu on pu.CVE_CAT_ORI = pp.CVE_CAT_ORI and pu.STATUSREGISTROTABLA = 'ACTIVO' "
                                 + "left join sde.SIS_PC_PROPIETARIOS p on p.OBJECTID=(select max (OBJECTID)from sde.SIS_PC_PROPIETARIOS where STATUSREGISTROTABLA='ACTIVO' and CVE_CAT_ORI=pp.CVE_CAT_ORI) "
-                                + "where pp.cve_Predial like '" + @clavePredialNum + @numCuentaPredial + "%' and pp.STATUSREGISTROTABLA = 'ACTIVO') as a " 
+                                + "where pp.cve_Predial = '" + @clavePredialNum + @numCuentaPredial + "' and pp.STATUSREGISTROTABLA = 'ACTIVO') as a " 
                                 + "WHERE NUM BETWEEN " + ((pag * max) + 1) + " AND " + (((pag + 1) * max)) + ";";
             return repositorio.ObtenerLista(consulta, municipioCE);
         }
