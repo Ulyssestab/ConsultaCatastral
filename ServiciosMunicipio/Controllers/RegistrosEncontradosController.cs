@@ -164,7 +164,7 @@ namespace ServiciosMunicipio.Controllers
         [System.Web.Http.HttpPost]
         public ActionResult NombrePropietarioPersonaFisica([FromBody] PersonaFisica personaFisica, int pag)
         {
-            List<Resultados> resultados =  null;
+            List<Resultados> resultados =  new List<Resultados>();
             if (personaFisica != null) 
             {
                 int max = Buscar.numPredioxPersonaFisica(personaFisica);
