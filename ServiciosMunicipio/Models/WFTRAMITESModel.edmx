@@ -5,6 +5,24 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
     <Schema Namespace="WFTRAMITESModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="BitacoraAccesoSistemas">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ALTAREGISTROTABLA" Type="datetime" />
+          <Property Name="CVE_CAT_EST" Type="nvarchar" MaxLength="31" />
+          <Property Name="CVE_CAT_ORI" Type="nvarchar" MaxLength="17" />
+          <Property Name="NOMBRE_O_RAZON_SOCIAL" Type="nvarchar" MaxLength="200" />
+          <Property Name="APELLIDO_PATERNO" Type="nvarchar" MaxLength="100" />
+          <Property Name="APELLIDO_MATERNO" Type="nvarchar" MaxLength="100" />
+          <Property Name="USUARIOALTA" Type="nvarchar" MaxLength="50" />
+          <Property Name="IP_ALTA" Type="nvarchar" MaxLength="100" />
+          <Property Name="TERMINALALTA" Type="nvarchar" MaxLength="100" />
+          <Property Name="APLICATIVO" Type="nvarchar" MaxLength="200" />
+          <Property Name="URL" Type="nvarchar" MaxLength="200" />
+          <Property Name="DESCRIPCION" Type="nvarchar" MaxLength="200" />
+        </EntityType>
         <EntityType Name="Cat_Acceso">
           <Key>
             <PropertyRef Name="Nombre_Completo" />
@@ -80,6 +98,7 @@
           <Property Name="Descripcion_Puesto" Type="varchar" MaxLength="100" />
         </EntityType>
         <EntityContainer Name="WFTRAMITESModelStoreContainer">
+          <EntitySet Name="BitacoraAccesoSistemas" EntityType="Self.BitacoraAccesoSistemas" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Cat_Acceso" EntityType="Self.Cat_Acceso" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Cat_Municipio" EntityType="Self.Cat_Municipio" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Servicios_Consulta_Cat" EntityType="Self.Servicios_Consulta_Cat" Schema="dbo" store:Type="Tables" />
@@ -105,6 +124,7 @@
           <EntitySet Name="Cat_Acceso" EntityType="WFTRAMITESModel.Cat_Acceso" />
           <EntitySet Name="Usuario" EntityType="WFTRAMITESModel.Usuario" />
           <EntitySet Name="Servicios_Consulta_Cat" EntityType="WFTRAMITESModel.Servicios_Consulta_Cat" />
+          <EntitySet Name="BitacoraAccesoSistemas" EntityType="WFTRAMITESModel.BitacoraAccesoSistemas" />
         </EntityContainer>
         <EntityType Name="Cat_Acceso">
           <Key>
@@ -168,6 +188,24 @@
           <Property Name="tipo" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
           <Property Name="url" Type="String" MaxLength="80" FixedLength="false" Unicode="false" />
           <Property Name="nombre_parametro" Type="String" MaxLength="80" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="BitacoraAccesoSistemas">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ALTAREGISTROTABLA" Type="DateTime" Precision="3" />
+          <Property Name="CVE_CAT_EST" Type="String" MaxLength="31" FixedLength="false" Unicode="true" />
+          <Property Name="CVE_CAT_ORI" Type="String" MaxLength="17" FixedLength="false" Unicode="true" />
+          <Property Name="NOMBRE_O_RAZON_SOCIAL" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="APELLIDO_PATERNO" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="APELLIDO_MATERNO" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="USUARIOALTA" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="IP_ALTA" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="TERMINALALTA" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="APLICATIVO" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="URL" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="DESCRIPCION" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -250,6 +288,25 @@
                 <ScalarProperty Name="parametros" ColumnName="parametros" />
                 <ScalarProperty Name="nombre" ColumnName="nombre" />
                 <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="BitacoraAccesoSistemas">
+            <EntityTypeMapping TypeName="WFTRAMITESModel.BitacoraAccesoSistemas">
+              <MappingFragment StoreEntitySet="BitacoraAccesoSistemas">
+                <ScalarProperty Name="DESCRIPCION" ColumnName="DESCRIPCION" />
+                <ScalarProperty Name="URL" ColumnName="URL" />
+                <ScalarProperty Name="APLICATIVO" ColumnName="APLICATIVO" />
+                <ScalarProperty Name="TERMINALALTA" ColumnName="TERMINALALTA" />
+                <ScalarProperty Name="IP_ALTA" ColumnName="IP_ALTA" />
+                <ScalarProperty Name="USUARIOALTA" ColumnName="USUARIOALTA" />
+                <ScalarProperty Name="APELLIDO_MATERNO" ColumnName="APELLIDO_MATERNO" />
+                <ScalarProperty Name="APELLIDO_PATERNO" ColumnName="APELLIDO_PATERNO" />
+                <ScalarProperty Name="NOMBRE_O_RAZON_SOCIAL" ColumnName="NOMBRE_O_RAZON_SOCIAL" />
+                <ScalarProperty Name="CVE_CAT_ORI" ColumnName="CVE_CAT_ORI" />
+                <ScalarProperty Name="CVE_CAT_EST" ColumnName="CVE_CAT_EST" />
+                <ScalarProperty Name="ALTAREGISTROTABLA" ColumnName="ALTAREGISTROTABLA" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

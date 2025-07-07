@@ -242,9 +242,9 @@ namespace ServiciosMunicipio.Dao
 
         public int numPredioxPersonaFisica(PersonaFisica personaFisica) //numPredioxPersonaFisica
         {
-            String nombre = AntiInjectionSQL.quitarComillas(personaFisica.nombre.ToUpper(), Constantes.LONG_MAX_NOM);
-            String apaterno = AntiInjectionSQL.quitarComillas(personaFisica.apaterno.ToUpper(), Constantes.LONG_MAX_NOM);
-            String amaterno = AntiInjectionSQL.quitarComillas(personaFisica.amaterno.ToUpper(), Constantes.LONG_MAX_NOM);
+            String nombre = AntiInjectionSQL.quitarComillas(personaFisica.nombre != null ? personaFisica.nombre.ToUpper() : "", Constantes.LONG_MAX_NOM);
+            String apaterno = AntiInjectionSQL.quitarComillas(personaFisica.apaterno != null ? personaFisica.apaterno.ToUpper() : "", Constantes.LONG_MAX_NOM);
+            String amaterno = AntiInjectionSQL.quitarComillas(personaFisica.amaterno != null ? personaFisica.amaterno.ToUpper() : "", Constantes.LONG_MAX_NOM);
             String municipio = AntiInjectionSQL.quitarComillas(personaFisica.municipio, Constantes.LONG_MAX_NOM);
             
             //Defino la consulta a realizar
@@ -259,9 +259,9 @@ namespace ServiciosMunicipio.Dao
         }
             public List<Resultados> obtenerResultadoPersonaFisica(PersonaFisica personaFisica, int pag, int max) //getPersonasFisica
         {            
-            String nombre = AntiInjectionSQL.quitarComillas(personaFisica.nombre.ToUpper(), Constantes.LONG_MAX_NOM);
-            String apaterno = AntiInjectionSQL.quitarComillas(personaFisica.apaterno.ToUpper(), Constantes.LONG_MAX_NOM);
-            String amaterno = AntiInjectionSQL.quitarComillas(personaFisica.amaterno.ToUpper(), Constantes.LONG_MAX_NOM);
+            String nombre = AntiInjectionSQL.quitarComillas(personaFisica.nombre != null ? personaFisica.nombre.ToUpper() : "", Constantes.LONG_MAX_NOM);
+            String apaterno = AntiInjectionSQL.quitarComillas(personaFisica.apaterno != null ? personaFisica.apaterno.ToUpper() : "", Constantes.LONG_MAX_NOM);
+            String amaterno = AntiInjectionSQL.quitarComillas(personaFisica.amaterno != null ? personaFisica.amaterno.ToUpper() : "", Constantes.LONG_MAX_NOM);
             String municipio = AntiInjectionSQL.quitarComillas(personaFisica.municipio, Constantes.LONG_MAX_NOM);                        
             //Defino la consulta a realizar            
             String consulta = "select NUM, CVE_CAT_EST, CVE_CAT_ORI, clavePredial, NOMBRE_O_RAZON_SOCIAL, APELLIDO_PATERNO, APELLIDO_MATERNO, NOM_LOCALIDAD, NOMBRE_COMPLETO_ASENTAMIENTO, NOMBRE_COMPLETO_VIALIDAD, NUMERO_EXTERIOR \n" +

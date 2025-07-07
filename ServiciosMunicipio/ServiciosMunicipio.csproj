@@ -171,6 +171,7 @@
     <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.cs" />
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
     <Compile Include="Conexion\ConexionAsentamientosBD.cs" />
+    <Compile Include="Controllers\BitacoraController.cs" />
     <Compile Include="Controllers\CAT_LOCALIDADController.cs" />
     <Compile Include="Controllers\Cat_MunicipioController.cs" />
     <Compile Include="Controllers\DetallePredioController.cs" />
@@ -178,6 +179,7 @@
     <Compile Include="Controllers\RegistrosEncontradosController.cs" />
     <Compile Include="Controllers\SIS_ASENTAMIENTOSController.cs" />
     <Compile Include="Dao\AccesosDao.cs" />
+    <Compile Include="Dao\BitacoraDao.cs" />
     <Compile Include="Dao\CAT_LOCALIDAD_Dao.cs" />
     <Compile Include="Dao\Cat_Municipio_Dao.cs" />
     <Compile Include="Dao\DetallePredioDao.cs" />
@@ -186,6 +188,9 @@
     <Compile Include="Dao\SIS_ASENTAMIENTOS_Dao.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Models\BitacoraAccesoSistemas.cs">
+      <DependentUpon>WFTRAMITESModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Cat_Acceso.cs">
       <DependentUpon>WFTRAMITESModel.tt</DependentUpon>
@@ -356,6 +361,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\Bitacora\" />
     <Folder Include="Views\Cat_Municipio\" />
     <Folder Include="Views\DetallePredio\" />
     <Folder Include="Views\RegistrosEncontrados\" />

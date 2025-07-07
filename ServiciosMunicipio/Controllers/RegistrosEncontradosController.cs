@@ -184,6 +184,9 @@ namespace ServiciosMunicipio.Controllers
             if (!String.IsNullOrEmpty(razonSocial) && !String.IsNullOrEmpty(municipio)) 
             {
                 int max = Buscar.numPredioxPersonaMoral(razonSocial, municipio);
+                if (max > 100) {
+                    max = 50;
+                }
                 if (max > 0) {
                     resultados = Buscar.obtenerResultadoPersonaMoral(razonSocial, municipio, pag, max);
                 }                
