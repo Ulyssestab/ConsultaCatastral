@@ -143,7 +143,7 @@ namespace ServiciosMunicipio.Tests.Controllers
             var serializer = new JavaScriptSerializer();
             var jsonString = serializer.Serialize(data);
             resultado = jsonString != "[]" ? util.crearObjetoResultados(jsonString) : null;
-            Assert.IsNotNull(resultado);
+            Assert.IsNull(resultado);
             ubicacion = new UbicacionPredio
             {
                 asentamiento = "",

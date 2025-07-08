@@ -13,17 +13,24 @@ namespace ServiciosMunicipio.Dao
         {
             String respuesta = "OK";
 
-            var bitacoraAcceso = db.Set<BitacoraAccesoSistemas>();
-            try 
+            if (bitacora != null && bitacora.ID == 0 && bitacora.ALTAREGISTROTABLA != null && bitacora.DESCRIPCION != null )
             {
-                bitacoraAcceso.Add(bitacora);
-                db.SaveChanges();
-            } 
-            catch (Exception e) 
-            {
-                return "ERROR";
+                var bitacoraAcceso = db.Set<BitacoraAccesoSistemas>();
+                try
+                {
+                    bitacoraAcceso.Add(bitacora);
+                    db.SaveChanges();
+                }
+                catch (Exception e)
+                {
+                    return "ERROR";
+                }
+
             }
-            
+            else 
+            {
+                respuesta = "ERROR";
+            }
             return respuesta;
         }
     }
