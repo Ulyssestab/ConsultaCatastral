@@ -31,25 +31,27 @@ namespace ServiciosMunicipio.Tests.Controllers
         {
             String result = "OK";
             BitacoraController controller = new BitacoraController();
-            DateTime fecha = DateTime.ParseExact(DateTime.Now.ToString(), "yyyy-MM-dd HH:mm:ss", CultureInfo.CurrentCulture);
+           
+            DateTime fecha = DateTime.ParseExact("2025-07-08 01:52:33", "yyyy-MM-dd HH:mm:ss", System.Globalization.CultureInfo.InvariantCulture);
+            //DateTime.ParseExact(dater, "yyyy-MM-dd HH:mm:ss", CultureInfo.CurrentCulture);
 
             BitacoraAccesoSistemas bitacora = new BitacoraAccesoSistemas() {
                 ALTAREGISTROTABLA = fecha,
                 APELLIDO_MATERNO = "",
                 APELLIDO_PATERNO = "",
                 APLICATIVO = "",
-                CVE_CAT_EST = "",
+                CVE_CAT_EST = "000000000000000000",
                 CVE_CAT_ORI = "",
-                DESCRIPCION = "",
+                DESCRIPCION = "Consulta realizada por Clave Catastral",
                 ID = 0,
-                IP_ALTA = "",
+                IP_ALTA = "129.999.2.1",
                 NOMBRE_O_RAZON_SOCIAL = "",
                 TERMINALALTA = "",
-                URL = "",
-                USUARIOALTA = ""
+                URL = "https://localhost:44330/",
+                USUARIOALTA = "Administrador"
             };
             // Actuar             
-            //result = controller.InsertarRegistroEnBitacora(bitacora);
+            result = controller.InsertarRegistroEnBitacora(bitacora);
 
 
             // Declarar
