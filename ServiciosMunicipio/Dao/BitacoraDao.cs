@@ -15,6 +15,13 @@ namespace ServiciosMunicipio.Dao
 
             if (bitacora != null && bitacora.ID == 0 && bitacora.ALTAREGISTROTABLA != null && bitacora.DESCRIPCION != null )
             {
+                bitacora.USUARIOALTA = bitacora.USUARIOALTA != null ? bitacora.USUARIOALTA : "";
+                bitacora.CVE_CAT_EST = bitacora.CVE_CAT_EST != null ? bitacora.CVE_CAT_EST : "";
+                bitacora.CVE_CAT_ORI = bitacora.CVE_CAT_ORI != null ? bitacora.CVE_CAT_ORI : "";
+                bitacora.APELLIDO_MATERNO = bitacora.APELLIDO_MATERNO != null ? bitacora.APELLIDO_MATERNO : "";
+                bitacora.APELLIDO_PATERNO = bitacora.APELLIDO_PATERNO != null ? bitacora.APELLIDO_PATERNO : "";
+                bitacora.NOMBRE_O_RAZON_SOCIAL = bitacora.NOMBRE_O_RAZON_SOCIAL != null ? bitacora.NOMBRE_O_RAZON_SOCIAL : "";
+
                 var bitacoraAcceso = db.Set<BitacoraAccesoSistemas>();
                 try
                 {
