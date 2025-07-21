@@ -1,4 +1,5 @@
-﻿using ServiciosMunicipio.Models.Entidades;
+﻿using log4net;
+using ServiciosMunicipio.Models.Entidades;
 using ServiciosMunicipio.Utilerias;
 using System;
 using System.Collections.Generic;
@@ -10,6 +11,7 @@ namespace ServiciosMunicipio.Repositorio.Impl
 {
     public class RepositorioDetallePredioImp : RepositorioDetallePredio
     {
+        private static readonly ILog log = LogManager.GetLogger(typeof(RepositorioDetallePredioImp));
         public DetallePredio ObtenerElemento(string consulta, string municipio)
         {
             var builder = new SqlConnectionStringBuilder
@@ -57,11 +59,11 @@ namespace ServiciosMunicipio.Repositorio.Impl
             }
             catch (SqlException e)
             {
-                Console.WriteLine($"SQL Error: {e.Message}");
+                log.Error($"SQL Error: {e.Message}");
             }
             catch (Exception e)
             {
-                Console.WriteLine(e.ToString());
+                log.Error($"SQL Error: {e.Message}");
             }
             finally
             {
@@ -100,11 +102,11 @@ namespace ServiciosMunicipio.Repositorio.Impl
             }
             catch (SqlException e)
             {
-                Console.WriteLine($"SQL Error: {e.Message}");
+                log.Error($"SQL Error: {e.Message}");
             }
             catch (Exception e)
             {
-                Console.WriteLine(e.ToString());
+                log.Error($"SQL Error: {e.Message}");
             }
             finally
             {
@@ -149,11 +151,11 @@ namespace ServiciosMunicipio.Repositorio.Impl
             }
             catch (SqlException e)
             {
-                Console.WriteLine($"SQL Error: {e.Message}");
+                log.Error($"SQL Error: {e.Message}");
             }
             catch (Exception e)
             {
-                Console.WriteLine(e.ToString());
+                log.Error($"SQL Error: {e.Message}");
             }
             finally
             {
@@ -198,11 +200,11 @@ namespace ServiciosMunicipio.Repositorio.Impl
             }
             catch (SqlException e)
             {
-                Console.WriteLine($"SQL Error: {e.Message}");
+                log.Error($"SQL Error: {e.Message}");
             }
             catch (Exception e)
             {
-                Console.WriteLine(e.ToString());
+                log.Error($"SQL Error: {e.Message}");
             }
             finally
             {

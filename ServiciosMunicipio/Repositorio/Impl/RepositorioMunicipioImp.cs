@@ -1,4 +1,5 @@
-﻿using ServiciosMunicipio.Models;
+﻿using log4net;
+using ServiciosMunicipio.Models;
 using ServiciosMunicipio.Utilerias;
 using System;
 using System.Collections.Generic;
@@ -11,6 +12,7 @@ namespace ServiciosMunicipio.Repositorio.Impl
 {
     public class RepositorioMunicipioImp : RepositorioMunicipio
     {
+        private static readonly ILog log = LogManager.GetLogger(typeof(RepositorioMunicipioImp));
         public int ObtenerTotal(String consulta, String municipio)
         {
             var builder = new SqlConnectionStringBuilder
@@ -41,11 +43,11 @@ namespace ServiciosMunicipio.Repositorio.Impl
             }
             catch (SqlException e)
             {
-                Console.WriteLine($"SQL Error: {e.Message}");
+                log.Error($"SQL Error: {e.Message}");
             }
             catch (Exception e)
             {
-                Console.WriteLine(e.ToString());
+                log.Error($"SQL Error: {e.Message}");
             }
             finally
             {
@@ -97,11 +99,11 @@ namespace ServiciosMunicipio.Repositorio.Impl
             }
             catch (SqlException e)
             {
-                Console.WriteLine($"SQL Error: {e.Message}");
+                log.Error($"SQL Error: {e.Message}");
             }
             catch (Exception e)
             {
-                Console.WriteLine(e.ToString());
+                log.Error($"SQL Error: {e.Message}");
             }
             finally
             {

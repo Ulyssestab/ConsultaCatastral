@@ -1,4 +1,5 @@
-﻿using ServiciosMunicipio.Models;
+﻿using log4net;
+using ServiciosMunicipio.Models;
 using ServiciosMunicipio.Utilerias;
 using System;
 using System.Collections.Generic;
@@ -11,6 +12,7 @@ namespace ServiciosMunicipio.Dao
     {
 
         private GDB01001Entities db = new GDB01001Entities();
+        public static readonly ILog log = LogManager.GetLogger(typeof(CAT_LOCALIDAD_Dao));
 
         public List<CAT_LOCALIDAD> obtenerLocalidades(String id)
         {
@@ -27,6 +29,7 @@ namespace ServiciosMunicipio.Dao
             }
             catch (System.InvalidOperationException e)
             {
+                log.Error("Error al guardar el registro: ", e);
                 localidades = new List<CAT_LOCALIDAD>();
             }
 
@@ -61,6 +64,7 @@ namespace ServiciosMunicipio.Dao
             }
             catch (System.InvalidOperationException e)
             {
+                log.Error("Error al guardar el registro: ", e);
                 localidades = new List<CAT_LOCALIDAD>();
             }
 
@@ -83,6 +87,7 @@ namespace ServiciosMunicipio.Dao
             catch (System.InvalidOperationException e)
             {
                 localidad = new CAT_LOCALIDAD();
+                log.Error("Error al guardar el registro: ", e);
             }
             return localidad;
         }
@@ -100,6 +105,7 @@ namespace ServiciosMunicipio.Dao
             }
             catch (System.InvalidOperationException e)
             {
+                log.Error("Error al guardar el registro: ", e);
                 catalogo = new List<CAT_LOCALIDAD>();
             }
 

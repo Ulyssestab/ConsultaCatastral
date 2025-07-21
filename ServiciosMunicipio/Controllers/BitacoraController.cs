@@ -15,9 +15,9 @@ namespace ServiciosMunicipio.Controllers
 
         // GET: Bitacora/InsertarRegistroEnBitacora
         [System.Web.Http.HttpPost]
-        public String InsertarRegistroEnBitacora([FromBody] BitacoraAccesoSistemas bitacora) {
+        public ActionResult InsertarRegistroEnBitacora([FromBody] BitacoraAccesoSistemas bitacora) {
             String respuesta = dao.insertarDatos(bitacora);
-            return respuesta;
+            return Json(respuesta);
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using ServiciosMunicipio.Models;
+﻿using log4net;
+using ServiciosMunicipio.Models;
 using ServiciosMunicipio.Repositorio.Impl;
 using ServiciosMunicipio.Utilerias;
 using System;
@@ -11,6 +12,7 @@ namespace ServiciosMunicipio.Dao
     public class SIS_ASENTAMIENTOS_Dao
     {
         private RepositorioSIS_ASENTAMIENTOImp db = new RepositorioSIS_ASENTAMIENTOImp();
+        public static readonly ILog log = LogManager.GetLogger(typeof(SIS_ASENTAMIENTOS_Dao));
 
         public List<SIS_ASENTAMIENTOS> obtenerAsentamientos(SIS_ASENTAMIENTOS asentamiento)
         {
@@ -34,6 +36,7 @@ namespace ServiciosMunicipio.Dao
             }
             catch (System.InvalidOperationException e)
             {
+                log.Error("Error al guardar el registro: ", e);
                 r = new List<SIS_ASENTAMIENTOS>();
             }
             
@@ -70,6 +73,7 @@ namespace ServiciosMunicipio.Dao
             catch (System.InvalidOperationException e)
             {
                 nombre_Asentamiento = "";
+                log.Error("Error al guardar el registro: ", e);
             }
 
             return nombre_Asentamiento;
@@ -98,6 +102,7 @@ namespace ServiciosMunicipio.Dao
             catch (System.InvalidOperationException e)
             {
                 total = 0;
+                log.Error("Error al guardar el registro: ", e);
             }
 
             return total;

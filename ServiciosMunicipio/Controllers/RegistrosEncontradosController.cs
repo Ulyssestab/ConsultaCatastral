@@ -15,6 +15,8 @@ namespace ServiciosMunicipio.Controllers
     {
         private RegistrosEncontradosDao Buscar = new RegistrosEncontradosDao();
         private Utilidades util = new Utilidades();
+        private BitacoraDao dao = new BitacoraDao();        
+
         // GET: RegistrosEncontrados
         public ActionResult Index()
         {
@@ -27,7 +29,7 @@ namespace ServiciosMunicipio.Controllers
         {
             //Formulario: Menu Tramite, clave catastral estandar                                    
             int offset= 0;
-          
+            String usuario = "";
             //Uno la clave catastral estandar enviada desde el formulario
             String claveCatastralEstandar = ClaveCatastral.entidadCE
                 + util.completarCeros(3, ClaveCatastral.regionCE)
@@ -40,7 +42,9 @@ namespace ServiciosMunicipio.Controllers
                 + util.completarCeros(2, ClaveCatastral.edificioCE)
                 + util.completarCeros(4, ClaveCatastral.unidadCE);
             //Hago la consulta a la base de datos para ver si existen registros asociados a dicha clave                        
-            List<Resultados> resultados = Buscar.obtenerClavesEstandar(claveCatastralEstandar,ClaveCatastral.municipioCE, offset);
+            List<Resultados> resultados = Buscar.obtenerClavesEstandar(claveCatastralEstandar, ClaveCatastral.municipioCE, offset);
+            dao.guardarRegistro(claveCatastralEstandar, "", "Clave Catastral Estandar", Request != null ? Request.UserHostAddress : "0:0:0:0",
+                Request != null ? Request.UserHostName : "ninguno", Request != null ? Request.Url.ToString() : "///////", usuario, "", "", "");
             return Json(resultados);
         }
 
@@ -51,6 +55,7 @@ namespace ServiciosMunicipio.Controllers
             //Formulario: Menu Tramite, clave catastral estandar                                    
             int offset = 0;
             int pag = 0;
+            String usuario = "";
             String claveCatastralOriginal = "";
             List<Resultados> resultados = new List<Resultados>();
             if (ClaveCatastralOriginal != null)
@@ -68,8 +73,9 @@ namespace ServiciosMunicipio.Controllers
                     resultados = Buscar.obtenerClavesOriginal(claveCatastralOriginal, offset, pag);
                 }
             }
-            //Uno la clave catastral estandar enviada desde el formulario
             
+            dao.guardarRegistro("", claveCatastralOriginal, "Clave Catastral Original", Request != null ? Request.UserHostAddress : "0:0:0:0",
+                Request != null ? Request.UserHostName : "ninguno", Request != null ? Request.Url.ToString() : "///////", usuario, "", "", "");
 
             return Json(resultados);
         }
@@ -82,7 +88,9 @@ namespace ServiciosMunicipio.Controllers
             {
                 resultados = Buscar.obtenerClavesPredial(clavePredial);
             }
-             
+            String usuario = "";
+            dao.guardarRegistro("","", "Clave Predial : " + clavePredial.claveCuentaPredial + clavePredial.numCuentaPredial, Request != null ? Request.UserHostAddress : "0:0:0:0",
+                Request != null ? Request.UserHostName : "ninguno", Request != null ? Request.Url.ToString() : "///////", usuario, "", "", "");
             return Json(resultados);
         }
 
@@ -99,7 +107,10 @@ namespace ServiciosMunicipio.Controllers
                 {
                     resultados = Buscar.obtenerResultadoFolioReal(folioReal, municipioCE, offset);
                 }
-            } 
+            }
+            String usuario = "";
+            dao.guardarRegistro("", "", "Folio Real : " + folioReal, Request != null ? Request.UserHostAddress : "0:0:0:0",
+                Request != null ? Request.UserHostName : "ninguno", Request != null ? Request.Url.ToString() : "///////", usuario, "", "", "");
             return Json(resultados, JsonRequestBehavior.AllowGet); 
         }
 
@@ -129,7 +140,9 @@ namespace ServiciosMunicipio.Controllers
                     resultados = Buscar.obtenerResultadoUbicacionPredio(ubicacionPredio, pag);
                 }                
             }
-            
+            String usuario = "";
+            dao.guardarRegistro("", "", "Ubicacion Predio : ", Request != null ? Request.UserHostAddress : "0:0:0:0",
+                Request != null ? Request.UserHostName : "ninguno", Request != null ? Request.Url.ToString().Substring(0, 60) : "///////", usuario, ubicacionPredio.asentamiento != "" ? ubicacionPredio.asentamiento : ubicacionPredio.calle, "", "");
             return Json(resultados);
         }
 
@@ -156,7 +169,9 @@ namespace ServiciosMunicipio.Controllers
                     resultados = Buscar.obtenerResultadoUbicacionPredio(ubicacionPredio, pag);
                 }
             }
-
+            String usuario = "";
+            dao.guardarRegistro("", "", "Ubicacion Predio", Request != null ? Request.UserHostAddress : "0:0:0:0",
+                Request != null ? Request.UserHostName : "ninguno", Request != null ? Request.Url.ToString().Substring(0,60) : "///////", usuario, ubicacionPredio.asentamiento != "" ? ubicacionPredio.asentamiento : ubicacionPredio.calle, "", "");
             return Json(resultados, JsonRequestBehavior.AllowGet);
         }
 
@@ -173,7 +188,9 @@ namespace ServiciosMunicipio.Controllers
                     resultados = Buscar.obtenerResultadoPersonaFisica(personaFisica, pag, max);
                 }                
             }
-            
+            String usuario = "";
+            dao.guardarRegistro("", "", "Nombre Propietario Persona Fisica", Request != null ? Request.UserHostAddress : "0:0:0:0",
+                Request != null ? Request.UserHostName : "ninguno", Request != null ? Request.Url.ToString() : "///////", usuario , personaFisica.nombre, personaFisica.apaterno, personaFisica.amaterno);
             return Json(resultados);
         }
 
@@ -190,7 +207,10 @@ namespace ServiciosMunicipio.Controllers
                 if (max > 0) {
                     resultados = Buscar.obtenerResultadoPersonaMoral(razonSocial, municipio, pag, max);
                 }                
-            }            
+            }
+            String usuario = "";
+            dao.guardarRegistro("", "", "Nombre Propietario Persona Moral", Request != null ? Request.UserHostAddress : "0:0:0:0",
+                Request != null ? Request.UserHostName : "ninguno", Request != null ? Request.Url.ToString() : "///////", usuario, razonSocial, "", "");
             return Json(resultados, JsonRequestBehavior.AllowGet);
         }
     }

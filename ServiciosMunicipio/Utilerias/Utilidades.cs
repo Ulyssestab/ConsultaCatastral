@@ -1,4 +1,5 @@
-﻿using ServiciosMunicipio.Models.Entidades;
+﻿using log4net;
+using ServiciosMunicipio.Models.Entidades;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,6 +9,7 @@ namespace ServiciosMunicipio.Utilerias
 {
     public class Utilidades
     {
+        private static readonly ILog log = LogManager.GetLogger(typeof(Utilidades));
         public String completarCeros(int num, String cad) 
         {
             if (cad == null || "".Equals(cad))
@@ -33,6 +35,7 @@ namespace ServiciosMunicipio.Utilerias
                 }
                 catch (Exception e)
                 {
+                    log.Error("Error al convertir", e);
                     return "";
                 }
             }
@@ -176,6 +179,7 @@ namespace ServiciosMunicipio.Utilerias
                 }
                 catch (Exception e)
                 {
+                    log.Error("Error al convertir", e);
                 }
             }
             return "001";

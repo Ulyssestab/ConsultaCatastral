@@ -19,8 +19,10 @@ namespace ServiciosMunicipio.Tests.Controllers
             BitacoraController controller = new BitacoraController();
             BitacoraAccesoSistemas bitacora = new BitacoraAccesoSistemas();
             // Actuar
-            String result = controller.InsertarRegistroEnBitacora(bitacora);
-            
+            System.Web.Mvc.JsonResult resultado = (System.Web.Mvc.JsonResult)controller.InsertarRegistroEnBitacora(bitacora);
+
+            String result = resultado.Data.ToString();
+
             // Declarar
             Assert.IsNotNull(result);
             Assert.IsTrue(result.Equals("ERROR"));       
@@ -32,8 +34,7 @@ namespace ServiciosMunicipio.Tests.Controllers
             String result = "OK";
             BitacoraController controller = new BitacoraController();
            
-            DateTime fecha = DateTime.ParseExact("2025-07-08 01:52:33", "yyyy-MM-dd HH:mm:ss", System.Globalization.CultureInfo.InvariantCulture);
-            //DateTime.ParseExact(dater, "yyyy-MM-dd HH:mm:ss", CultureInfo.CurrentCulture);
+            DateTime fecha = DateTime.ParseExact("2025-07-08 01:52:33", "yyyy-MM-dd HH:mm:ss", System.Globalization.CultureInfo.InvariantCulture);            
 
             BitacoraAccesoSistemas bitacora = new BitacoraAccesoSistemas() {
                 ALTAREGISTROTABLA = fecha,
@@ -51,8 +52,9 @@ namespace ServiciosMunicipio.Tests.Controllers
                 USUARIOALTA = "Administrador"
             };
             // Actuar             
-            result = controller.InsertarRegistroEnBitacora(bitacora);
+            System.Web.Mvc.JsonResult resultado = (System.Web.Mvc.JsonResult)controller.InsertarRegistroEnBitacora(bitacora);
 
+            result = resultado.Data.ToString();
 
             // Declarar
             Assert.IsNotNull(result);

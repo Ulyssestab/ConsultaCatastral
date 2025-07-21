@@ -1,4 +1,5 @@
-﻿using ServiciosMunicipio.Models;
+﻿using log4net;
+using ServiciosMunicipio.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,6 +10,7 @@ namespace ServiciosMunicipio.Dao
     public class BitacoraDao
     {
         private WFTRAMITESEntities db = new WFTRAMITESEntities();
+        private static readonly ILog log = LogManager.GetLogger(typeof(BitacoraDao));
         public string insertarDatos(BitacoraAccesoSistemas bitacora)
         {
             String respuesta = "OK";
@@ -30,6 +32,7 @@ namespace ServiciosMunicipio.Dao
                 }
                 catch (Exception e)
                 {
+                    log.Error("Error al convertir", e);
                     return "ERROR";
                 }
 
@@ -39,6 +42,28 @@ namespace ServiciosMunicipio.Dao
                 respuesta = "ERROR";
             }
             return respuesta;
+        }
+
+        public String guardarRegistro(String claveCatastralEstandar, String claveCatastralOriginal, String tipo, String ip, String terminal, String url, String usuario , String nombre, String apP, String apM){
+            DateTime d = DateTime.Now;
+            DateTime fechaActual = DateTime.Parse(d.Year + "-" + d.Month + "-" + d.Day + " " + d.Hour + ":" + d.Minute + ":" + d.Second);
+            BitacoraAccesoSistemas bitacora = new BitacoraAccesoSistemas()
+            {
+                ALTAREGISTROTABLA = fechaActual,
+                APELLIDO_MATERNO = apM,
+                APELLIDO_PATERNO = apP,
+                APLICATIVO = "Consulta Catastral",
+                CVE_CAT_EST = claveCatastralEstandar,
+                CVE_CAT_ORI = claveCatastralOriginal,
+                DESCRIPCION = "Realizo busqueda por " + tipo,
+                ID = 0,
+                IP_ALTA = ip,
+                NOMBRE_O_RAZON_SOCIAL = nombre,
+                TERMINALALTA = terminal,
+                URL = url,
+                USUARIOALTA = usuario
+            };
+            return insertarDatos(bitacora);
         }
     }
 }
