@@ -1,4 +1,5 @@
 ﻿using log4net;
+using ServiciosMunicipio.Controllers;
 using ServiciosMunicipio.Models;
 using ServiciosMunicipio.Utilerias;
 using System;
@@ -12,7 +13,7 @@ namespace ServiciosMunicipio.Repositorio.Impl
 {
     public class RepositorioMunicipioImp : RepositorioMunicipio
     {
-        private static readonly ILog log = LogManager.GetLogger(typeof(RepositorioMunicipioImp));
+        private static readonly ILog log = LogManager.GetLogger(typeof(HomeController));
         public int ObtenerTotal(String consulta, String municipio)
         {
             var builder = new SqlConnectionStringBuilder

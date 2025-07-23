@@ -1,4 +1,6 @@
-﻿using ServiciosMunicipio.Models;
+﻿using log4net;
+using ServiciosMunicipio.Controllers;
+using ServiciosMunicipio.Models;
 using ServiciosMunicipio.Utilerias;
 using System;
 using System.Collections.Generic;
@@ -10,6 +12,7 @@ namespace ServiciosMunicipio.Repositorio.Impl
 {
     public class RepositorioSIS_ASENTAMIENTOImp : RepositorioSIS_ASENTAMIENTO
     {
+        private static readonly ILog log = LogManager.GetLogger(typeof(HomeController));
         public SIS_ASENTAMIENTOS obtenerAsentamiento(String consulta, String municipio)
         {
             var builder = new SqlConnectionStringBuilder

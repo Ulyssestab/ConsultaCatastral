@@ -1,4 +1,6 @@
-﻿using ServiciosMunicipio.Dao;
+﻿using log4net;
+using log4net.Config;
+using ServiciosMunicipio.Dao;
 using ServiciosMunicipio.Models;
 using ServiciosMunicipio.Models.Entidades;
 using System;
@@ -13,10 +15,12 @@ namespace ServiciosMunicipio.Controllers
     {
         private AccesosDao dao = new AccesosDao();
         private Servicios_Consulta_Cat_Dao daoServ = new Servicios_Consulta_Cat_Dao();
+        private static readonly ILog log = LogManager.GetLogger(typeof(HomeController));
 
         //Home/Index
         public ActionResult Index()
         {
+            log.Info("Clase de inicio --");
             ViewBag.Title = "Home Page";
             List<Servicios_Consulta_Cat> lista = daoServ.obtenerLista();
               

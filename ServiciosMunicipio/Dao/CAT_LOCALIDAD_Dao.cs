@@ -1,4 +1,5 @@
 ﻿using log4net;
+using ServiciosMunicipio.Controllers;
 using ServiciosMunicipio.Models;
 using ServiciosMunicipio.Utilerias;
 using System;
@@ -12,7 +13,7 @@ namespace ServiciosMunicipio.Dao
     {
 
         private GDB01001Entities db = new GDB01001Entities();
-        public static readonly ILog log = LogManager.GetLogger(typeof(CAT_LOCALIDAD_Dao));
+        private static readonly ILog log = LogManager.GetLogger(typeof(HomeController));
 
         public List<CAT_LOCALIDAD> obtenerLocalidades(String id)
         {

@@ -1,4 +1,5 @@
 ﻿using log4net;
+using ServiciosMunicipio.Controllers;
 using ServiciosMunicipio.Models;
 using System;
 using System.Collections.Generic;
@@ -10,7 +11,7 @@ namespace ServiciosMunicipio.Dao
     public class BitacoraDao
     {
         private WFTRAMITESEntities db = new WFTRAMITESEntities();
-        private static readonly ILog log = LogManager.GetLogger(typeof(BitacoraDao));
+        private static readonly ILog log = LogManager.GetLogger(typeof(HomeController));
         public string insertarDatos(BitacoraAccesoSistemas bitacora)
         {
             String respuesta = "OK";

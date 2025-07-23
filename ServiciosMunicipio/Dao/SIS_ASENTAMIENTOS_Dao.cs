@@ -1,4 +1,5 @@
 ﻿using log4net;
+using ServiciosMunicipio.Controllers;
 using ServiciosMunicipio.Models;
 using ServiciosMunicipio.Repositorio.Impl;
 using ServiciosMunicipio.Utilerias;
@@ -12,7 +13,7 @@ namespace ServiciosMunicipio.Dao
     public class SIS_ASENTAMIENTOS_Dao
     {
         private RepositorioSIS_ASENTAMIENTOImp db = new RepositorioSIS_ASENTAMIENTOImp();
-        public static readonly ILog log = LogManager.GetLogger(typeof(SIS_ASENTAMIENTOS_Dao));
+        private static readonly ILog log = LogManager.GetLogger(typeof(HomeController));
 
         public List<SIS_ASENTAMIENTOS> obtenerAsentamientos(SIS_ASENTAMIENTOS asentamiento)
         {
