@@ -13,7 +13,7 @@ namespace ServiciosMunicipio.Controllers
     public class BitacoraController : Controller
     {
         private BitacoraDao dao = new BitacoraDao();
-        private static readonly ILog log = LogManager.GetLogger(typeof(HomeController));
+        private static readonly ILog log = LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
         // GET: Bitacora/InsertarRegistroEnBitacora
         [System.Web.Http.HttpPost]
         public ActionResult InsertarRegistroEnBitacora([FromBody] BitacoraAccesoSistemas bitacora) {

@@ -17,10 +17,16 @@ namespace ServiciosMunicipio.Controllers
         private Servicios_Consulta_Cat_Dao daoServ = new Servicios_Consulta_Cat_Dao();
         private static readonly ILog log = LogManager.GetLogger(typeof(HomeController));
 
-        //Home/Index
+        //Home/Index    
         public ActionResult Index()
         {
             log.Info("Clase de inicio --");
+            log.Info("Clase de inicio --");
+            log.Debug("Debug logging");
+            log.Info("Info logging");
+            log.Warn("Warn logging");
+            log.Error("Error logging");
+            log.Fatal("Fatal logging");
             ViewBag.Title = "Home Page";
             List<Servicios_Consulta_Cat> lista = daoServ.obtenerLista();
               
