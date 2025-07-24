@@ -97,12 +97,25 @@
           <Property Name="Puesto" Type="int" />
           <Property Name="Descripcion_Puesto" Type="varchar" MaxLength="100" />
         </EntityType>
+        <EntityType Name="UsuarioPropietario">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FK_NombreUsuario" Type="nvarchar" MaxLength="120" Nullable="false" />
+          <Property Name="FK_CuentaCatastralEstandar" Type="nvarchar" MaxLength="32" Nullable="false" />
+          <Property Name="FK_CuentaCatastralOriginal" Type="nvarchar" MaxLength="17" />
+          <Property Name="Propietario" Type="nvarchar" MaxLength="150" />
+          <Property Name="CoPropietario" Type="nvarchar" MaxLength="150" />
+          <Property Name="Habilitado" Type="bit" Nullable="false" />
+        </EntityType>
         <EntityContainer Name="WFTRAMITESModelStoreContainer">
           <EntitySet Name="BitacoraAccesoSistemas" EntityType="Self.BitacoraAccesoSistemas" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Cat_Acceso" EntityType="Self.Cat_Acceso" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Cat_Municipio" EntityType="Self.Cat_Municipio" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Servicios_Consulta_Cat" EntityType="Self.Servicios_Consulta_Cat" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Usuario" EntityType="Self.Usuario" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UsuarioPropietario" EntityType="Self.UsuarioPropietario" Schema="dbo" store:Type="Tables" />
         </EntityContainer>
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
@@ -125,6 +138,7 @@
           <EntitySet Name="Usuario" EntityType="WFTRAMITESModel.Usuario" />
           <EntitySet Name="Servicios_Consulta_Cat" EntityType="WFTRAMITESModel.Servicios_Consulta_Cat" />
           <EntitySet Name="BitacoraAccesoSistemas" EntityType="WFTRAMITESModel.BitacoraAccesoSistemas" />
+          <EntitySet Name="UsuarioPropietario" EntityType="WFTRAMITESModel.UsuarioPropietario" />
         </EntityContainer>
         <EntityType Name="Cat_Acceso">
           <Key>
@@ -206,6 +220,18 @@
           <Property Name="APLICATIVO" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
           <Property Name="URL" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
           <Property Name="DESCRIPCION" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="UsuarioPropietario">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FK_NombreUsuario" Type="String" Nullable="false" MaxLength="120" FixedLength="false" Unicode="true" />
+          <Property Name="FK_CuentaCatastralEstandar" Type="String" Nullable="false" MaxLength="32" FixedLength="false" Unicode="true" />
+          <Property Name="FK_CuentaCatastralOriginal" Type="String" MaxLength="17" FixedLength="false" Unicode="true" />
+          <Property Name="Propietario" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="CoPropietario" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="Habilitado" Type="Boolean" Nullable="false" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -307,6 +333,19 @@
                 <ScalarProperty Name="CVE_CAT_EST" ColumnName="CVE_CAT_EST" />
                 <ScalarProperty Name="ALTAREGISTROTABLA" ColumnName="ALTAREGISTROTABLA" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UsuarioPropietario">
+            <EntityTypeMapping TypeName="WFTRAMITESModel.UsuarioPropietario">
+              <MappingFragment StoreEntitySet="UsuarioPropietario">
+                <ScalarProperty Name="Habilitado" ColumnName="Habilitado" />
+                <ScalarProperty Name="CoPropietario" ColumnName="CoPropietario" />
+                <ScalarProperty Name="Propietario" ColumnName="Propietario" />
+                <ScalarProperty Name="FK_CuentaCatastralOriginal" ColumnName="FK_CuentaCatastralOriginal" />
+                <ScalarProperty Name="FK_CuentaCatastralEstandar" ColumnName="FK_CuentaCatastralEstandar" />
+                <ScalarProperty Name="FK_NombreUsuario" ColumnName="FK_NombreUsuario" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

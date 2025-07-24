@@ -164,6 +164,11 @@ namespace ServiciosMunicipio.Repositorio.Impl
             return lista;
         }
 
+        internal int ObtenerNumPredios(string usuarioAcceso)
+        {
+            throw new NotImplementedException();
+        }
+
         public  List<TareasTramite> obtenerListaTareasTramites(String consulta)
         {
             var builder = new SqlConnectionStringBuilder

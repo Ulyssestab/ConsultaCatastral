@@ -185,5 +185,36 @@ namespace ServiciosMunicipio.Utilerias
             return "001";
         }
 
+        public static Boolean cadenasValidate(String cad)
+        {
+            char[] cadena = cad.ToLower().ToCharArray();
+            //
+            //        if (cadena.length <= 6) {
+            //            return false;
+            //        }
+            for (int i = 0; i < cadena.Length; i++)
+            {
+                if (cadena[i] == ' '
+                        || cadena[i] == '='
+                        || cadena[i] == '?'
+                        || cadena[i] == '+'
+                        || cadena[i] == '*'
+                        || cadena[i] == '-'
+                        || cadena[i] == '%'
+                        || cadena[i] == '/'
+                        || cadena[i] == '.'
+                        || cadena[i] == ','
+                        || cadena[i] == ';'
+                        || cadena[i] == '!'
+                        || cadena[i] == '<'
+                        || cadena[i] == '>'
+                        || cadena[i] == ':')
+                {
+                    return false;
+                }
+            }
+            return true;
+        }
+
     }
 }

@@ -87,5 +87,6 @@ namespace ServiciosMunicipio.Dao
                 + " order by st.Orden";
             return repositorio.obtenerListaTareasTramites(consulta);
         }
+
     }
 }

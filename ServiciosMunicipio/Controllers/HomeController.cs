@@ -41,11 +41,22 @@ namespace ServiciosMunicipio.Controllers
             return Json(dao.AccesoUsuario(nombreUsuario), JsonRequestBehavior.AllowGet);
         }
 
+
         //Home/ObtenerAcceso
         public ActionResult ObtenerAcceso(String nombreUsuario, String pass)
         {
+            Usuario user = new Usuario();
 
-            return Json(dao.existeAccesoUsuario(nombreUsuario, pass), JsonRequestBehavior.AllowGet);
+            if (String.IsNullOrEmpty(nombreUsuario) || String.IsNullOrEmpty(pass))
+            {
+                return Json("ERROR", JsonRequestBehavior.AllowGet);
+            }
+            else 
+            {
+                Json(dao.validarCredenciales(nombreUsuario, pass), JsonRequestBehavior.AllowGet);
+            }
+
+            return Json(user, JsonRequestBehavior.AllowGet);
         }
 
         //Home/AccesoUsuarioPerfil

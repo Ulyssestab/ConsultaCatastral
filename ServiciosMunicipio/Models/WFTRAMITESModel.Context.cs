@@ -30,5 +30,6 @@ namespace ServiciosMunicipio.Models
         public virtual DbSet<Usuario> Usuario { get; set; }
         public virtual DbSet<Servicios_Consulta_Cat> Servicios_Consulta_Cat { get; set; }
         public virtual DbSet<BitacoraAccesoSistemas> BitacoraAccesoSistemas { get; set; }
+        public virtual DbSet<UsuarioPropietario> UsuarioPropietario { get; set; }
     }
 }
