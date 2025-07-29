@@ -247,6 +247,9 @@
     <Compile Include="Models\Usuario.cs">
       <DependentUpon>WFTRAMITESModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\UsuarioPropietario.cs">
+      <DependentUpon>WFTRAMITESModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\WFTRAMITESModel.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -274,6 +277,7 @@
     <Compile Include="Utilerias\AntiInjectionSQL.cs" />
     <Compile Include="Utilerias\Catalogos.cs" />
     <Compile Include="Utilerias\Constantes.cs" />
+    <Compile Include="Utilerias\EncriptadorSHA1.cs" />
     <Compile Include="Utilerias\JSONparser.cs" />
     <Compile Include="Utilerias\Utilidades.cs" />
   </ItemGroup>

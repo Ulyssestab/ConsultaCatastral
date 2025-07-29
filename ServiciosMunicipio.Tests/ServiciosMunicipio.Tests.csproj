@@ -119,6 +119,7 @@
     </Compile>
     <Compile Include="Utilerias\AntiInjectionSQLTest.cs" />
     <Compile Include="Utilerias\CatalogosTest.cs" />
+    <Compile Include="Utilerias\EncriptadorSHA1Test.cs" />
     <Compile Include="Utilerias\JSONparserTest.cs" />
     <Compile Include="Utilerias\UtilidadesTest.cs" />
   </ItemGroup>

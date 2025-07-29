@@ -111,20 +111,22 @@ namespace ServiciosMunicipio.Dao
         }
         public Usuario validarCredenciales(String username, String password)
         {
+            
+            
             Usuario user = null;
             String error = "";
             String activo;
             String sistema ="";
             String tipo_usuario;
 
-            if (Utilidades.cadenasValidate(username) && Utilidades.cadenasValidate(username))
+            if (Utilidades.cadenasValidate(username) && Utilidades.cadenasValidate(password))
             {
                 Boolean acceso_user = AccesoUsuario(username);
                 String User_Perfil = AccesoUsuarioPerfil(username);
                 //existUser(username, EcriptarString.getStringMessageDigest(password, EcriptarString.SHA1));
                 //user = Buscar.existUserAccess(username, EcriptarString.getStringMessageDigest(password, EcriptarString.SHA1));
                 user = existeAccesoUsuario(username, password);
-                if (user != null)
+                if (user != null && !String.IsNullOrEmpty(user.NombreUsuario))
                 {
                     //Existe y se obtuvo la información si no está en sesión                          
                     if (!user.NombreUsuario.Equals("PASSWORD") && !user.Contrasena.Equals("NO CORRECTO"))
@@ -283,7 +285,7 @@ namespace ServiciosMunicipio.Dao
         {
             if (user.FK_Puesto > 0)
             {
-                return user.FK_Puesto);
+                return user.FK_Puesto;
             }
             return 0;
         }

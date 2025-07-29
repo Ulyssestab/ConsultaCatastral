@@ -9,7 +9,7 @@ namespace ServiciosMunicipio.Utilerias
     {
         public const int LONG_MAX_LOC = 6;
         public const int LONG_MAX_NOM = 50;
-        public const int LONG_MAX_NOM_USUARIO = 10;
+        public const int LONG_MAX_NOM_USUARIO = 30;
         public const int LIKE = 0;
         public const int IGUAL = 1;
         public const int COMILLAS = 2;
