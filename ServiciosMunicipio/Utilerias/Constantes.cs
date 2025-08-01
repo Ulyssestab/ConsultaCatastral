@@ -13,6 +13,7 @@ namespace ServiciosMunicipio.Utilerias
         public const int LIKE = 0;
         public const int IGUAL = 1;
         public const int COMILLAS = 2;
+        public const int RESULTADOS_POR_PAGINA = 10;
 
         public const int TOTALXPREDIO = 0;
         public const int XPREDIO = 1;

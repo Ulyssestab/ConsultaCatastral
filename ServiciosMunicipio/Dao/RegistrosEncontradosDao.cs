@@ -156,7 +156,7 @@ namespace ServiciosMunicipio.Dao
 
             String condicion = utilidades.formarConsultaUbicacionXpredio(ubicacionPredio, Constantes.XPREDIO);
             String consulta = "";
-            int max = 10;
+            int max = Constantes.RESULTADOS_POR_PAGINA;
             
             if (String.IsNullOrEmpty(condicion) == false)
             {
