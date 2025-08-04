@@ -54,6 +54,14 @@ namespace ServiciosMunicipio.Repositorio.Impl
                     elemento.APELLIDO_MATERNO = !reader.IsDBNull(14) ? reader.GetString(14) : "";                    
                     elemento.SUP_TERRENO_ESCRITURAS = !reader.IsDBNull(15) ? reader.GetDecimal(15) + "" : Decimal.MinValue + "";
                     elemento.SUP_CONSTRUCCION = !reader.IsDBNull(16) ? reader.GetDecimal(16) + "" : Decimal.MinValue + "";
+                    if (elemento.APELLIDO_MATERNO == "<NULL>")
+                    {
+                        elemento.APELLIDO_MATERNO = "";
+                    }
+                    if (elemento.APELLIDO_PATERNO == "<NULL>")
+                    {
+                        elemento.APELLIDO_PATERNO = "";
+                    }
                 }
 
             }
