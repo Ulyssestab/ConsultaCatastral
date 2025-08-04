@@ -94,11 +94,11 @@ namespace ServiciosMunicipio.Repositorio.Impl
                     elemento.NOMBRE_COMPLETO_VIALIDAD = !reader.IsDBNull(9) ? reader.GetString(9) : "";
                     elemento.NUMERO_EXTERIOR = !reader.IsDBNull(10) ? reader.GetString(10) : "";
 
-                    if (elemento.APELLIDO_MATERNO == "<NULL>")
+                    if (elemento.APELLIDO_MATERNO == "<NULL>" || elemento.APELLIDO_MATERNO == "<Null>")
                     {
                         elemento.APELLIDO_MATERNO = "";
                     }
-                    if (elemento.APELLIDO_PATERNO == "<NULL>")
+                    if (elemento.APELLIDO_PATERNO == "<NULL>" || elemento.APELLIDO_PATERNO == "<Null>")
                     {
                         elemento.APELLIDO_PATERNO = "";
                     }
