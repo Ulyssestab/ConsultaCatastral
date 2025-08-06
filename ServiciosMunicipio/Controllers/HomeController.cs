@@ -7,6 +7,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Web.Http;
 using System.Web.Mvc;
 
 namespace ServiciosMunicipio.Controllers
@@ -35,10 +36,12 @@ namespace ServiciosMunicipio.Controllers
         }
 
         //Home/Acceso
-        public ActionResult Acceso(String nombreUsuario)
+        [System.Web.Http.HttpPost]
+        public ActionResult Acceso([FromBody] String nombreUsuario)
         {
-
-            return Json(dao.AccesoUsuario(nombreUsuario), JsonRequestBehavior.AllowGet);
+            String s = nombreUsuario;
+            Boolean acceso = dao.AccesoUsuario(nombreUsuario);
+            return Json(acceso, JsonRequestBehavior.AllowGet);
         }
 
 
