@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Web;
+using System.Web.Mvc;
 
 namespace ServiciosMunicipio.Dao
 {
@@ -109,185 +110,87 @@ namespace ServiciosMunicipio.Dao
             
             return dao.existeAccesoUsuario(consulta);
         }
-        public Usuario validarCredenciales(String username, String password)
+        
+        public String getMunicipioUsuario(string username)
         {
-            
-            
-            Usuario user = null;
-            String error = "";
-            String activo;
-            String sistema ="";
-            String tipo_usuario;
+            String tipo = "";
+            username = AntiInjectionSQL.quitarComillas(username, Constantes.LONG_MAX_NOM_USUARIO);
 
-            if (Utilidades.cadenasValidate(username) && Utilidades.cadenasValidate(password))
-            {
-                Boolean acceso_user = AccesoUsuario(username);
-                String User_Perfil = AccesoUsuarioPerfil(username);
-                //existUser(username, EcriptarString.getStringMessageDigest(password, EcriptarString.SHA1));
-                //user = Buscar.existUserAccess(username, EcriptarString.getStringMessageDigest(password, EcriptarString.SHA1));
-                user = existeAccesoUsuario(username, password);
-                if (user != null && !String.IsNullOrEmpty(user.NombreUsuario))
-                {
-                    //Existe y se obtuvo la información si no está en sesión                          
-                    if (!user.NombreUsuario.Equals("PASSWORD") && !user.Contrasena.Equals("NO CORRECTO"))
-                    {
-                        if (!user.NombreUsuario.Equals("USUARIO") && !user.Contrasena.Equals("NO_HABLITADO"))
-                        {
-                            DateTime fechaActual2 = DateTime.Now;
-                            int Dia2 = ((int)fechaActual2.DayOfWeek);
-                            int Hora2 = fechaActual2.Hour;
+            //Defino la consulta a realizar
+            String consulta =
+           "DECLARE @TIPO_U VARCHAR(5)\n" +
+           "SELECT @TIPO_U = U.FK_Puesto\n" +
+           "FROM dbo.USUARIO AS U \n" +
+           "WHERE U.NombreUsuario = '" + username + "'\n" +
+           "IF @TIPO_U = 3\n" +
+           "BEGIN\n" +
+           "	SELECT '000' AS CVE_MUNICIPIO, 'EXTERNO' AS NOM_MUNICIPIO\n" +
+           "END\n" +
+           "ELSE\n" +
+           "BEGIN\n" +
+           "	DECLARE @ROLE_NAME VARCHAR(50)\n" +
+           "	SELECT @ROLE_NAME = RVP.ROLE_NAME\n" +
+           "	FROM dbo.Usuario AS U\n" +
+           "		INNER JOIN dbo.ROLE_CONSULTA_VISIBILIDAD_PERFIL AS RVP ON RVP.ID_PERFIL = U.FK_Cat_Perfil\n" +
+           "	WHERE U.NombreUsuario = '" + username + "'\n" +
+           "	IF @ROLE_NAME = 'ROLE_SEDUM' OR @ROLE_NAME = 'ROLE_MUNICIPIO'\n" +
+           "	BEGIN\n" +
+           "		SELECT MC.CVE_MUNICIPIO, MC.NOM_MUNICIPIO\n" +
+           "		FROM dbo.Usuario AS U\n" +
+           "			INNER JOIN dbo.MUNICIPIO_CONSULTA AS MC ON MC.CVE_MUNICIPIO = U.FK_Cat_Municipio\n" +
+           "		WHERE U.NombreUsuario = '" + username + "'\n" +
+           "	END\n" +
+           "	ELSE\n" +
+           "	BEGIN\n" +
+           "		SELECT distinct SMC.CVE_MUNICIPIO, MC.NOM_MUNICIPIO\n" +
+           "		FROM dbo.Usuario AS U\n" +
+           "			INNER JOIN dbo.Cat_Perfil AS CP ON CP.Id = U.FK_Cat_Perfil\n" +
+           "			INNER JOIN dbo.REL_PERFILMUNICIPIOCONSULTA AS SMC ON U.FK_Cat_Perfil = SMC.ID_PERFIL\n" +
+           "			INNER JOIN dbo.MUNICIPIO_CONSULTA AS MC ON MC.CVE_MUNICIPIO = SMC.CVE_MUNICIPIO\n" +
+           "		WHERE U.NombreUsuario = '" + username + "' ORDER BY MC.NOM_MUNICIPIO\n" +
+           "	END\n" +
+           "END";
+            tipo = dao.getRoleNameUsuario(consulta);
+            return tipo;
+        }
 
-                            if (acceso_user == true && (Dia2 >= 2 && Dia2 <= 6) && (Hora2 >= 8 && Hora2 <= 19))
-                            {
-                                activo = "SI";
-                                sistema = "/vistas/interno/index.jsp";
-                                tipo_usuario = 2 + "";
-
-                                /*
-                                HttpSession sesion = request.getSession(true);
-                                sesion.setAttribute("idsession", request.getRequestedSessionId());
-                                sesion.setAttribute("username", user.getNombreUsuario());
-                                sesion.setAttribute("activo", activo);
-                                sesion.setAttribute("tipo_usuario", tipo_usuario);
-                                sesion.setAttribute("mPioMapa", mPioMapa);
-                                sesion.setAttribute("ROLE", Buscar.getRoleNameUsuario(username));
-                                sesion.setAttribute("MUNICIPIOS_LIST", Buscar.getMunicipioUsuario(username));*/
-
-                                //Se agrega al objeto sesion el role de usuario para las validaciones de visibilidad                               
-                                return user;
-                            }
-                            if (!user.NombreUsuario.Equals("EL_USUARIO") && !user.Contrasena.Equals("ESTA_EN_SESION"))
-                            {                                
-                                //Si usuario es hallado en la base de datos
-                                DateTime fechaActual = DateTime.Now;
-                                int Dia = ((int)fechaActual2.DayOfWeek);
-                                int Hora = fechaActual2.Hour;
-
-                                if (User_Perfil.Equals("1") || User_Perfil.Equals("2") || User_Perfil.Equals("1002") || User_Perfil.Equals("5009")
+        public bool validarPerfil(String User_Perfil)
+        {
+            return User_Perfil.Equals("1") || User_Perfil.Equals("2") || User_Perfil.Equals("1002") || User_Perfil.Equals("5009")
                                         || User_Perfil.Equals("6013") || User_Perfil.Equals("6014") || User_Perfil.Equals("6015") || User_Perfil.Equals("6016")
                                         || User_Perfil.Equals("6021") || User_Perfil.Equals("7021") || User_Perfil.Equals("8023") || User_Perfil.Equals("8024")
                                         || User_Perfil.Equals("8025") || User_Perfil.Equals("9025") || User_Perfil.Equals("9026") || User_Perfil.Equals("9027")
-                                        || User_Perfil.Equals("9028") || User_Perfil.Equals("9029"))
-                                {
-                                    if ((Dia >= 2 && Dia <= 6) && (Hora >= 8 && Hora <= 19))
-                                    {
-                                        activo = "SI";
-                                        sistema = "/vistas/interno/index.jsp";
-                                        tipo_usuario = tipoUsuario(user) + "";
-
-                                      /*  System.out.println(tipo_usuario);
-                                        HttpSession sesion = request.getSession(true);
-                                        sesion.setAttribute("idsession", request.getRequestedSessionId());
-                                        sesion.setAttribute("username", user.getNombreUsuario());
-                                        sesion.setAttribute("activo", activo);
-                                        sesion.setAttribute("tipo_usuario", tipo_usuario);
-                                        sesion.setAttribute("mPioMapa", mPioMapa);
-                                        sesion.setAttribute("ROLE", Buscar.getRoleNameUsuario(username));
-                                        sesion.setAttribute("MUNICIPIOS_LIST", Buscar.getMunicipioUsuario(username));*/
-
-                                        //Se agrega al objeto sesion el role de usuario para las validaciones de visibilidad
-                                        //getServletConfig().getServletContext().getRequestDispatcher(sistema).forward(request, response);
-                                        return user;
-                                    }
-                                    else
-                                    {
-                                        error = "Este usuario no tiene acceso.";
-                                        activo = "NO";
-                                       // request.setAttribute("error", error);
-                                       // getServletConfig().getServletContext().getRequestDispatcher("/").forward(request, response);
-                                        return user;
-                                    }
-                                }
-                                else
-                                {
-                                    switch (tipoUsuario(user)) 
-                                    {
-                                        case 1:
-                                            activo = "SI";
-                                            sistema = "/vistas/interno/index.jsp";
-                                            tipo_usuario = tipoUsuario(user) + "";
-                                            break;
-                                        case 2:
-                                            activo = "SI";
-                                            sistema = "/vistas/interno/index.jsp";
-                                            tipo_usuario = tipoUsuario(user) + "";
-                                            break;
-                                        case 3:
-                                            int totalPredios = db.UsuarioPropietario.SqlQuery("  SELECT * as npredios FROM [dbo].[UsuarioPropietario] as up where "
-                                                + "  [FK_NombreUsuario]='" + @username + "'").ToList().Count;
-                                            if (totalPredios > 0)
-                                            {
-                                                activo = "SI";
-                                                tipo_usuario = tipoUsuario(user) + "";
-                                                sistema = "/vistas/externo/index.jsp";
-                                            }
-                                            else
-                                            {
-                                                error = "Este usuario no tiene predios relacionados";
-                                               // request.setAttribute("error", error);
-                                               // getServletConfig().getServletContext().getRequestDispatcher("/").forward(request, response);
-                                                return user;
-                                            }
-                                            break;
-                                        default:
-                                            error = "Este usuario no tiene acceso.";
-                                            activo = "NO";
-//                                            request.setAttribute("error", error);
- //                                           getServletConfig().getServletContext().getRequestDispatcher("/").forward(request, response);
-                                            return user;   
-                                    }
-                                    if (activo.Equals("SI"))
-                                    {
-                                     /*   System.out.println(tipo_usuario);
-                                        HttpSession sesion = request.getSession(true);
-                                        sesion.setAttribute("idsession", request.getRequestedSessionId());
-                                        sesion.setAttribute("username", user.getNombreUsuario());
-                                        sesion.setAttribute("activo", activo);
-                                        sesion.setAttribute("tipo_usuario", tipo_usuario);
-                                        sesion.setAttribute("mPioMapa", mPioMapa);
-                                        sesion.setAttribute("ROLE", Buscar.getRoleNameUsuario(username));
-                                        sesion.setAttribute("MUNICIPIOS_LIST", Buscar.getMunicipioUsuario(username));*/
-                                    }
-                                    //Se agrega al objeto sesion el role de usuario para las validaciones de visibilidad
-                                    //getServletConfig().getServletContext().getRequestDispatcher(sistema).forward(request, response);
-                                    return user;
-                                }
-                            }
-                            error = "El usuario " + username + " ya tiene una sesion activa.";
-                        }
-
-                        else
-                        {
-                            error = "El usuario " + username + " no tiene permisos para ingresar al sistema";
-                        }
-
-                    }
-                    else
-                    {
-                        error = "La contraseña es incorrecta.";
-                    }
-
-                }
-                else
-                {
-                    error = "Esta cuenta de usuario no existe.";
-                }
-                ///////////////EN EXIST USER
-            }
-            else
-            {
-                error = "Usuario o Contraseña no válidos.";
-            }
-
-            return user;
+                                        || User_Perfil.Equals("9028") || User_Perfil.Equals("9029");
         }
-        private int tipoUsuario(Usuario user)
+
+        public String getRoleNameUsuario(string username)
+        {
+            String rol = "";
+            username = AntiInjectionSQL.quitarComillas(username, Constantes.LONG_MAX_NOM_USUARIO);
+                        
+            //Defino la consulta a realizar
+            String consulta = "SELECT RC.ROLE_NAME\n" +
+                "FROM dbo.ROLE_CONSULTA_VISIBILIDAD_PERFIL AS RC\n" +
+                "LEFT JOIN dbo.Cat_Perfil AS CP ON RC.ID_PERFIL = CP.Id\n" +
+                "LEFT JOIN dbo.Usuario AS U ON U.FK_Cat_Perfil = CP.Id\n" +
+                "WHERE U.NombreUsuario = '" + username + "'";
+            rol =  dao.getRoleNameUsuario(consulta);
+            return rol;
+        }
+
+        public int tipoUsuario(Usuario user)
         {
             if (user.FK_Puesto > 0)
             {
                 return user.FK_Puesto;
             }
             return 0;
+        }
+
+        public int totalPredios(String username)
+        {
+            return db.UsuarioPropietario.SqlQuery("  SELECT * as npredios FROM [dbo].[UsuarioPropietario] as up where "
+                                                 + "  [FK_NombreUsuario]='" + @username + "'").ToList().Count;
         }
     }
 

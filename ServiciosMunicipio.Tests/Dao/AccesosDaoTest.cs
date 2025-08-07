@@ -37,5 +37,13 @@ namespace ServiciosMunicipio.Tests.Dao
             Assert.IsNotNull(usuario);
             Assert.AreEqual(usuario.NombreUsuario, "EL_USUARIO");
         }
+
+        [TestMethod]
+        public void getMunicipioUsuarioTest()
+        {
+            String municipio = dao.getMunicipioUsuario(nombreUsuario);
+            Assert.IsNotNull(municipio);
+            Assert.AreEqual("009", municipio);
+        }
     }
 }

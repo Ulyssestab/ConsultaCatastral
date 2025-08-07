@@ -65,5 +65,50 @@ namespace ServiciosMunicipio.Repositorio.Impl
             return usuario;
         }
 
+        public string getRoleNameUsuario(string consulta)
+        {
+            var builder = new SqlConnectionStringBuilder
+            {
+                DataSource = Constantes.DataSource,
+                UserID = Constantes.UserID,
+                Password = Constantes.Password,
+                InitialCatalog = Constantes.InitialCatalogW
+            };
+
+            String rol = "";
+
+            var connectionString = builder.ConnectionString;
+            var connection = new SqlConnection(connectionString);
+
+            try
+            {
+
+
+                connection.Open();
+
+                var command = new SqlCommand(consulta, connection);
+                var reader = command.ExecuteReader();
+
+                while (reader.Read())
+                {
+
+                    rol = !reader.IsDBNull(0) ? reader.GetString(0) : "";                    
+                }
+
+            }
+            catch (SqlException e)
+            {
+                log.Error($"SQL Error: {e.Message}");
+            }
+            catch (Exception e)
+            {
+                log.Error($"SQL Error: {e.Message}");
+            }
+            finally
+            {
+                connection.Close();
+            }
+            return rol;
+        }
     }
 }
