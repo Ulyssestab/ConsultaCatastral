@@ -65,6 +65,95 @@ namespace ServiciosMunicipio.Repositorio.Impl
             return usuario;
         }
 
+        public string AccesoUsuarioPerfilPortal(string consulta)
+        {
+            var builder = new SqlConnectionStringBuilder
+            {
+                DataSource = Constantes.DataSource,
+                UserID = Constantes.UserID,
+                Password = Constantes.Password,
+                InitialCatalog = Constantes.InitialCatalogW
+            };
+
+            Usuario usuario = new Usuario();
+
+            var connectionString = builder.ConnectionString;
+            var connection = new SqlConnection(connectionString);
+            try
+            {
+
+                connection.Open();
+
+                var command = new SqlCommand(consulta, connection);
+                var reader = command.ExecuteReader();
+
+                while (reader.Read())
+                {
+
+                    usuario.FK_Cat_Perfil = !reader.IsDBNull(8) ? Int32.Parse(reader.GetString(8) == "" ? "0" : reader.GetString(8)) : 0;                  
+                }
+
+            }
+            catch (SqlException e)
+            {
+                log.Error($"SQL Error: {e.Message}");
+            }
+            catch (Exception e)
+            {
+                log.Error($"SQL Error: {e.Message}");
+            }
+            finally
+            {
+                connection.Close();
+            }
+            return usuario.FK_Cat_Perfil +"";
+        }
+
+        public bool existeAccesoUsuarioPortal(string consulta)
+        {            
+            var builder = new SqlConnectionStringBuilder
+            {
+                DataSource = Constantes.DataSource,
+                UserID = Constantes.UserID,
+                Password = Constantes.Password,
+                InitialCatalog = Constantes.InitialCatalogW
+            };
+
+            Usuario usuario = new Usuario();
+
+            var connectionString = builder.ConnectionString;
+            var connection = new SqlConnection(connectionString);
+            try
+            {
+
+                connection.Open();
+
+                var command = new SqlCommand(consulta, connection);
+                var reader = command.ExecuteReader();
+
+                while (reader.Read())
+                {
+
+                    usuario.NombreCompleto = !reader.IsDBNull(0) ? reader.GetString(0) : "";
+                    usuario.NombreUsuario = !reader.IsDBNull(3) ? reader.GetString(3) : "";
+                }
+
+            }
+            catch (SqlException e)
+            {
+                log.Error($"SQL Error: {e.Message}");
+            }
+            catch (Exception e)
+            {
+                log.Error($"SQL Error: {e.Message}");
+            }
+            finally
+            {
+                connection.Close();
+            }
+            return !String.IsNullOrEmpty(usuario.NombreCompleto) ? true : false;
+        }
+
         public string getRoleNameUsuario(string consulta)
         {
             var builder = new SqlConnectionStringBuilder

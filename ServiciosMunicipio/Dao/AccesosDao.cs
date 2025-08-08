@@ -36,6 +36,22 @@ namespace ServiciosMunicipio.Dao
             return r;
         }
 
+        public Boolean AccesoUsuarioPortal(String nombreUsuario)
+        {
+            Boolean existe = false;
+            String consulta = "SELECT * FROM dbo.Cat_Acceso where NombreUsuario = '" + @nombreUsuario + "'";
+            existe = dao.existeAccesoUsuarioPortal(consulta);                        
+            return existe;
+        }
+
+        public String AccesoUsuarioPerfilPortal(String nombreUsuario)
+        {
+            String r = "";
+            String consulta = "SELECT * FROM dbo.Usuario where NombreUsuario = '" + @nombreUsuario + "' and Habilitado = 'true'";
+            r = dao.AccesoUsuarioPerfilPortal(consulta);     
+            return r;
+        }
+
         public Usuario existeAccesoUsuario(String usuario, String password) //existUserAccess
         {
             usuario = AntiInjectionSQL.quitarComillas(usuario, Constantes.LONG_MAX_NOM_USUARIO);
