@@ -23,5 +23,7 @@ namespace ServiciosMunicipio.Utilerias
         public const string DataSource = "10.1.2.126";
         public const string InitialCatalogW = "WFTRAMITES";
         public const string InitialCatalogM = "GDB01";
+
+        public const String HOST = "https//localhost:44330";
     }
 }

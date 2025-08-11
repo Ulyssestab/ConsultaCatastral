@@ -67,20 +67,7 @@ namespace ServiciosMunicipio.Controllers
         {
             return Json(dao.AccesoUsuarioPerfil(nombreUsuario), JsonRequestBehavior.AllowGet);
         }
-        //Home/AccesoUsuarioPerfil
-        public ActionResult Formas()
-        {
-            List<Forma> formas = new List<Forma>();
-            formas.Add(new Forma { accion = "POST", nombre = "formxCatastralEst", controlador = "ClaveCatastral" });
-            formas.Add(new Forma { accion = "POST", nombre = "formxCatastralOri", controlador = "ClaveCatastralOriginal" });
-            formas.Add(new Forma { accion = "POST", nombre = "formxPredial", controlador = "ClavePredial" });
-            formas.Add(new Forma { accion = "POST", nombre = "formxFolioReal", controlador = "FolioReal" });
-            formas.Add(new Forma { accion = "POST", nombre = "formxUbicacion", controlador = "Ubicacion" });
-            formas.Add(new Forma { accion = "POST", nombre = "formxPerFisica", controlador = "NombrePropietarioPersonaFisica" });
-            formas.Add(new Forma { accion = "POST", nombre = "formxPerMoral", controlador = "NombrePropietarioPersonaMoral" });
-            return Json(formas, JsonRequestBehavior.AllowGet);
-        }
-
+  
         public Usuario validarCredenciales(String username, String password)
         {
 
@@ -156,7 +143,7 @@ namespace ServiciosMunicipio.Controllers
                                     }
                                     else
                                     {
-                                        error = "Este usuario no tiene acceso.";
+                                        user.VersionSDE = "Este usuario no tiene acceso.";
                                         activo = "NO";
                                         this.Session["error"] = error;
                                         // getServletConfig().getServletContext().getRequestDispatcher("/").forward(request, response);
@@ -187,14 +174,14 @@ namespace ServiciosMunicipio.Controllers
                                             }
                                             else
                                             {
-                                                error = "Este usuario no tiene predios relacionados";
+                                                this.Session["error"] = "Este usuario no tiene predios relacionados";
                                                 // request.setAttribute("error", error);
                                                 // getServletConfig().getServletContext().getRequestDispatcher("/").forward(request, response);
                                                 return user;
                                             }
                                             break;
                                         default:
-                                            error = "Este usuario no tiene acceso.";
+                                            this.Session["error"] = "Este usuario no tiene acceso.";
                                             activo = "NO";
                                             //                                            request.setAttribute("error", error);
                                             //                                           getServletConfig().getServletContext().getRequestDispatcher("/").forward(request, response);
@@ -215,30 +202,30 @@ namespace ServiciosMunicipio.Controllers
                                     return user;
                                 }
                             }
-                            error = "El usuario " + username + " ya tiene una sesion activa.";
+                            this.Session["error"] = "El usuario " + username + " ya tiene una sesion activa.";
                         }
 
                         else
                         {
-                            error = "El usuario " + username + " no tiene permisos para ingresar al sistema";
+                            this.Session["error"] = "El usuario " + username + " no tiene permisos para ingresar al sistema";
                         }
 
                     }
                     else
                     {
-                        error = "La contraseña es incorrecta.";
+                        this.Session["error"] = "La contraseña es incorrecta.";
                     }
 
                 }
                 else
                 {
-                    error = "Esta cuenta de usuario no existe.";
+                    this.Session["error"] = "Esta cuenta de usuario no existe.";
                 }
                 ///////////////EN EXIST USER
             }
             else
             {
-                error = "Usuario o Contraseña no válidos.";
+                this.Session["error"] = "Usuario o Contraseña no válidos.";
             }
 
             return user;

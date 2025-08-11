@@ -172,11 +172,12 @@ namespace ServiciosMunicipio.Dao
 
         public bool validarPerfil(String User_Perfil)
         {
-            return User_Perfil.Equals("1") || User_Perfil.Equals("2") || User_Perfil.Equals("1002") || User_Perfil.Equals("5009")
+            bool validar = User_Perfil.Equals("1") || User_Perfil.Equals("2") || User_Perfil.Equals("1002") || User_Perfil.Equals("5009")
                                         || User_Perfil.Equals("6013") || User_Perfil.Equals("6014") || User_Perfil.Equals("6015") || User_Perfil.Equals("6016")
                                         || User_Perfil.Equals("6021") || User_Perfil.Equals("7021") || User_Perfil.Equals("8023") || User_Perfil.Equals("8024")
                                         || User_Perfil.Equals("8025") || User_Perfil.Equals("9025") || User_Perfil.Equals("9026") || User_Perfil.Equals("9027")
                                         || User_Perfil.Equals("9028") || User_Perfil.Equals("9029");
+            return validar;
         }
 
         public String getRoleNameUsuario(string username)
@@ -207,6 +208,14 @@ namespace ServiciosMunicipio.Dao
         {
             return db.UsuarioPropietario.SqlQuery("  SELECT * as npredios FROM [dbo].[UsuarioPropietario] as up where "
                                                  + "  [FK_NombreUsuario]='" + @username + "'").ToList().Count;
+        }
+
+        public int CerrarSesion(String nombreUsuario) 
+        {
+            String consulta = "UPDATE [dbo].[Usuario]\n" +
+               "SET SesionActivaConsulta = 0\n" +
+               "WHERE NombreUsuario = '" + nombreUsuario + "'";
+           return dao.cerrarSesion(consulta);
         }
     }
 

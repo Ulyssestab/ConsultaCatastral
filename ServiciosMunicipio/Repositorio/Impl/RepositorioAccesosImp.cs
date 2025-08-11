@@ -90,7 +90,7 @@ namespace ServiciosMunicipio.Repositorio.Impl
                 while (reader.Read())
                 {
 
-                    usuario.FK_Cat_Perfil = !reader.IsDBNull(8) ? Int32.Parse(reader.GetString(8) == "" ? "0" : reader.GetString(8)) : 0;                  
+                    usuario.FK_Cat_Perfil = !reader.IsDBNull(21) ? reader.GetInt32(21) : 0;                  
                 }
 
             }
@@ -198,6 +198,45 @@ namespace ServiciosMunicipio.Repositorio.Impl
                 connection.Close();
             }
             return rol;
+        }
+
+        public int cerrarSesion(string consulta)
+        {
+            var builder = new SqlConnectionStringBuilder
+            {
+                DataSource = Constantes.DataSource,
+                UserID = Constantes.UserID,
+                Password = Constantes.Password,
+                InitialCatalog = Constantes.InitialCatalogW
+            };
+            
+
+            var connectionString = builder.ConnectionString;
+            var connection = new SqlConnection(connectionString);
+
+            try
+            {
+
+
+                connection.Open();
+
+                var command = new SqlCommand(consulta, connection);
+                return command.ExecuteNonQuery();                
+
+            }
+            catch (SqlException e)
+            {
+                log.Error($"SQL Error: {e.Message}");
+            }
+            catch (Exception e)
+            {
+                log.Error($"SQL Error: {e.Message}");
+            }
+            finally
+            {
+                connection.Close();
+            }
+            return 0;
         }
     }
 }
