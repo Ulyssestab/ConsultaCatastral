@@ -20,7 +20,7 @@ namespace ServiciosMunicipio
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
-            //log4net.Config.XmlConfigurator.Configure(new FileInfo(Server.MapPath("~/log4net.config")));
+            log4net.Config.XmlConfigurator.Configure();
         }
     }
 }

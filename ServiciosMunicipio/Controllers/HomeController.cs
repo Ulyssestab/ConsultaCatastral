@@ -75,7 +75,7 @@ namespace ServiciosMunicipio.Controllers
             Usuario user = null;
             String error = "";
             String activo;
-            String sistema = "";
+            //String sistema = "";
             String tipo_usuario;
             String mPioMapa = "";
 
@@ -100,7 +100,7 @@ namespace ServiciosMunicipio.Controllers
                             if (acceso_user == true && (Dia2 >= 2 && Dia2 <= 6) && (Hora2 >= 8 && Hora2 <= 19))
                             {
                                 activo = "SI";
-                                sistema = "/vistas/interno/index.jsp";
+                                //sistema = "/vistas/interno/index.jsp";
                                 tipo_usuario = 2 + "";
                                 this.Session["idsession"] = Session.SessionID; //request.getRequestedSessionId()
                                 this.Session["username"] = user.NombreUsuario;
@@ -125,7 +125,7 @@ namespace ServiciosMunicipio.Controllers
                                     if ((Dia >= 2 && Dia <= 6) && (Hora >= 8 && Hora <= 19))
                                     {
                                         activo = "SI";
-                                        sistema = "/vistas/interno/index.jsp";
+                                        //sistema = "/vistas/interno/index.jsp";
                                         tipo_usuario = dao.tipoUsuario(user) + "";
 
                                         this.Session["idsession"] = Session.SessionID; //request.getRequestedSessionId()
@@ -156,12 +156,12 @@ namespace ServiciosMunicipio.Controllers
                                     {
                                         case 1:
                                             activo = "SI";
-                                            sistema = "/vistas/interno/index.jsp";
+                                            //sistema = "/vistas/interno/index.jsp";
                                             tipo_usuario = dao.tipoUsuario(user) + "";
                                             break;
                                         case 2:
                                             activo = "SI";
-                                            sistema = "/vistas/interno/index.jsp";
+                                            //sistema = "/vistas/interno/index.jsp";
                                             tipo_usuario = dao.tipoUsuario(user) + "";
                                             break;
                                         case 3:
@@ -170,7 +170,7 @@ namespace ServiciosMunicipio.Controllers
                                             {
                                                 activo = "SI";
                                                 tipo_usuario = dao.tipoUsuario(user) + "";
-                                                sistema = "/vistas/externo/index.jsp";
+                                                //sistema = "/vistas/externo/index.jsp";
                                             }
                                             else
                                             {
