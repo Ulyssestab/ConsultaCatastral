@@ -84,7 +84,7 @@ namespace ServiciosMunicipio.Tests.Controllers
             variable = util.parseJsonStringUsuario(jsonString);
             // Declarar
             Assert.IsNotNull(result);
-            Assert.AreEqual("EL_USUARIO", variable.NombreUsuario);
+            Assert.AreEqual(nombre, variable.NombreUsuario);
         }
     }
 }

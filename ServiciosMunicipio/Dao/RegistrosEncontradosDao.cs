@@ -64,7 +64,7 @@ namespace ServiciosMunicipio.Dao
                     + " left join sde.SIS_PC_PROPIETARIOS p on p.OBJECTID=(select max (OBJECTID)from sde.SIS_PC_PROPIETARIOS where STATUSREGISTROTABLA='ACTIVO' and CVE_CAT_ORI=pp.CVE_CAT_ORI)"
                     + " where pp.cve_cat_est like '" + @clave + "%' "
                     + "and pp.STATUSREGISTROTABLA = 'ACTIVO') as a"
-                    + " WHERE NUM BETWEEN " + ((@pag * @max) + 1) + " AND " + (((@pag + 1) * @max)) + ";";
+                    + " WHERE NUM BETWEEN " + ((@pag * @max) + 1) + " AND " + (((@pag + 1) * @max)) + " ORDER BY NUMERO_EXTERIOR;";
             return repositorio.ObtenerLista(consulta, municipio);
         }
 
@@ -104,7 +104,7 @@ namespace ServiciosMunicipio.Dao
                                 + "left join sde.SIS_PC_UBICACION pu on pu.CVE_CAT_ORI = pp.CVE_CAT_ORI and pu.STATUSREGISTROTABLA = 'ACTIVO' "
                                 + "left join sde.SIS_PC_PROPIETARIOS p on p.OBJECTID=(select max (OBJECTID)from sde.SIS_PC_PROPIETARIOS where STATUSREGISTROTABLA='ACTIVO' and CVE_CAT_ORI=pp.CVE_CAT_ORI) "
                                 + "where pp.cve_Predial = '" + @clavePredialNum + @numCuentaPredial + "' and pp.STATUSREGISTROTABLA = 'ACTIVO') as a " 
-                                + "WHERE NUM BETWEEN " + ((pag * max) + 1) + " AND " + (((pag + 1) * max)) + ";";
+                                + "WHERE NUM BETWEEN " + ((pag * max) + 1) + " AND " + (((pag + 1) * max)) + " ORDER BY NUMERO_EXTERIOR;";
             return repositorio.ObtenerLista(consulta, municipioCE);
         }
         public int numFolioreal(string folioReal, string municipio) //numFolioReal
@@ -146,7 +146,7 @@ namespace ServiciosMunicipio.Dao
                + " left join sde.SIS_PC_UBICACION pu on pu.CVE_CAT_EST = pp.cve_cat_est and pu.STATUSREGISTROTABLA = 'ACTIVO'"
                + " left join sde.SIS_PC_PROPIETARIOS p on p.OBJECTID=(select max (OBJECTID)from sde.SIS_PC_PROPIETARIOS where STATUSREGISTROTABLA='ACTIVO' and CVE_CAT_ORI=pp.CVE_CAT_ORI)"
                + " where pp.FOLIO_REAL='" + @folioReal + "' and pp.STATUSREGISTROTABLA = 'ACTIVO') as a"
-               + " WHERE NUM BETWEEN " + ((pag * max) + 1) + " AND " + (((pag + 1) * max)) + ";";
+               + " WHERE NUM BETWEEN " + ((pag * max) + 1) + " AND " + (((pag + 1) * max)) + " ORDER BY NUMERO_EXTERIOR;";
 
             return repositorio.ObtenerLista(consulta, municipio);
         }
@@ -176,7 +176,7 @@ namespace ServiciosMunicipio.Dao
                           + "from sde.sis_pc_clave_catastral pp left join sde.SIS_PC_UBICACION pu on pu.CVE_CAT_EST = pp.CVE_CAT_EST left join sde.SIS_PC_PROPIETARIOS p on p.CVE_CAT_EST = pp.CVE_CAT_EST "
                           + "Where pp.STATUSREGISTROTABLA = 'ACTIVO' AND pu.STATUSREGISTROTABLA = 'ACTIVO' and P.STATUSREGISTROTABLA='ACTIVO' AND " + condicion + " "
                           + ") as a "
-                          + "WHERE NUM BETWEEN " + ((pag * max) + 1) + " AND " + (((pag + 1) * max)) + "";
+                          + "WHERE NUM BETWEEN " + ((pag * max) + 1) + " AND " + (((pag + 1) * max)) + " ORDER BY NUMERO_EXTERIOR";
             }
             return repositorio.ObtenerLista(consulta, ubicacionPredio.municipio);
         }
@@ -235,7 +235,7 @@ namespace ServiciosMunicipio.Dao
                 + " left join sde.SIS_PC_PROPIETARIOS p on p.OBJECTID=(select max (OBJECTID)from sde.SIS_PC_PROPIETARIOS where STATUSREGISTROTABLA='ACTIVO'" 
                 + " and CVE_CAT_ORI=pp.CVE_CAT_ORI)" 
                 + "	where  pp.CVE_CAT_ORI like '" + claveCatastralOriginal + "%' and  pp.STATUSREGISTROTABLA = 'ACTIVO') as a" 
-                + " WHERE NUM BETWEEN " + ((pag * max) + 1) + " AND " + (((pag + 1) * max)) + ";"; 
+                + " WHERE NUM BETWEEN " + ((pag * max) + 1) + " AND " + (((pag + 1) * max)) + " ORDER BY NUMERO_EXTERIOR;"; 
             String municipio = Utilidades.getMunicipioCve_Ori(claveCatastralOriginal);
             return repositorio.ObtenerLista(consulta, municipio);
         }
@@ -273,7 +273,7 @@ namespace ServiciosMunicipio.Dao
                + "where pp.STATUSREGISTROTABLA = 'ACTIVO' and p.tipo_persona = 'FISICA' and pu.STATUSREGISTROTABLA = 'ACTIVO' and p.STATUSREGISTROTABLA = 'ACTIVO' " 
                + "and RTRIM(LTRIM(ISNULL(p.NOMBRE_O_RAZON_SOCIAL,''))) + ' ' + RTRIM(LTRIM(ISNULL(p.APELLIDO_PATERNO ,''))) + ' ' + RTRIM(LTRIM(ISNULL(p.APELLIDO_MATERNO,''))) " 
                + "LIKE '%" + nombre + " " + apaterno + " " + amaterno + "%' ) as a " 
-               + "WHERE NUM BETWEEN " + ((pag * max) + 1) + " AND " + (((pag + 1) * max)) + ";";
+               + "WHERE NUM BETWEEN " + ((pag * max) + 1) + " AND " + (((pag + 1) * max)) + " ORDER BY NOMBRE_O_RAZON_SOCIAL, APELLIDO_PATERNO, APELLIDO_MATERNO ;";
 
             return repositorio.ObtenerLista(consulta, municipio);
         }
@@ -302,7 +302,7 @@ namespace ServiciosMunicipio.Dao
                 + "where pp.STATUSREGISTROTABLA = 'ACTIVO' and p.tipo_persona = 'moral' and pu.STATUSREGISTROTABLA = 'ACTIVO' " 
                 + "and p.STATUSREGISTROTABLA = 'ACTIVO' " 
                 + "and p.NOMBRE_O_RAZON_SOCIAL like '%" + @razonSocial + "%') as a " 
-                + "WHERE NUM BETWEEN " + ((pag * max) + 1) + " AND " + (((pag + 1) * max)) + ";";
+                + "WHERE NUM BETWEEN " + ((pag * max) + 1) + " AND " + (((pag + 1) * max)) + " ORDER BY NOMBRE_O_RAZON_SOCIAL;";
             return repositorio.ObtenerLista(consulta, municipio);
         }
 
