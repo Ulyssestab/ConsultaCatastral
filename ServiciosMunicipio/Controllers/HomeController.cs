@@ -72,10 +72,8 @@ namespace ServiciosMunicipio.Controllers
         {
 
 
-            Usuario user = null;
-            String error = "";
-            String activo;
-            //String sistema = "";
+            Usuario user = null;            
+            String activo;            
             String tipo_usuario;
             String mPioMapa = "";
 
@@ -83,8 +81,7 @@ namespace ServiciosMunicipio.Controllers
             {
                 Boolean acceso_user = dao.AccesoUsuario(username);
                 String User_Perfil = dao.AccesoUsuarioPerfil(username);
-                //existUser(username, EcriptarString.getStringMessageDigest(password, EcriptarString.SHA1));
-                //user = Buscar.existUserAccess(username, EcriptarString.getStringMessageDigest(password, EcriptarString.SHA1));
+                
                 user = dao.existeAccesoUsuario(username, password);
                 if (user != null && !String.IsNullOrEmpty(user.NombreUsuario))
                 {
@@ -100,15 +97,17 @@ namespace ServiciosMunicipio.Controllers
                             if (acceso_user == true && (Dia2 >= 2 && Dia2 <= 6) && (Hora2 >= 8 && Hora2 <= 19))
                             {
                                 activo = "SI";
-                                //sistema = "/vistas/interno/index.jsp";
+                          
                                 tipo_usuario = 2 + "";
-                                this.Session["idsession"] = Session.SessionID; //request.getRequestedSessionId()
-                                this.Session["username"] = user.NombreUsuario;
-                                this.Session["activo"] = activo;
-                                this.Session["tipo_usuario"] = tipo_usuario;
-                                this.Session["mPioMapa"] = mPioMapa;
-                                this.Session["ROLE"] = dao.getRoleNameUsuario(username);
-                                this.Session["MUNICIPIOS_LIST"] = dao.getMunicipioUsuario(username);
+                                if (this.Session != null) { 
+                                    this.Session["idsession"] = Session.SessionID; 
+                                    this.Session["username"] = user.NombreUsuario;
+                                    this.Session["activo"] = activo;
+                                    this.Session["tipo_usuario"] = tipo_usuario;
+                                    this.Session["mPioMapa"] = mPioMapa;
+                                    this.Session["ROLE"] = dao.getRoleNameUsuario(username);
+                                    this.Session["MUNICIPIOS_LIST"] = dao.getMunicipioUsuario(username);
+                                }                                
 
                                 //Se agrega al objeto sesion el role de usuario para las validaciones de visibilidad                               
                                 return user;
@@ -124,29 +123,31 @@ namespace ServiciosMunicipio.Controllers
                                 {
                                     if ((Dia >= 2 && Dia <= 6) && (Hora >= 8 && Hora <= 19))
                                     {
-                                        activo = "SI";
-                                        //sistema = "/vistas/interno/index.jsp";
+                                        activo = "SI";                                        
                                         tipo_usuario = dao.tipoUsuario(user) + "";
 
-                                        this.Session["idsession"] = Session.SessionID; //request.getRequestedSessionId()
-                                        this.Session["username"] = user.NombreUsuario;
-                                        this.Session["activo"] = activo;
-                                        this.Session["tipo_usuario"] = tipo_usuario;
-                                        this.Session["mPioMapa"] = mPioMapa;
-                                        this.Session["ROLE"] = dao.getRoleNameUsuario(username);
-                                        this.Session["MUNICIPIOS_LIST"] = dao.getMunicipioUsuario(username);
+                                        if (this.Session != null)
+                                        {
+                                            this.Session["idsession"] = Session.SessionID; //request.getRequestedSessionId()
+                                            this.Session["username"] = user.NombreUsuario;
+                                            this.Session["activo"] = activo;
+                                            this.Session["tipo_usuario"] = tipo_usuario;
+                                            this.Session["mPioMapa"] = mPioMapa;
+                                            this.Session["ROLE"] = dao.getRoleNameUsuario(username);
+                                            this.Session["MUNICIPIOS_LIST"] = dao.getMunicipioUsuario(username);
+                                        }
 
-
-                                        //Se agrega al objeto sesion el role de usuario para las validaciones de visibilidad
-                                        //getServletConfig().getServletContext().getRequestDispatcher(sistema).forward(request, response);
+                                        //Se agrega al objeto sesion el role de usuario para las validaciones de visibilidad                                      
                                         return user;
                                     }
                                     else
                                     {
                                         user.VersionSDE = "Este usuario no tiene acceso.";
                                         activo = "NO";
-                                        this.Session["error"] = error;
-                                        // getServletConfig().getServletContext().getRequestDispatcher("/").forward(request, response);
+                                        if (this.Session != null)
+                                        {
+                                            this.Session["error"] = "Error";
+                                        }
                                         return user;
                                     }
                                 }
@@ -155,13 +156,11 @@ namespace ServiciosMunicipio.Controllers
                                     switch (dao.tipoUsuario(user))
                                     {
                                         case 1:
-                                            activo = "SI";
-                                            //sistema = "/vistas/interno/index.jsp";
+                                            activo = "SI";                                        
                                             tipo_usuario = dao.tipoUsuario(user) + "";
                                             break;
                                         case 2:
-                                            activo = "SI";
-                                            //sistema = "/vistas/interno/index.jsp";
+                                            activo = "SI";                                            
                                             tipo_usuario = dao.tipoUsuario(user) + "";
                                             break;
                                         case 3:
@@ -169,63 +168,80 @@ namespace ServiciosMunicipio.Controllers
                                             if (totalPredios > 0)
                                             {
                                                 activo = "SI";
-                                                tipo_usuario = dao.tipoUsuario(user) + "";
-                                                //sistema = "/vistas/externo/index.jsp";
+                                                tipo_usuario = dao.tipoUsuario(user) + "";                                                
                                             }
                                             else
                                             {
-                                                this.Session["error"] = "Este usuario no tiene predios relacionados";
-                                                // request.setAttribute("error", error);
-                                                // getServletConfig().getServletContext().getRequestDispatcher("/").forward(request, response);
+                                                if (this.Session != null) 
+                                                {
+                                                    this.Session["error"] = "Este usuario no tiene predios relacionados";
+                                                }                                                                                                
                                                 return user;
                                             }
                                             break;
                                         default:
-                                            this.Session["error"] = "Este usuario no tiene acceso.";
+                                            if (this.Session != null)
+                                            {
+                                                this.Session["error"] = "Este usuario no tiene acceso.";
+                                            }                                            
                                             activo = "NO";
-                                            //                                            request.setAttribute("error", error);
-                                            //                                           getServletConfig().getServletContext().getRequestDispatcher("/").forward(request, response);
                                             return user;
                                     }
                                     if (activo.Equals("SI"))
                                     {
-                                        this.Session["idsession"] = Session.SessionID; //request.getRequestedSessionId()
-                                        this.Session["username"] = user.NombreUsuario;
-                                        this.Session["activo"] = activo;
-                                        this.Session["tipo_usuario"] = tipo_usuario;
-                                        this.Session["mPioMapa"] = mPioMapa;
-                                        this.Session["ROLE"] = dao.getRoleNameUsuario(username);
-                                        this.Session["MUNICIPIOS_LIST"] = dao.getMunicipioUsuario(username);
+                                        if (this.Session != null)
+                                        {
+                                            this.Session["idsession"] = Session.SessionID; 
+                                            this.Session["username"] = user.NombreUsuario;
+                                            this.Session["activo"] = activo;
+                                            this.Session["tipo_usuario"] = tipo_usuario;
+                                            this.Session["mPioMapa"] = mPioMapa;
+                                            this.Session["ROLE"] = dao.getRoleNameUsuario(username);
+                                            this.Session["MUNICIPIOS_LIST"] = dao.getMunicipioUsuario(username);
+                                        }                                        
                                     }
-                                    //Se agrega al objeto sesion el role de usuario para las validaciones de visibilidad
-                                    //getServletConfig().getServletContext().getRequestDispatcher(sistema).forward(request, response);
                                     return user;
                                 }
                             }
-                            this.Session["error"] = "El usuario " + username + " ya tiene una sesion activa.";
+                            if (this.Session != null)
+                            {
+                                this.Session["error"] = "El usuario " + username + " ya tiene una sesion activa.";
+                            }                            
                         }
 
                         else
                         {
-                            this.Session["error"] = "El usuario " + username + " no tiene permisos para ingresar al sistema";
+                            if (this.Session != null)
+                            {
+                                this.Session["error"] = "El usuario " + username + " no tiene permisos para ingresar al sistema";
+                            }
                         }
 
                     }
                     else
                     {
-                        this.Session["error"] = "La contraseña es incorrecta.";
+                        if (this.Session != null)
+                        {
+                            this.Session["error"] = "La contraseña es incorrecta.";
+                        }
                     }
 
                 }
                 else
                 {
-                    this.Session["error"] = "Esta cuenta de usuario no existe.";
+                    if (this.Session != null)
+                    {
+                        this.Session["error"] = "Esta cuenta de usuario no existe.";
+                    }
                 }
                 ///////////////EN EXIST USER
             }
             else
             {
-                this.Session["error"] = "Usuario o Contraseña no válidos.";
+                if (this.Session != null)
+                {
+                    this.Session["error"] = "Usuario o Contraseña no válidos.";
+                }
             }
 
             return user;
