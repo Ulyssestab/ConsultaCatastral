@@ -86,5 +86,45 @@ namespace ServiciosMunicipio.Tests.Controllers
             Assert.IsNotNull(result);
             Assert.AreNotEqual(nombre, variable.NombreUsuario);
         }
+
+        [TestMethod]
+
+        public void estatusUsuarioEnSesionTest()
+        {
+            // Disponer
+            HomeController controller = new HomeController();
+            Usuario variable = new Usuario();
+
+            // Actuar
+            System.Web.Mvc.JsonResult result = (System.Web.Mvc.JsonResult)controller.estatusUsuarioEnSesion(nombre);
+            var data = result.Data;
+            var serializer = new JavaScriptSerializer();
+            var jsonString = serializer.Serialize(data);
+
+            variable = util.parseJsonStringUsuario(jsonString);
+            // Declarar
+            Assert.IsNotNull(result);
+            Assert.AreNotEqual(0, variable.SesionActivaConsulta);
+        }
+        
+        [TestMethod]
+        public void CerrarSesionTest()
+        {
+            // Disponer
+            HomeController controller = new HomeController();
+            Usuario variable = new Usuario();
+
+            // Actuar
+            System.Web.Mvc.JsonResult result = (System.Web.Mvc.JsonResult)controller.CerrarSesion(nombre);
+            var data = result.Data;
+            var serializer = new JavaScriptSerializer();
+            var jsonString = serializer.Serialize(data);
+
+            variable = util.parseJsonStringUsuario(jsonString);
+            // Declarar
+            Assert.IsNotNull(result);
+            Assert.AreNotEqual(1, variable);
+        }
+
     }
 }

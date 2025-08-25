@@ -1,0 +1,208 @@
+﻿body {
+    background-color: #ece8e5;
+    margin: 0px;
+    background-image: url(../Content/imagenes/fondo.jpg);
+    background-size: cover;
+    background-attachment: fixed;
+    list-style: none;
+    overflow: auto;
+}
+
+.sigod_footer {
+    position: sticky;
+    width: 100%;
+    margin-top: 0;
+}
+
+.footer-list {
+    list-style: none;
+    padding-left: 0;
+}
+
+.sigod_socialbar {
+    font-size: 1em;
+}
+
+.sigod .navbar, .sigod_navbar {
+    position: sticky;
+    top: 0;
+    z-index: 99;
+    font-family: "Visby CF Bold";
+    background-color: white;
+    color: white;
+}
+
+.sigod_socialbar {
+    padding: 0.5rem;
+}
+
+.sigod .navbar .navbar-brand, .sigod_navbar .navbar-brand {
+    -webkit-box-flex: 0;
+    -ms-flex: 0 1 92px;
+    flex: 0 1 92px;
+}
+
+.align-items-center {
+    -webkit-box-align: center !important;
+    -ms-flex-align: center !important;
+    align-items: center !important;
+}
+
+.sigod .navbar .navbar-collapse, .sigod_navbar .navbar-collapse {
+    margin-top: 16px;
+}
+
+.sigod_search .input-wrap input {
+    border: solid 2px var(--bs-primary);
+    border-radius: 20px;
+    padding: 0.2rem 2rem 0.2rem 1rem;
+    font-size: 0.8rem;
+    font-weight: 600;
+    background: transparent;
+    -webkit-transition: all ease 0.5s;
+    transition: all ease 0.5s;
+    width: 100%;
+}
+
+.sigod .navbar .navbar-wrapper, .sigod_navbar .navbar-wrapper {
+    -webkit-box-flex: 1;
+    -ms-flex: 1;
+    flex: 1;
+    margin-left: 2em;
+}
+
+.sigod .navbar .navbar-brand img, .sigod_navbar .navbar-brand img {
+    width: auto;
+}
+
+.sigod .navbar .nav-item, .sigod_navbar .nav-item {
+    border-bottom: 2px solid transparent;
+}
+
+.sigod_weather {
+    margin-right: 1rem;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+}
+
+.sigod_search .input-wrap .btn-icon-search {
+    background: transparent;
+    width: 27px;
+    height: 27px;
+    border-radius: 50%;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    position: absolute;
+    right: 1px;
+    top: 1px;
+}
+
+.sigod .navbar .nav-item .dropdown-toggle, .sigod_navbar .nav-item .dropdown-toggle {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+}
+
+.sigod_search .input-wrap {
+    position: relative;
+}
+
+@media (min-width: 992px) {
+    .d-lg-block {
+        display: block !important;
+    }
+}
+
+.sigod_socialbar-icon {
+    margin-right: 0.5rem;
+    display: inline-block;
+    -webkit-transition: all ease 0.33s;
+    transition: all ease 0.33s;
+}
+
+.titulo_cabecera {
+    color: white;
+    background: linear-gradient(90deg, #425AD3 0%, #BDC7F9 100%) !important;
+}
+
+#banner_principal {
+    width: 100%;
+    height: 96px;
+    /* background-image: url('imagenes/bnr_ctr2.jpg');*/
+    background-size: 100% 100%;
+    padding-top: 0px;
+    padding-right: 0px;
+}
+
+#tabla_resultados {
+    margin-left: 1em;
+    max-width: 98%;
+    padding-top: 1em;
+}
+
+.tabla_resultados {
+    overflow: auto;
+    max-height: 90%;
+    background-color: rgb(211, 242, 245);
+    color: black;
+}
+
+.titulo_cabecera {
+    color: white;
+    background: linear-gradient(90deg, #425AD3 0%, #BDC7F9 100%) !important;
+}
+
+.navbar * {
+    font-weight: normal !important;
+    text-shadow: none !important;
+    font-weight: 600 !important;
+}
+
+.align-items-center {
+    -webkit-box-align: center !important;
+    -ms-flex-align: center !important;
+    align-items: center !important;
+}
+
+.justify-content-end {
+    justify-content: flex-end !important;
+}
+
+.d-flex {
+    display: flex !important;
+}
+
+.col {
+    flex: 1 0 0;
+}
+
+.footable > thead > tr > th, .footable > thead > tr > td {
+    position: relative;
+    border-color: blue;
+    color: #2f328a;
+}
+
+.footable > thead > tr > th, .footable > thead > tr > td {
+    vertical-align: middle;
+    background-color: rgb(238, 253, 219);
+    color: black;
+    text-shadow: 0 1px 0 rgba(255, 255, 255, .2);
+    font-size: medium;
+    font-weight: bold;
+    word-wrap: break-word;
+    word-wrap: break-word;
+    -webkit-box-shadow: 0 1px 0 rgba(255, 255, 255, .8) inset;
+    -moz-box-shadow: 0 1px 0 rgba(255,255,255,.8) inset;
+    box-shadow: 0 1px 0 rgba(255, 255, 255, .8) inset;
+}

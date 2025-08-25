@@ -217,6 +217,11 @@ namespace ServiciosMunicipio.Dao
                "WHERE NombreUsuario = '" + nombreUsuario + "'";
            return dao.cerrarSesion(consulta);
         }
+
+        public Usuario estatusUsuarioEnSesion(String nombre)
+        {
+            return db.Usuario.SqlQuery("SELECT * FROM [dbo].Usuario where NombreUsuario='" + @nombre + "'").First<Usuario>();
+        }        
     }
 
 }

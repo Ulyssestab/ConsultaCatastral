@@ -246,6 +246,17 @@ namespace ServiciosMunicipio.Controllers
 
             return user;
         }
+        public ActionResult estatusUsuarioEnSesion(String nombre) 
+        {
+            Usuario usuario = dao.estatusUsuarioEnSesion(nombre);
+            return Json(usuario, JsonRequestBehavior.AllowGet);
+        }
+
+        [System.Web.Http.HttpPost]
+        public ActionResult CerrarSesion([FromBody] String nombre) 
+        {
+            return Json(dao.CerrarSesion(nombre), JsonRequestBehavior.AllowGet);
+        }
     }
 
 }
