@@ -1,9 +1,10 @@
 ﻿<div class="row">
     <div class="col">
-        <h2 class="text-center tabla_resultados">Lista de Servicios</h2>
+        <h2 class="text-center tabla_resultados" style="width: 44.5em;">Lista de Servicios</h2>
         <table class=" table footable tabla_resultados table-bordered table-striped" id="tabla_resultados">
             <thead>
                 <tr>
+                    <th>#</th>
                     <th>Servicio</th>
                     <th>Tipo</th>
                     <th>Parametros</th>
@@ -17,6 +18,7 @@
                     foreach (var item in ViewBag.Resultados)
                     {
                 <tr>
+                    <td>@item.id</td>
                     <td>@item.nombre</td>
                     <td>@item.tipo</td>
                     <td>@item.parametros</td>

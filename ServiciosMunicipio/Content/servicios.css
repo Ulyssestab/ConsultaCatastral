@@ -6,6 +6,7 @@
     background-attachment: fixed;
     list-style: none;
     overflow: auto;
+    font-size: medium;
 }
 
 .sigod_footer {
@@ -145,8 +146,7 @@
     padding-right: 0px;
 }
 
-#tabla_resultados {
-    margin-left: 1em;
+#tabla_resultados {    
     max-width: 98%;
     padding-top: 1em;
 }
