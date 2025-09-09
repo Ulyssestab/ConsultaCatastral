@@ -24,7 +24,7 @@ namespace ServiciosMunicipio.Repositorio.Impl
 
             var connectionString = builder.ConnectionString;
             var connection = new SqlConnection(connectionString);
-            String consulta = "select OBJECTID, CENT_PRED_X, CENT_PRED_Y from GDB01001.sde.SIS_PC_CENTROIDES where CVE_CAT_EST = '" + CVE_CAT_EST + "'";
+            String consulta = "select OBJECTID, CENT_PRED_X, CENT_PRED_Y from " + Constantes.InitialCatalogM + municipio + ".sde.SIS_PC_CENTROIDES where CVE_CAT_EST = '" + CVE_CAT_EST + "'";
             try
             {
 
@@ -35,7 +35,6 @@ namespace ServiciosMunicipio.Repositorio.Impl
 
                 while (reader.Read())
                 {
-
                     elemento.OBJECTID = !reader.IsDBNull(0) ? reader.GetInt32(0) : 0;
                     elemento.CENT_PRED_X = !reader.IsDBNull(1) ? reader.GetDecimal(1) : 0;
                     elemento.CENT_PRED_Y = !reader.IsDBNull(2) ? reader.GetDecimal(2) : 0;                    
