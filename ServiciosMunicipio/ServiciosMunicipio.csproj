@@ -268,11 +268,13 @@
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositorio\Impl\RepositorioAccesosImp.cs" />
+    <Compile Include="Repositorio\Impl\RepositorioCAT_LOCALIDADImpl.cs" />
     <Compile Include="Repositorio\Impl\RepositorioDetallePredioImp.cs" />
     <Compile Include="Repositorio\Impl\RepositorioMunicipioImp.cs" />
     <Compile Include="Repositorio\Impl\RepositorioSIS_ASENTAMIENTOImp.cs" />
     <Compile Include="Repositorio\Impl\RepositorioSIS_PC_CENTROIDESImpl.cs" />
     <Compile Include="Repositorio\RepositorioAccesos.cs" />
+    <Compile Include="Repositorio\RepositorioCAT_LOCALIDAD.cs" />
     <Compile Include="Repositorio\RepositorioDetallePredio.cs" />
     <Compile Include="Repositorio\RepositorioMunicipio.cs" />
     <Compile Include="Repositorio\RepositorioSIS_ASENTAMIENTO.cs" />

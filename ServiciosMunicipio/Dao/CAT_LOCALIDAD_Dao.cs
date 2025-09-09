@@ -1,6 +1,7 @@
 ﻿using log4net;
 using ServiciosMunicipio.Controllers;
 using ServiciosMunicipio.Models;
+using ServiciosMunicipio.Repositorio.Impl;
 using ServiciosMunicipio.Utilerias;
 using System;
 using System.Collections.Generic;
@@ -13,20 +14,18 @@ namespace ServiciosMunicipio.Dao
     {
 
         private GDB01001Entities db = new GDB01001Entities();
+        private RepositorioCAT_LOCALIDADImpl repo = new RepositorioCAT_LOCALIDADImpl();
         private static readonly ILog log = LogManager.GetLogger(typeof(HomeController));
 
-        public List<CAT_LOCALIDAD> obtenerLocalidades(String id)
+        public List<CAT_LOCALIDAD> obtenerLocalidades(String id, String municipio)
         {
             List<CAT_LOCALIDAD> localidades;
             id = AntiInjectionSQL.quitarComillas(id, Constantes.LONG_MAX_LOC);
+            municipio = AntiInjectionSQL.quitarComillas(municipio, Constantes.LONG_MAX_NOM);
 
             try
             {
-                localidades = db.CAT_LOCALIDAD.SqlQuery("SELECT * "
-                    + "FROM  sde.CAT_LOCALIDAD  where CVE_ENTIDAD = '01' "
-                    + "and CVE_MUNICIPIO = '001' "
-                    + "and NOM_LOCALIDAD like('%" + @id + "%') "
-                    + "order by NOM_LOCALIDAD").ToList();
+                localidades = repo.obtenerLocalidades(id, municipio);
             }
             catch (System.InvalidOperationException e)
             {
@@ -37,31 +36,16 @@ namespace ServiciosMunicipio.Dao
             return localidades;
         }
 
-        public List<CAT_LOCALIDAD> obtenerLocalidades(String clave_localidad, String nombre_localidad)
+        public List<CAT_LOCALIDAD> obtenerLocalidades(String clave_localidad, String nombre_localidad, String municipio)
         {
             List<CAT_LOCALIDAD> localidades = new List<CAT_LOCALIDAD>();
 
-            clave_localidad = AntiInjectionSQL.quitarComillas(clave_localidad, Constantes.LONG_MAX_LOC);            
-            nombre_localidad = AntiInjectionSQL.quitarComillas(nombre_localidad, Constantes.LONG_MAX_NOM);            
+            clave_localidad = AntiInjectionSQL.quitarComillas(clave_localidad, Constantes.LONG_MAX_LOC);
+            nombre_localidad = AntiInjectionSQL.quitarComillas(nombre_localidad, Constantes.LONG_MAX_NOM);
+            municipio = AntiInjectionSQL.quitarComillas(municipio, Constantes.LONG_MAX_NOM);
             try
             {
-                if (clave_localidad != null && clave_localidad != "")
-                {
-                    localidades = db.CAT_LOCALIDAD.SqlQuery("SELECT * "
-                    + "FROM  sde.CAT_LOCALIDAD  " 
-                    + "where CVE_ENTIDAD = '01' "
-                    + "and CVE_MUNICIPIO = '001' "
-                    + "and CVE_LOCALIDAD like('%" + @clave_localidad + "%') "
-                    + "order by CVE_LOCALIDAD").ToList();
-                }
-                else if (nombre_localidad != null && nombre_localidad != "") 
-                {
-                    localidades = db.CAT_LOCALIDAD.SqlQuery("SELECT * "
-                    + "FROM  sde.CAT_LOCALIDAD  where CVE_ENTIDAD = '01' "
-                    + "and CVE_MUNICIPIO = '001' "
-                    + "and NOM_LOCALIDAD like('%" + @nombre_localidad + "%') "
-                    + "order by NOM_LOCALIDAD").ToList();
-                }                
+                localidades = repo.obtenerLocalidades(clave_localidad, nombre_localidad, municipio);
             }
             catch (System.InvalidOperationException e)
             {

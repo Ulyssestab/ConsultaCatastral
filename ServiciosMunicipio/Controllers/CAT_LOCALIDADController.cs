@@ -17,13 +17,17 @@ namespace ServiciosMunicipio.Controllers
         CAT_LOCALIDAD_Dao dao = new CAT_LOCALIDAD_Dao();
 
         // GET: CAT_LOCALIDAD/Localidades?clave_localidad&nombre_localidad AjaxResultados -- Localidad
-        public ActionResult Localidades(String clave_localidad, String nombre_localidad)
+        public ActionResult Localidades(String clave_localidad, String nombre_localidad, String municipio)
         {
-            if (clave_localidad == null && nombre_localidad==null)
+            if (clave_localidad == null && nombre_localidad == null && municipio == null)
             {
                 return new HttpStatusCodeResult(System.Net.HttpStatusCode.BadRequest);
+            } 
+            else if (String.IsNullOrEmpty(municipio)) 
+            {
+                return Json( new List<CAT_LOCALIDAD>(), JsonRequestBehavior.AllowGet);
             }
-            var r = dao.obtenerLocalidades(clave_localidad, nombre_localidad);
+            var r = dao.obtenerLocalidades(clave_localidad, nombre_localidad, municipio);
 
             this.ViewBag.Resultados = r;
             return Json(r, JsonRequestBehavior.AllowGet);          

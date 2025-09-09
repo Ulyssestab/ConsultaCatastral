@@ -22,6 +22,7 @@ namespace ServiciosMunicipio.Tests.Controllers
     {
         private String clave_localidad = "";
         private String nombre_localidad = "ADAPTACIONES Y PAILERIA CERVANTES";
+        private String municipio = "001";
         private CAT_LOCALIDAD localidad = new CAT_LOCALIDAD
         {
             OBJECTID = 1774,
@@ -42,7 +43,7 @@ namespace ServiciosMunicipio.Tests.Controllers
             CAT_LOCALIDADController controller = new CAT_LOCALIDADController();
 
             // Actuar
-            System.Web.Mvc.JsonResult result = (System.Web.Mvc.JsonResult) controller.Localidades(clave_localidad, nombre_localidad);
+            System.Web.Mvc.JsonResult result = (System.Web.Mvc.JsonResult) controller.Localidades(clave_localidad, nombre_localidad, municipio);
             var data = result.Data;
             var serializer = new JavaScriptSerializer();
             var jsonString = serializer.Serialize(data);            
@@ -51,6 +52,42 @@ namespace ServiciosMunicipio.Tests.Controllers
             // Declarar
             Assert.IsNotNull(result);
             Assert.AreEqual(localidad.NOM_LOCALIDAD,variable.NOM_LOCALIDAD);
+        }
+
+        [TestMethod]
+        public void SinLocalidadesTest()
+        {
+            CAT_LOCALIDAD variable = new CAT_LOCALIDAD();
+            // Disponer
+            CAT_LOCALIDADController controller = new CAT_LOCALIDADController();
+
+            // Actuar
+            System.Web.Mvc.JsonResult result = (System.Web.Mvc.JsonResult)controller.Localidades(clave_localidad, nombre_localidad, "");
+            var data = result.Data;
+            var serializer = new JavaScriptSerializer();
+            var jsonString = serializer.Serialize(data);
+
+            variable = jsonString != "[]" ? util.crearObjeto(jsonString.Replace("[", "").Replace("]", "")) : variable;
+            // Declarar
+            Assert.IsNotNull(result);            
+        }
+
+        [TestMethod]
+        public void NullLocalidadesTest()
+        {
+            CAT_LOCALIDAD variable = new CAT_LOCALIDAD();
+            // Disponer
+            CAT_LOCALIDADController controller = new CAT_LOCALIDADController();
+
+            // Actuar
+            System.Web.Mvc.JsonResult result = (System.Web.Mvc.JsonResult)controller.Localidades(clave_localidad, nombre_localidad, null);
+            var data = result.Data;
+            var serializer = new JavaScriptSerializer();
+            var jsonString = serializer.Serialize(data);
+
+            variable = jsonString != "[]" ? util.crearObjeto(jsonString.Replace("[", "").Replace("]", "")) : variable;
+            // Declarar
+            Assert.IsNotNull(result);
         }
         [TestMethod]
         public void NombreLocalidadTest()
