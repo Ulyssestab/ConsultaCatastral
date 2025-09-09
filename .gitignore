@@ -17,3 +17,4 @@ ServiciosMunicipio.Tests/obj/Debug/ServiciosMunicipio.Tests.csproj.FileListAbsol
 ServiciosMunicipio.Tests/obj/Debug/ServiciosMunicipio.Tests.dll
 ServiciosMunicipio.Tests/obj/Debug/ServiciosMunicipio.Tests.pdb
 ServiciosMunicipio.Tests/obj/Debug/.NETFramework,Version=v4.5.AssemblyAttributes.cs
+*.cache
