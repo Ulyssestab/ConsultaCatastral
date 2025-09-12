@@ -123,6 +123,11 @@ namespace ServiciosMunicipio.Repositorio.Impl
             return resultado;
         }
 
+        internal string getDetallePredioAbstencion(string consulta, string municipio)
+        {
+            throw new NotImplementedException();
+        }
+
         public List<Tramite> obtenerTramites(string consulta)
         {
             var builder = new SqlConnectionStringBuilder

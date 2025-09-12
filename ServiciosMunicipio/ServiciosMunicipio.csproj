@@ -245,6 +245,9 @@
     <Compile Include="Models\SIS_PC_UBICACION.cs">
       <DependentUpon>GDB01001Model.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\SIS_TRACAT_ABSTENCIONES.cs">
+      <DependentUpon>WFTRAMITESModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\Usuario.cs">
       <DependentUpon>WFTRAMITESModel.tt</DependentUpon>
     </Compile>

@@ -1,4 +1,5 @@
-﻿using ServiciosMunicipio.Models.Entidades;
+﻿using ServiciosMunicipio.Models;
+using ServiciosMunicipio.Models.Entidades;
 using ServiciosMunicipio.Repositorio.Impl;
 using ServiciosMunicipio.Utilerias;
 using System;
@@ -12,6 +13,7 @@ namespace ServiciosMunicipio.Dao
     public class DetallePredioDao
     {
         RepositorioDetallePredioImp repositorio = new RepositorioDetallePredioImp();
+        private WFTRAMITESEntities db = new WFTRAMITESEntities();
         public DetallePredio getDetallePredio(String clave, String municipio) //getDetallePredio
         {
             clave = Utilerias.AntiInjectionSQL.quitarComillas(clave, Constantes.LONG_MAX_NOM);
@@ -54,6 +56,23 @@ namespace ServiciosMunicipio.Dao
                 + "left outer join sde.SIS_PC_SUPERFICIES2 papa on papa." + cv + "=se." + cv1 + " and papa.STATUSREGISTROTABLA='ACTIVO' and papa.TIPO_ELEMENTO='BASE CONDOMINAL' "
                 + "where p." + cv + " = '" + clave + "' and p.STATUSREGISTROTABLA='ACTIVO' ";
             return repositorio.ObtenerElemento(consulta, municipio);
+        }
+
+        public bool getDetallePredioAbstencion(string clave, string municipio)
+        {
+            clave = AntiInjectionSQL.quitarComillas(clave, Constantes.LONG_MAX_NOM);
+            String cv = "";
+            if (clave.Length < 31)
+            {
+                cv = "CVE_CAT_ORI";
+            }
+            else
+            {
+                cv = "CVE_CAT_EST";
+            }
+            String consulta = "select * \n from WFTRAMITES.dbo.SIS_TRACAT_ABSTENCIONES \n where " + cv + " = '" + clave + "' and STATUSREGISTROTABLA='ACTIVO' \n";
+            String resultado = db.SIS_TRACAT_ABSTENCIONES.SqlQuery(consulta).Count() > 0 ? db.SIS_TRACAT_ABSTENCIONES.SqlQuery(consulta).First().CVE_CAT_ORI : "";
+            return resultado != "";
         }
 
         public List<Tramite> obtenerTramites(String claveCatEst) //getTramitesGeneral

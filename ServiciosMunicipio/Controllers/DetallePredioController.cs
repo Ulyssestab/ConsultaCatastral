@@ -30,5 +30,12 @@ namespace ServiciosMunicipio.Controllers
             List<TareasTramite> tramites = dao.obtenerDetalleTareasTramite(numeroTramite);
             return Json(tramites, JsonRequestBehavior.AllowGet);
         }
+
+        // GET: DetallePredio/getDetallePredioAbstencion
+        public ActionResult getDetallePredioAbstencion(String clave, String municipio)
+        {
+            bool resultado = dao.getDetallePredioAbstencion(clave, municipio);
+            return Json(resultado, JsonRequestBehavior.AllowGet);
+        }
     }
 }

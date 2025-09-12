@@ -31,5 +31,6 @@ namespace ServiciosMunicipio.Models
         public virtual DbSet<Servicios_Consulta_Cat> Servicios_Consulta_Cat { get; set; }
         public virtual DbSet<BitacoraAccesoSistemas> BitacoraAccesoSistemas { get; set; }
         public virtual DbSet<UsuarioPropietario> UsuarioPropietario { get; set; }
+        public virtual DbSet<SIS_TRACAT_ABSTENCIONES> SIS_TRACAT_ABSTENCIONES { get; set; }
     }
 }

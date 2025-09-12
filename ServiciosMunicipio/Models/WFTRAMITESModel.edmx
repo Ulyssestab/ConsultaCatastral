@@ -52,6 +52,22 @@
           <Property Name="url" Type="varchar" MaxLength="80" />
           <Property Name="nombre_parametro" Type="varchar" MaxLength="80" />
         </EntityType>
+        <EntityType Name="SIS_TRACAT_ABSTENCIONES">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="STATUSREGISTROTABLA" Type="nvarchar" MaxLength="10" />
+          <Property Name="ALTAREGISTROTABLA" Type="datetime" />
+          <Property Name="BAJAREGISTROTABLA" Type="datetime" />
+          <Property Name="USUARIOBAJA" Type="nvarchar" MaxLength="250" />
+          <Property Name="USUARIOALTA" Type="nvarchar" MaxLength="250" />
+          <Property Name="CVE_CAT_EST" Type="nvarchar" MaxLength="50" />
+          <Property Name="CVE_CAT_ORI" Type="nchar" MaxLength="17" />
+          <Property Name="OBS" Type="nvarchar" MaxLength="250" />
+          <Property Name="PISO" Type="nvarchar" MaxLength="10" />
+          <Property Name="OBS_ELIMINAR" Type="nchar" MaxLength="250" />
+        </EntityType>
         <EntityType Name="Usuario">
           <Key>
             <PropertyRef Name="NombreUsuario" />
@@ -114,6 +130,7 @@
           <EntitySet Name="Cat_Acceso" EntityType="Self.Cat_Acceso" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Cat_Municipio" EntityType="Self.Cat_Municipio" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Servicios_Consulta_Cat" EntityType="Self.Servicios_Consulta_Cat" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SIS_TRACAT_ABSTENCIONES" EntityType="Self.SIS_TRACAT_ABSTENCIONES" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Usuario" EntityType="Self.Usuario" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="UsuarioPropietario" EntityType="Self.UsuarioPropietario" Schema="dbo" store:Type="Tables" />
         </EntityContainer>
@@ -139,6 +156,7 @@
           <EntitySet Name="Servicios_Consulta_Cat" EntityType="WFTRAMITESModel.Servicios_Consulta_Cat" />
           <EntitySet Name="BitacoraAccesoSistemas" EntityType="WFTRAMITESModel.BitacoraAccesoSistemas" />
           <EntitySet Name="UsuarioPropietario" EntityType="WFTRAMITESModel.UsuarioPropietario" />
+          <EntitySet Name="SIS_TRACAT_ABSTENCIONES" EntityType="WFTRAMITESModel.SIS_TRACAT_ABSTENCIONES" />
         </EntityContainer>
         <EntityType Name="Cat_Acceso">
           <Key>
@@ -232,6 +250,22 @@
           <Property Name="Propietario" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
           <Property Name="CoPropietario" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
           <Property Name="Habilitado" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SIS_TRACAT_ABSTENCIONES">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="STATUSREGISTROTABLA" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="ALTAREGISTROTABLA" Type="DateTime" Precision="3" />
+          <Property Name="BAJAREGISTROTABLA" Type="DateTime" Precision="3" />
+          <Property Name="USUARIOBAJA" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="USUARIOALTA" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="CVE_CAT_EST" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CVE_CAT_ORI" Type="String" MaxLength="17" FixedLength="true" Unicode="true" />
+          <Property Name="OBS" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="PISO" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="OBS_ELIMINAR" Type="String" MaxLength="250" FixedLength="true" Unicode="true" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -346,6 +380,23 @@
                 <ScalarProperty Name="FK_CuentaCatastralEstandar" ColumnName="FK_CuentaCatastralEstandar" />
                 <ScalarProperty Name="FK_NombreUsuario" ColumnName="FK_NombreUsuario" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SIS_TRACAT_ABSTENCIONES">
+            <EntityTypeMapping TypeName="WFTRAMITESModel.SIS_TRACAT_ABSTENCIONES">
+              <MappingFragment StoreEntitySet="SIS_TRACAT_ABSTENCIONES">
+                <ScalarProperty Name="OBS_ELIMINAR" ColumnName="OBS_ELIMINAR" />
+                <ScalarProperty Name="PISO" ColumnName="PISO" />
+                <ScalarProperty Name="OBS" ColumnName="OBS" />
+                <ScalarProperty Name="CVE_CAT_ORI" ColumnName="CVE_CAT_ORI" />
+                <ScalarProperty Name="CVE_CAT_EST" ColumnName="CVE_CAT_EST" />
+                <ScalarProperty Name="USUARIOALTA" ColumnName="USUARIOALTA" />
+                <ScalarProperty Name="USUARIOBAJA" ColumnName="USUARIOBAJA" />
+                <ScalarProperty Name="BAJAREGISTROTABLA" ColumnName="BAJAREGISTROTABLA" />
+                <ScalarProperty Name="ALTAREGISTROTABLA" ColumnName="ALTAREGISTROTABLA" />
+                <ScalarProperty Name="STATUSREGISTROTABLA" ColumnName="STATUSREGISTROTABLA" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
