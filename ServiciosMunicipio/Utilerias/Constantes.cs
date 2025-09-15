@@ -18,12 +18,22 @@ namespace ServiciosMunicipio.Utilerias
         public const int TOTALXPREDIO = 0;
         public const int XPREDIO = 1;
 
-        public const string UserID = "CatastroSA";
-        public const string Password = "CatAdmin#";
-        public const string DataSource = "10.1.2.126";
+        //public const string UserID = "CatastroSA";
+        //public const string Password = "CatAdmin#";
+        //public const string DataSource = "10.1.2.126";
+        //public const string InitialCatalogW = "WFTRAMITES";
+        //public const string InitialCatalogM = "GDB01";
+
+        //public const String HOST = "https//localhost:44330";
+        //desarrollo
+
+        //preProduccion
+        public const string UserID = "usuCartografia01";
+        public const string Password = "u5uC4rt0gr4";
+        public const string DataSource = "10.1.111.210";
         public const string InitialCatalogW = "WFTRAMITES";
         public const string InitialCatalogM = "GDB01";
-
-        public const String HOST = "https//localhost:44330";
+        public const String SERVICIOS_HOST = "https://geoportal.aguascalientes.gob.mx/ServiciosMunicipio";
+        public const String HOST = "https://geoportal.aguascalientes.gob.mx/ConsultaCatastral";
     }
 }
